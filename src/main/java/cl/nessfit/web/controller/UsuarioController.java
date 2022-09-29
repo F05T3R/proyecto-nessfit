@@ -1,6 +1,7 @@
 package cl.nessfit.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,12 +19,12 @@ public class UsuarioController {
 	public String guardar() {
 		
 		Usuario usuario = new Usuario();
-		usuario.setApellido("Dominguez");
+		usuario.setApellido("Felipe");
 		usuario.setContrasena("1234");
-		usuario.setEmail("rodrigo@ucn.cl");
+		usuario.setEmail("Administrador@gmail.com");
 		usuario.setEstado(1);
-		usuario.setNombre("Rodrigo");
-		usuario.setRut("173922025");
+		usuario.setNombre("Felipe");
+		usuario.setRut("192644259");
 		usuario.setTelefono("1234332");
 		
 		Rol rol = new Rol();
