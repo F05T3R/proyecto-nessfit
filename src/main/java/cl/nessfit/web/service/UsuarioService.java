@@ -11,4 +11,6 @@ public interface UsuarioService {
 	public void eliminar(String rutUsuario);
 	
 	public List<Usuario> listar();
+	
+	public Usuario buscarPorRut(String rut);
 }

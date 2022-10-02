@@ -32,4 +32,10 @@ public class CUsuarioService implements UsuarioService{
 		return usuarioRepository.findAll();
 	}
 	
+	@Override
+    public Usuario buscarPorRut(String rut) {
+	Usuario usuario = usuarioRepository.findByRut(rut);
+	return usuario;
+    }
+	
 }
