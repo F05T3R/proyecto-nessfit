@@ -8,6 +8,7 @@ public class NessfitApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(NessfitApplication.class, args);
+		
 	}
 
 }

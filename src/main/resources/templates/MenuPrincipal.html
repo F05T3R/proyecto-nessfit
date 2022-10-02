@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/MenuPrincipal-estilo.css">
@@ -11,30 +11,34 @@
 </head>
 
 <body>
-      
-    <div id="sidebar">
-      <div class="toggle-btn">
-        <span>&#9776</span>
-      </div>
-      <ul>
-        <li>
-          <img src="images/NESSFIT_LOGO.png" alt="Logo" class="logo">
-        </li>
-        <li><a href="#" id="Casa">Casa</a></li>
-        <li><a href="#" id="Acerca de">Acerca de</a></li>
-        <li><a href="#" id="Contacto">Contacto</a></li>
-        <li><p><a href="#" id="openModal">PopUp</a></p></li>
-        <a href="#" id="Configuracion">Configuracion</a>
-      </ul>
-    </div>
-    
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>¿Esta seguro?</p>
-      </div>
-    </div>
-
-    <script src="js/MenuPrincipal-barraLateral.js"></script>
-  </body>
+         
+         <div class="barraLateral">
+         	<img src="/images/NESSFIT_LOGO.png">
+         	<hr>
+         	<a href="/MenuPrincipal" class="boton">
+      			<span class="fs-4">Inicio</span>
+    		</a>
+    		<a sec:authorize="hasAuthority('ADMINISTRATIVO')" href="/administrativo/RegistrarCliente" class="boton">
+      			<span class="fs-4">Registrar cliente</span>
+    		</a>
+    		<a sec:authorize="hasAuthority('ADMINISTRADOR')" href="/administrador/RegistrarAdministrativo" class="boton">
+      			<span class="fs-4">Registrar administrativo</span>
+    		</a>
+    		<a href="/CambiarContraseña" class="boton">
+      			<span class="fs-4">Cambiar contraseña</span>
+    		</a>
+    		<a href="/MenuPrincipal" class="boton">
+      			<span class="fs-4">Perfil</span>
+    		</a>
+    		<a href="/logout" class="boton">
+      			<span class="fs-4">Cerrar Sesion</span>
+    		</a>
+         </div>
+         <div class="menuContenido">
+         	<div>
+         	
+         	</div>
+         
+         </div>
+</body>
 </html>

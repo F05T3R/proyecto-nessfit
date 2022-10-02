@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.OneToOne;
 
 @Entity
 @Table(name = "usuarios")
@@ -18,6 +18,7 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 4507764205332784955L;
 	@Id
 	private String rut;
+	
 	private String nombre;
 	private String apellido;
 	private String telefono;
@@ -25,7 +26,7 @@ public class Usuario implements Serializable{
 	private int estado;
 	private String contrasena;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_rol", referencedColumnName = "id")
 	private Rol rol;
 
