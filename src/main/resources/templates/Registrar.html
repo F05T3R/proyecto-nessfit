@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" href="/css/Registrar-estilo.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,34 +19,30 @@
 			</div>
 		</div>
 		<div class="menuBoton">
-			<h1>Inicia sesión en Nessfit</h1>
+			<h1>Registrando cliente</h1>
 
-			<form th:action="@{/InicioSesion}" method="post">
+			<form th:action="@{/Registrar}" method="post">
 				<div class="casillas">
 					<label class="rut" for="rut">RUT:</label>
   					<input class="rut"  type="text" id="rut" name="rut" required>
-  					<div class= cajaError>
-  						<span th:if="${param.novalido}" class="error" role="alert">
-  							“Las credenciales de acceso son incorrectas o el usuario no está registrado en el sistema.
-                    	</span>
-                    	<span th:if="${param.noautorizado}" class="error" role="alert">
-  							“Usuario deshabilitado. Contacte al administrador.
-                    	</span>
-  					</div>
-  					<label class="contraseña"  for="contrasena">Contraseña:</label>
-  					<input class="contraseña"  type="password" id="contrasena" name="contrasena" required>
+  					<label class="nombres" for="nombre">Nombres:</label>
+  					<input class="nombres"  type="text" id="nombre" name="nombre" required>
+  					<label class="apellidos" for="apellido">Apellidos:</label>
+  					<input class="apellidos"  type="text" id="apellido" name="apellido" required>
+  					<label class="telefono" for="telefono">Telefono:</label>
+  					<input class="telefono"  type="text" id="telefono" name="telefono" required>
+  					<label class="email" for="rut">E-mail:</label>
+  					<input class="email"  type="text" id="email" name="email" required>
 				</div>
-				<div class="botonIniciar">
-				<input id="botonIniciar" style="float: none;" class="botonIniciar" type="submit" th:value="${'Iniciar sesión'}"></input>
+				<div class="botonRegistrar">
+				<input id="botonRegistrar" style="float: none;" class="botonRegistrar" type="submit" th:value="${'Registrar'}"></input>
 				</div>
 			</form>
 			
-			<p>¿No tienes cuenta?,<a>Regístrate</a>.</p>
+			
 		</div>
 	</div>
 </div>
-
-
 
 </body>
 </html>
