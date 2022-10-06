@@ -18,20 +18,20 @@
          	<a href="/MenuPrincipal" class="boton">
       			<span class="fs-4">Inicio</span>
     		</a>
-    		<a sec:authorize="hasAuthority('ADMINISTRATIVO')" href="/administrativo/RegistrarCliente" class="boton">
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
       			<span class="fs-4">Registrar cliente</span>
     		</a>
-    		<a sec:authorize="hasAuthority('ADMINISTRADOR')" href="/administrador/RegistrarAdministrativo" class="boton">
+    		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>
-    		<a href="/CambiarContraseña" class="boton">
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/CambiarContraseña" class="boton">
       			<span class="fs-4">Cambiar contraseña</span>
     		</a>
     		<a href="/MenuPrincipal" class="boton">
       			<span class="fs-4">Perfil</span>
     		</a>
     		<a href="/logout" class="boton">
-      			<span class="fs-4">Cerrar Sesion</span>
+      			<span class="fs-4">Cerrar Sesión</span>
     		</a>
          </div>
          <div class="menuContenido">
