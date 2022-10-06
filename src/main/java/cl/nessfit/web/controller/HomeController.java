@@ -1,6 +1,7 @@
 package cl.nessfit.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,8 +51,14 @@ public class HomeController {
 	return "redirect:/";
     }
 	
+	@ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
+	
 	@PostMapping("/perfil")
-    public String perfilForm(@Valid Usuario usuario, BindingResult result, Model model) {
+	public String perfilForm(@Valid Usuario usuario, BindingResult result, Model model) {
 		Usuario usuarioAuth = usuarioService
 			.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
 

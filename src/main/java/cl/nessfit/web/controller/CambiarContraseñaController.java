@@ -33,6 +33,12 @@ public class CambiarContraseñaController {
 		return "cambiarContraseña";
 	    }
 	    
+	    @ModelAttribute("rolUser")
+	    public String rol() {
+	    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+	        .getAuthority();
+	    }
+	    
 	    @PostMapping("/CambiarContraseña")
 	    public String enviarForm(@RequestParam String nuevaContrasena, @RequestParam String nuevaContrasenaRepetir,
 		    HttpServletRequest request, RedirectAttributes attr, Model model) {

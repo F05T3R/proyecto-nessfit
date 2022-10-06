@@ -12,5 +12,7 @@ public interface UsuarioService {
 	
 	public List<Usuario> listar();
 	
+	public List<Usuario> mostrarAdministrativos();
+	
 	public Usuario buscarPorRut(String rut);
 }
