@@ -51,8 +51,14 @@ public class HomeController {
 	return "redirect:/";
     }
 	
+	@ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
+	
 	@PostMapping("/perfil")
-    public String perfilForm(@Valid Usuario usuario, BindingResult result, Model model) {
+	public String perfilForm(@Valid Usuario usuario, BindingResult result, Model model) {
 		Usuario usuarioAuth = usuarioService
 			.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
 

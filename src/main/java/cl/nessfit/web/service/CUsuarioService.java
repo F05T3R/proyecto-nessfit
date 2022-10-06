@@ -20,6 +20,10 @@ public class CUsuarioService implements UsuarioService{
 		usuarioRepository.save(usuario);
 		
 	}
+	@Override
+    public List<Usuario> mostrarAdministrativos() {
+	return usuarioRepository.findByRolId(2);
+    }
 
 	@Override
 	public void eliminar(String rutUsuario) {
