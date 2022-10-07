@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuarios")
@@ -19,9 +21,14 @@ public class Usuario implements Serializable{
 	@Id
 	private String rut;
 	
+	@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String nombre;
+	@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String apellido;
+	
+	@Size(min = 11,max = 16, message = "El teléfono móvil ingresado no es válido")
 	private String telefono;
+	@Email(message = "Su correo electrónico no es válido")
 	private String email;
 	private int estado;
 	private String contrasena;
