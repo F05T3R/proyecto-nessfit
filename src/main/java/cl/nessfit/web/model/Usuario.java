@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
@@ -25,9 +26,8 @@ public class Usuario implements Serializable{
 	private String nombre;
 	@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String apellido;
-	
-	@Size(min = 11,max = 16, message = "El teléfono móvil ingresado no es válido")
-	private String telefono;
+	@Digits(integer = 16, fraction = 0)
+	private Integer telefono;
 	@Email(message = "Su correo electrónico no es válido")
 	private String email;
 	private int estado;
@@ -61,11 +61,11 @@ public class Usuario implements Serializable{
 		this.apellido = apellido;
 	}
 
-	public String getTelefono() {
+	public Integer getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
 

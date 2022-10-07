@@ -49,6 +49,8 @@
 								for="rut">RUT:     
 								</label>
 								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
+								<div th:if="${#fields.hasErrors('rut')}"
+													th:errorclass="text-danger" th:errors="*{rut}"></div>
 									<div class="cajaError">
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
@@ -97,12 +99,6 @@
 									<div class= cajaError>
 									<div class="error" th:if="${#fields.hasErrors('telefono')}"
 													th:errorclass="text-danger" th:errors="*{telefono}"></div>
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
                     				</div>
 								</label>
 							</div>

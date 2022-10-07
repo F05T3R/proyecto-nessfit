@@ -39,6 +39,12 @@ public class RegistrarClienteController {
 	// paso 1 validaciones
 	//result.rejectValue("rut", null, "rut inválido");
     	
+    	Usuario existe = usuarioService.buscarPorRut(usuario.getRut());
+
+    if (existe != null) {
+    	result.rejectValue("rut", null, "Rut existente en la base de datos");
+    }
+    	
 	if (result.hasErrors()) {
 	    return "/administrativo/RegistrarCliente";
 	}
