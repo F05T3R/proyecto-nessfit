@@ -50,56 +50,57 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">RUT:     
 								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
-								<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('rut')}"
 													th:errorclass="text-danger" th:errors="*{rut}"></div>
                     				</div>
-								</label>
 											
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre:
 								<input th:field="*{nombre}"name="nombre" type="text" required="required" class="casillaNombre">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
 													th:errorclass="text-danger" th:errors="*{nombre}"></div>
                     				</div>
-								</label>
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="apellido">Apellido:
 								<input th:field="*{apellido}" name="apellido" type="text" required="required" class="casillaApellido">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('apellido')}"
 													th:errorclass="text-danger" th:errors="*{apellido}"></div>
                     				</div>
-								</label>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="telefono">Teléfono:
 								<input th:field="*{telefono}" name="telefono" type="text" required="required" class="casillaTelefono">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('telefono')}"
 													th:errorclass="text-danger" th:errors="*{telefono}"></div>
                     				</div>
-								</label>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="correo">Correo electrónico:
 								<input th:field="*{email}" name="correo" type="text" required="required" class="casillaCorreo">
-									<div class= cajaError>
-									<div th:if="${#fields.hasErrors('email')}"
-													th:errorclass="text-danger" th:errors="*{email}"></div>
-                    				</div>
 								</label>
+								<div class = "cajaError">
+										<div th:if="${#fields.hasErrors('email')}"
+													th:errorclass="text-danger" th:errors="*{email}">
+										</div>
+                    				</div>
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
-								<button type="submit" class="aceptar">Aceptar</button>
+									<button type="submit" class="aceptar">Aceptar</button>
 									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
 								</div>
 								<div id="myModal" class="modal">
@@ -107,8 +108,8 @@
         								<span class="close">&times;</span>
         								<p class="botonModal">¿Estás seguro?</p>
         								<div class="botonModal">
-        									<a id="close" class="cancelar">Cancelar</a>
         									<button type="submit" class="aceptar">Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
         								</div>	
       								</div>	
     							</div>
