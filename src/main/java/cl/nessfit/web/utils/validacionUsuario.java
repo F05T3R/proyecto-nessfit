@@ -1,5 +1,6 @@
 package cl.nessfit.web.utils;
 
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -18,9 +19,8 @@ public class validacionUsuario implements Validator {
     public void validate(Object target, Errors errors) {
     	//System.out.println("hola2");
 	    Usuario usuario = (Usuario) target;
-	    // lógica para validar
-	    
-	    if(usuario.getTelefono() < 11 || usuario.getTelefono() > 16) {
+	    // lógica para validar	    
+	    if(String.valueOf(usuario.getTelefono()).length() < 11) {
 	    	errors.rejectValue("telefono", null, "El teléfono móvil ingresado no es válido");
 	    }
 	    
