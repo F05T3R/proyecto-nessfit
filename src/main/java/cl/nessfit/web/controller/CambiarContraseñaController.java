@@ -8,14 +8,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import cl.nessfit.web.model.Rol;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CUsuarioService;
+import cl.nessfit.web.utils.validacionUsuario;
 
 @Controller
 public class CambiarContraseñaController {
@@ -25,6 +29,8 @@ public class CambiarContraseñaController {
 
 	    @Autowired
 	    private BCryptPasswordEncoder passwordEncoder;
+	    
+	   
 
 	    @GetMapping("/CambiarContraseña")
 	    public String cambiarContrasenaForm(Model model) {
@@ -49,21 +55,32 @@ public class CambiarContraseñaController {
 		// 2.- validar contraseñas iguales, usuario no null, contraseña mayor a 10 y
 		// menor a 15 caracteres
 
-		if (nuevaContrasena.length()< 10 || nuevaContrasena.length()>15) {
+		if (nuevaContrasena.length()< 5 || nuevaContrasena.length()>15) {
 		    model.addAttribute("msg", "Contraseña incorrecta");
 		    model.addAttribute("nuevaContrasena", nuevaContrasena);
 		    model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
 		    return "cambiarContraseña";
 		}
-		if(nuevaContrasena != nuevaContrasenaRepetir) {
-			model.addAttribute("msg2", "Contraseña incorrecta");
-		    model.addAttribute("nuevaContrasena", nuevaContrasena);
-		    model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
-		    return "cambiarContraseña";
-		}
-
+		
+		if(!(nuevaContrasena.equals(nuevaContrasenaRepetir))) {
+            System.out.println("Entre");
+            model.addAttribute("msg2", "Contraseña incorrecta");
+            model.addAttribute("nuevaContrasena", nuevaContrasena);
+            model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
+            return "cambiarContraseña";
+        }
+			
 		// 3.- set usuario
 		usuario.setContrasena(passwordEncoder.encode(nuevaContrasena));
+		/*
+		Rol rolCliente = new Rol();
+		rolCliente.setId(3);
+		usuario.setRol(rolCliente);
+		usuario.setNombre(usuario.getNombre());
+		usuario.setApellido(usuario.getApellido());
+		usuario.setTelefono(usuario.getTelefono());
+		usuario.setEmail(usuario.getEmail());
+		*/
 
 		// 4.- persistencia
 		usuarioService.guardar(usuario);
