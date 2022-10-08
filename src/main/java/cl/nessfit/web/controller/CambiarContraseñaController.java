@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import cl.nessfit.web.model.Rol;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CUsuarioService;
 
@@ -49,25 +50,27 @@ public class CambiarContraseñaController {
 		// 2.- validar contraseñas iguales, usuario no null, contraseña mayor a 10 y
 		// menor a 15 caracteres
 
-		if (nuevaContrasena.length()< 10 || nuevaContrasena.length()>15) {
+		if (nuevaContrasena.length()< 5 || nuevaContrasena.length()>15) {
 		    model.addAttribute("msg", "Contraseña incorrecta");
 		    model.addAttribute("nuevaContrasena", nuevaContrasena);
 		    model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
 		    return "cambiarContraseña";
 		}
-		if(nuevaContrasena != nuevaContrasenaRepetir) {
-			model.addAttribute("msg2", "Contraseña incorrecta");
-		    model.addAttribute("nuevaContrasena", nuevaContrasena);
-		    model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
-		    return "cambiarContraseña";
-		}
-
+		
+		if(!(nuevaContrasena.equals(nuevaContrasenaRepetir))) {
+            System.out.println("Entre");
+            model.addAttribute("msg2", "Contraseña incorrecta");
+            model.addAttribute("nuevaContrasena", nuevaContrasena);
+            model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
+            return "cambiarContraseña";
+        }
+			
 		// 3.- set usuario
 		usuario.setContrasena(passwordEncoder.encode(nuevaContrasena));
-
+		
 		// 4.- persistencia
 		usuarioService.guardar(usuario);
-
+		
 		// 5.- redirección
 		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 		logoutHandler.logout(request, null, null);
@@ -76,6 +79,7 @@ public class CambiarContraseñaController {
 
 	    @ModelAttribute("rutUser")
 	    public String auth() {
-		return SecurityContextHolder.getContext().getAuthentication().getName();
+	    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+	    	return usuario.getNombre();
 	    }
 }

@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/RegistrarAdministrativo-estilo.css">
+<link rel="stylesheet" href="/css/EditarDatos-estilo.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,9 @@
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
+      			<span class="fs-4">Editar datos</span>
+    		</a>
     		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/CambiarContraseña" class="boton">
       			<span class="fs-4">Cambiar contraseña</span>
     		</a>
@@ -31,75 +34,81 @@
       			<span class="fs-4">Cerrar Sesión</span>
     		</a>
          </div>
+         
          <div class="menuContenido">
          	<div class="barraSuperior">
          		<div>
          			<a  th:text="${rutUser}" class="botonSuperior"></a>
          		</div>
-        	 </div>
+         	</div>
+         	<div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1>Registrar cliente</h1>
+					<h1>Editar datos</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/administrativo/RegistrarCliente}"
-							method="post" id="demo-form2" data-parsley-validate
+						<form th:action="@{/EditarDatos}" method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${usuario}">
 							
-							<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="rut">RUT:     
-								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
-								<div class= cajaError>
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="rut">Rut:</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input th:field="*{rut}" type="text" hidden
+											class="form-control ">
+									<input th:field="*{rut}" type="text" disabled="disabled"
+											class="form-control ">
+									<div class= cajaError>
 									<div th:if="${#fields.hasErrors('rut')}"
 													th:errorclass="text-danger" th:errors="*{rut}"></div>
                     				</div>
-								</label>
-											
+								</div>
 							</div>
-							<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Nombre:
-								<input th:field="*{nombre}"name="nombre" type="text" required="required" class="casillaNombre">
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="nombre">Nombre:</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input th:field="*{nombre}" type="text" required="required"
+													class="form-control " th:errorclass="border-danger">
 									<div class= cajaError>
 									<div th:if="${#fields.hasErrors('nombre')}"
 													th:errorclass="text-danger" th:errors="*{nombre}"></div>
                     				</div>
-								</label>
+								</div>
 							</div>
-							<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="apellido">Apellido:
-								<input th:field="*{apellido}" name="apellido" type="text" required="required" class="casillaApellido">
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="apellido">Apellido:</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input th:field="*{apellido}" type="text" required="required"
+													class="form-control " th:errorclass="border-danger">
 									<div class= cajaError>
 									<div th:if="${#fields.hasErrors('apellido')}"
 													th:errorclass="text-danger" th:errors="*{apellido}"></div>
                     				</div>
-								</label>
+								</div>
 							</div>
-                    		<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="telefono">Teléfono:
-								<input th:field="*{telefono}" name="telefono" type="text" required="required" class="casillaTelefono">
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="telefono">Teléfono:</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input th:field="*{telefono}" type="text" required="required"
+													class="form-control " th:errorclass="border-danger">
 									<div class= cajaError>
-									<div class="error" th:if="${#fields.hasErrors('telefono')}"
+									<div th:if="${#fields.hasErrors('telefono')}"
 													th:errorclass="text-danger" th:errors="*{telefono}"></div>
                     				</div>
-								</label>
+								</div>
 							</div>
-                    		<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="correo">Correo electrónico:
-								<input th:field="*{email}" name="correo" type="text" required="required" class="casillaCorreo">
+							<div class="item form-group">
+								<label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Correo electrónico:</label>
+								<div class="col-md-6 col-sm-6 ">
+									<input th:field="*{email}" type="text" required="required"
+													class="form-control " th:errorclass="border-danger">
 									<div class= cajaError>
 									<div th:if="${#fields.hasErrors('email')}"
 													th:errorclass="text-danger" th:errors="*{email}"></div>
                     				</div>
-								</label>
+								</div>
 							</div>
-                    		<div class="casillaBotones">
+							<div class="casillaBotones">
 								<div class="botonActualizar">
-								<button type="submit" class="aceptar">Aceptar</button>
 									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
 								</div>
 								<div id="myModal" class="modal">
@@ -118,6 +127,5 @@
 					</div>
 				</div>
 			</div>
-		</div>
-</body>
+			</div>		
 </html>

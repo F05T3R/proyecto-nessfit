@@ -19,7 +19,7 @@ public class Rol implements Serializable{
 	private int id;
 	private String nombre;
 	
-	//@OneToMany(mappedBy = "rol")
+	//@OneToOne(mappedBy = "rol")
 	private Usuario usuario;
 
 	public int getId() {

@@ -7,9 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,7 +51,7 @@ public class RegistrarClienteController {
 	usuario.setContrasena(passwordEncoder.encode(usuario.getRut()));
 	usuario.setEstado(1);
 	Rol rolAdministrativo = new Rol();
-	rolAdministrativo.setId(2);
+	rolAdministrativo.setId(3);
 	usuario.setRol(rolAdministrativo);
 	System.out.println(usuario.toString());
 
@@ -66,9 +64,7 @@ public class RegistrarClienteController {
 
     @ModelAttribute("rutUser")
     public String auth() {
-	// Usuario usuario =
-	// usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
-
-	return SecurityContextHolder.getContext().getAuthentication().getName();
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
     }
 }
