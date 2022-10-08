@@ -22,9 +22,9 @@ public class Usuario implements Serializable{
 	@Id
 	private String rut;
 	
-	@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
+	//@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String nombre;
-	@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
+	//@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String apellido;
 	@Digits(integer = 16, fraction = 0)
 	private Integer telefono;
