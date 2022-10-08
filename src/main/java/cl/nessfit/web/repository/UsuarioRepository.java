@@ -13,4 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 
     // SELECT * FROM usuarios u WHERE u.rut = rut;
     public Usuario findByRut(String rut);
+    
+    public Usuario findByEmail(String email);
 }
