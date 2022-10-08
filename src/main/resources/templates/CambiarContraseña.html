@@ -53,7 +53,7 @@
 								for="nuevaContrasena">Nueva contraseña:
 							</label>
 							<div class="casillaInput">
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="form-control">
+								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="password" required="required" class="form-control">
 								<div class= cajaError>
   								<span th:if="${msg != null}" class="error" role="alert">
   									El largo de la contraseña debe estar entre 10 y 15 caracteres.
@@ -67,7 +67,7 @@
 								for="nuevaContrasenaRepetir">Repetir nueva contraseña:
 							</label>
 							<div class="casillaInput ">
-								<input th:value="${nuevaContrasenaRepetir}" name="nuevaContrasenaRepetir" type="text" required="required"
+								<input th:value="${nuevaContrasenaRepetir}" name="nuevaContrasenaRepetir" type="password" required="required"
 									class="form-control ">
 							</div>
 							<div class="casillaBotones">
@@ -79,8 +79,8 @@
         								<span class="close">&times;</span>
         								<p class="botonModal">¿Estás seguro?</p>
         								<div class="botonModal">
-        									<a id="close" class="cancelar">Cancelar</a>
         									<button type="submit" class="aceptar">Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
         								</div>	
       								</div>	
     							</div>
