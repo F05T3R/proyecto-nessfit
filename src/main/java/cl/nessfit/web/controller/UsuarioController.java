@@ -25,7 +25,7 @@ public class UsuarioController {
 		usuario.setEstado(1);
 		usuario.setNombre("Felipe");
 		usuario.setRut("192644259");
-		usuario.setTelefono("1234332");
+		usuario.setTelefono(1234332);
 		
 		Rol rol = new Rol();
 		rol.setId(1);
