@@ -26,7 +26,7 @@ hr{
 	border-width: 0px 2px;
 	box-shadow: 0px 4px #3f8880;
 }
-a{
+.boton{
 	width:155px;
 	background-color: #fff;
   	border: 1px solid;
@@ -40,7 +40,34 @@ a{
   	margin: 4px 2px;
   	cursor: pointer;
 }
-a:hover{
+.boton:hover{
+	background-color: #fef6cd;
+}
+.barraSuperior{
+	border-style: solid;
+	border-color: #3f8880;
+	background-color: #fff;
+	border-width: 0px 0px 1px 0px;
+	display:flex;
+	height: 3rem;
+	width: 100%;
+	justify-content: flex-end;
+}
+.botonSuperior{
+	width:auto;
+	background-color: #fff;
+  	border: 1px solid;
+  	border-color:#000;
+ 	color: #000;
+  	padding: 8px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	font-size: 18px;
+  	margin: 4px 2px;
+  	cursor: pointer;
+}
+.botonSuperior:hover{
 	background-color: #fef6cd;
 }
 .menuContenido{
