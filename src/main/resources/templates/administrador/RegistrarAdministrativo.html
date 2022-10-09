@@ -37,18 +37,21 @@
          <div class="menuContenido">
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1>Registrar administrativo</h1>
+					<h1>Registrar Administrador</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/CambiarContraseña}"
+						<form th:action="@{/administrador/RegistrarAdministrativo}"
 							method="post" id="demo-form2" data-parsley-validate
-							class="form-horizontal form-label-left">
+							class="form-horizontal form-label-left" th:object="${usuario}">
 							
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">RUT:      
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="casillaRut">
-									<div class= cajaError>
+								for="rut">RUT:     
+								</label>
+								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
+								<div th:if="${#fields.hasErrors('rut')}"
+													th:errorclass="text-danger" th:errors="*{rut}"></div>
+									<div class="cajaError">
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
                     					</span>
@@ -56,15 +59,14 @@
   										Las contraseñas no coinciden.
                     		 			</span>
                     				</div>
-								</label>
-								<div>
-                    			</div>
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre:
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="casillaNombre">
+								<input th:field="*{nombre}"name="nombre" type="text" required="required" class="casillaNombre">
 									<div class= cajaError>
+									<div th:if="${#fields.hasErrors('nombre')}"
+													th:errorclass="text-danger" th:errors="*{nombre}"></div>
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
                     					</span>
@@ -73,14 +75,14 @@
                     		 			</span>
                     				</div>
 								</label>
-								<div>
-                    			</div>
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Apellido:
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="casillaApellido">
+								for="apellido">Apellido:
+								<input th:field="*{apellido}" name="apellido" type="text" required="required" class="casillaApellido">
 									<div class= cajaError>
+									<div th:if="${#fields.hasErrors('apellido')}"
+													th:errorclass="text-danger" th:errors="*{apellido}"></div>
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
                     					</span>
@@ -89,30 +91,24 @@
                     		 			</span>
                     				</div>
 								</label>
-								<div>
-                    			</div>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Teléfono:
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="casillaTelefono">
+								for="telefono">Teléfono:
+								<input th:field="*{telefono}" name="telefono" type="text" required="required" class="casillaTelefono">
 									<div class= cajaError>
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
+									<div class="error" th:if="${#fields.hasErrors('telefono')}"
+													th:errorclass="text-danger" th:errors="*{telefono}"></div>
                     				</div>
 								</label>
-								<div>
-                    			</div>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Correo electrónico:
-								<input th:value="${nuevaContrasena}" name="nuevaContrasena" type="text" required="required" class="casillaCorreo">
+								for="correo">Correo electrónico:
+								<input th:field="*{email}" name="correo" type="text" required="required" class="casillaCorreo">
 									<div class= cajaError>
+									<div th:if="${#fields.hasErrors('email')}"
+													th:errorclass="text-danger" th:errors="*{email}"></div>
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
                     					</span>
@@ -121,11 +117,10 @@
                     		 			</span>
                     				</div>
 								</label>
-								<div>
-                    			</div>
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
+								<button type="submit" class="aceptar">Aceptar</button>
 									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
 								</div>
 								<div id="myModal" class="modal">

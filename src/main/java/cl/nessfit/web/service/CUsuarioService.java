@@ -42,4 +42,10 @@ public class CUsuarioService implements UsuarioService{
 	return usuario;
     }
 	
+	@Override
+    public Usuario buscarPorEmail(String email) {
+	Usuario usuario = usuarioRepository.findByEmail(email);
+	return usuario;
+    }
+	
 }

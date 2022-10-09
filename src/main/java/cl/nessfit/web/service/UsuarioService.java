@@ -15,4 +15,6 @@ public interface UsuarioService {
 	public List<Usuario> mostrarAdministrativos();
 	
 	public Usuario buscarPorRut(String rut);
+	
+	public Usuario buscarPorEmail(String email);
 }
