@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import cl.nessfit.web.model.Rol;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CUsuarioService;
+import cl.nessfit.web.utils.validacionUsuario;
 
 @Controller
 @RequestMapping(value="/administrador")

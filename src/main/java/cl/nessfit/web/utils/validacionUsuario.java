@@ -1,14 +1,18 @@
 package cl.nessfit.web.utils;
+import cl.nessfit.web.service.CUsuarioService;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import cl.nessfit.web.model.Usuario;
 
+
 @Component
 public class validacionUsuario implements Validator {
+	@Autowired
+    CUsuarioService usuarioService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -19,15 +23,24 @@ public class validacionUsuario implements Validator {
     public void validate(Object target, Errors errors) {
     	//System.out.println("hola2");
 	    Usuario usuario = (Usuario) target;
-	    // lógica para validar	    
-	    if(String.valueOf(usuario.getTelefono()).length() < 11) {
+	    
+	    Usuario existe = usuarioService.buscarPorEmail(usuario.getEmail());
+	    if (existe != null) {
+	    	errors.rejectValue("email", null, "El RUT y/o correo electrónico ya existen en el sistema. Intente iniciar sesión");
+	    }
+	    
+	    // lógica para validar
+	    
+	    if(String.valueOf(usuario.getTelefono()).length() < 11 || String.valueOf(usuario.getTelefono()).length() > 16) {
 	    	errors.rejectValue("telefono", null, "El teléfono móvil ingresado no es válido");
 	    }
 	    
-	    if(usuario.getNombre().length() < 3 || usuario.getApellido().length() < 3) {
+	    if(usuario.getNombre().length() < 3 ) {
 	    	errors.rejectValue("nombre", null, "Los nombres o apellidos deben tener más de 2 caracteres");
 	    }
-	    
+	    if(usuario.getApellido().length() < 3) {
+	    	errors.rejectValue("apellido", null, "Los nombres o apellidos deben tener más de 2 caracteres");
+	    }
 	    String rutAux = usuario.getRut();
 	    //rutAux = rutAux.replace(".", "").replace("-", "").replace(" ", "").replace(",", ""); 
 	    String rut = rutAux.substring(0,rutAux.length()-1);
@@ -37,7 +50,7 @@ public class validacionUsuario implements Validator {
 	    String [] numeros = {"1","2","3","4","5","6","7","8","9","0"};
 	    
 	    for(int i = 0; i< rutLista.length; i++) {
-	    	System.out.println(rutLista[i]);
+	    	
 	    } 
 	    for(int i = 0; i< rutLista.length; i++) {
 	        contador= 0;
@@ -55,7 +68,7 @@ public class validacionUsuario implements Validator {
 	            return;
 	        }
 	    }
-	    System.out.println(contador);
+	    
 	    
 	   
 	    
@@ -64,7 +77,7 @@ public class validacionUsuario implements Validator {
 	    int digitoVerificador = calcularDigito(rutLista);
 	   
 	    
-	    System.out.println(digitoVerificador);
+	    
 	    
 	    String [] rutListaAux = rutAux.substring(0,rutAux.length()).split("");
 	    
@@ -81,7 +94,7 @@ public class validacionUsuario implements Validator {
 	    
 	    else if(digitoVerificador == 10) {
 	    	if(((rutListaAux[rutListaAux.length-1]).equals("k")) || ((rutListaAux[rutListaAux.length-1]).equals("K"))) {
-	    		System.out.print(rutAux);
+	    		
 	    		usuario.setRut(rutAux.toUpperCase());
 		    	return;
 		    }

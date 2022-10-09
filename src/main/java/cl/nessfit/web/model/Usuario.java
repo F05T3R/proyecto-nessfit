@@ -26,8 +26,8 @@ public class Usuario implements Serializable{
 	private String nombre;
 	//@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String apellido;
-	@Digits(integer = 16,message = "El teléfono móvil ingresado no es válido", fraction = 0)
-	private Long telefono;
+	
+	private long telefono;
 	@Email(message = "Su correo electrónico no es válido")
 	private String email;
 	private int estado;
@@ -61,11 +61,11 @@ public class Usuario implements Serializable{
 		this.apellido = apellido;
 	}
 
-	public Long getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Long telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 

@@ -52,7 +52,7 @@ public class RegistrarClienteController {
     Usuario existe = usuarioService.buscarPorRut(usuario.getRut());
 
     if (existe != null) {
-    	result.rejectValue("rut", null, "Rut existente en la base de datos");
+    	result.rejectValue("rut", null, "El RUT y/o correo electrónico ya existen en el sistema. Intente iniciar sesión");
     }
     	
     
