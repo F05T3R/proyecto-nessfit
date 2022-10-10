@@ -29,10 +29,12 @@ public class HomeController {
 	@Autowired
     BCryptPasswordEncoder passwordEncoder;
 	
+	/**
 	@RequestMapping(value = {"/InicioSesion",""}, method = RequestMethod.GET)
 	public String InicioSesion() {
 		return "InicioSesion";
 	}
+	*/
 	
 	@GetMapping("/Registrar")
 	public String Registrar() {
@@ -44,12 +46,14 @@ public class HomeController {
 		return "MenuPrincipal";
 	}
 	
+	/**
 	@GetMapping("/logout")
     public String logout(HttpServletRequest request) {
 	SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 	logoutHandler.logout(request, null, null);
 	return "redirect:/";
     }
+	*/
 	
 	@ModelAttribute("rolUser")
     public String rol() {
