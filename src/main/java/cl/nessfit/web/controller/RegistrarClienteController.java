@@ -77,7 +77,14 @@ public class RegistrarClienteController {
 
     @ModelAttribute("rutUser")
     public String auth() {
-
-	return SecurityContextHolder.getContext().getAuthentication().getName();
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
     }
+    
+    @ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
+
 }

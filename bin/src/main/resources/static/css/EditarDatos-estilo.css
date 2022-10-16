@@ -65,6 +65,10 @@ hr{
   	display: inline-block;
   	font-size: 18px;
   	margin: 4px 2px;
+  	cursor: pointer;
+}
+.botonSuperior:hover{
+	background-color: #fef6cd;
 }
 .menuContenido{
 	width:100%;
@@ -162,6 +166,10 @@ hr{
   	display: inline-block;
   	font-size: 18px;
   	margin: 4px 2px;
+  	cursor: pointer;
+}
+.botonSuperior:hover{
+	background-color: #fef6cd;
 }
 
 .menuContenido{
@@ -238,9 +246,4 @@ input{
 	font-size: 23px;
 	margin: 4px 10px;
 	cursor: pointer;
-}
-.copyright{
-	text-align:center;
-	margin-top:2rem;
-	
 }

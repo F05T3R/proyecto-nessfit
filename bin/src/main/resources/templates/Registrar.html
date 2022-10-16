@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/Registrar-estilo.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap" rel="stylesheet">
+<title>Registrar - Nessfit</title>
+</head>
+<body>
+
+<div class="contenedor">
+	<div class="contenedor2" >
+		<div class="menuLogo">
+			<div>
+				<img src="/images/NESSFIT_LOGO.png">
+			</div>
+		</div>
+		<div class="menuBoton">
+			<h1>Registrando cliente</h1>
+
+			<form th:action="@{/Registrar}" method="post">
+				<div class="casillas">
+					<label class="rut" for="rut">RUT:</label>
+  					<input class="rut"  type="text" id="rut" name="rut" required>
+  					<label class="nombres" for="nombre">Nombres:</label>
+  					<input class="nombres"  type="text" id="nombre" name="nombre" required>
+  					<label class="apellidos" for="apellido">Apellidos:</label>
+  					<input class="apellidos"  type="text" id="apellido" name="apellido" required>
+  					<label class="telefono" for="telefono">Telefono:</label>
+  					<input class="telefono"  type="text" id="telefono" name="telefono" required>
+  					<label class="email" for="rut">E-mail:</label>
+  					<input class="email"  type="text" id="email" name="email" required>
+				</div>
+				<div class="botonRegistrar">
+				<input id="botonRegistrar" style="float: none;" class="botonRegistrar" type="submit" th:value="${'Registrar'}"></input>
+				</div>
+			</form>
+			
+			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
