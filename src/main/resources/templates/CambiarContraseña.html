@@ -36,7 +36,7 @@
     <div class="menuContenido">
     	<div class="barraSuperior">
          	<div>
-         		<a  th:text="${rutUser}" class="botonSuperior"></a>
+         		<p th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" th:text="${rutUser}" class="botonSuperior"></p>
          	</div>
          </div>
          <div>
@@ -87,8 +87,10 @@
     							<script src="js/Consulta.js"></script>
 							</div>
 						</form>
+						
 					</div>
 				</div>
+				<p class=" copyright">Nessfit© 2022.</p>
 			</div>
 		</div>
 	</div>
