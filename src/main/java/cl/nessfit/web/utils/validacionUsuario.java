@@ -21,7 +21,6 @@ public class validacionUsuario implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-    	//System.out.println("hola2");
 	    Usuario usuario = (Usuario) target;
 	    
 	    Usuario existe = usuarioService.buscarPorEmail(usuario.getEmail());
