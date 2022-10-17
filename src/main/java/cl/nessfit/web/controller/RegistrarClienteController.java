@@ -36,7 +36,6 @@ public class RegistrarClienteController {
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-    	//System.out.println("hola1");
     	binder.addValidators(validacionUsuario);
     }
     
@@ -49,7 +48,6 @@ public class RegistrarClienteController {
     public String formCrearUsuario(@Valid Usuario usuario, BindingResult result, RedirectAttributes attr) {
 
 	// paso 1 validaciones
-	//result.rejectValue("rut", null, "rut inválido");
     	
     Usuario existe = usuarioService.buscarPorRut(usuario.getRut());
 
@@ -79,9 +77,14 @@ public class RegistrarClienteController {
 
     @ModelAttribute("rutUser")
     public String auth() {
-	// Usuario usuario =
-	// usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
-
-	return SecurityContextHolder.getContext().getAuthentication().getName();
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
     }
+    
+    @ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
+
 }

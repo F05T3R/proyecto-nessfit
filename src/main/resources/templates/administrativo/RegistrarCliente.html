@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/RegistrarAdministrativo-estilo.css">
+<link rel="stylesheet" th:href="@{/css/RegistrarAdministrativo-estilo.css}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,17 +24,22 @@
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>
-    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/CambiarContraseña" class="boton">
-      			<span class="fs-4">Cambiar contraseña</span>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
+      			<span class="fs-4">Editar datos</span>
     		</a>
-    		<a href="/MenuPrincipal" class="boton">
-      			<span class="fs-4">Perfil</span>
+    		<a href="/CambiarContraseña" class="boton">
+      			<span class="fs-4">Cambiar contraseña</span>
     		</a>
     		<a href="/logout" class="boton">
       			<span class="fs-4">Cerrar Sesión</span>
     		</a>
          </div>
          <div class="menuContenido">
+         	<div class="barraSuperior">
+         		<div>
+         			<p  th:text="${rutUser}" class="botonSuperior"></p>
+         		</div>
+        	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
 					<h1>Registrar cliente</h1>
@@ -47,98 +52,77 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">RUT:     
+								<input placeholder= "112223334" th:field="*{rut}" type="text" required="required" class="casillaRut">
 								</label>
-								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
-								<div th:if="${#fields.hasErrors('rut')}"
+								<div class= "cajaError">
+									<div th:if="${#fields.hasErrors('rut')}"
 													th:errorclass="text-danger" th:errors="*{rut}"></div>
-									<div class="cajaError">
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
                     				</div>
+											
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre:
 								<input th:field="*{nombre}"name="nombre" type="text" required="required" class="casillaNombre">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
 													th:errorclass="text-danger" th:errors="*{nombre}"></div>
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
                     				</div>
-								</label>
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="apellido">Apellido:
 								<input th:field="*{apellido}" name="apellido" type="text" required="required" class="casillaApellido">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('apellido')}"
 													th:errorclass="text-danger" th:errors="*{apellido}"></div>
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
                     				</div>
-								</label>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="telefono">Teléfono:
 								<input th:field="*{telefono}" name="telefono" type="text" required="required" class="casillaTelefono">
-									<div class= cajaError>
+								</label>
+								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('telefono')}"
 													th:errorclass="text-danger" th:errors="*{telefono}"></div>
                     				</div>
-								</label>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="correo">Correo electrónico:
-								<input th:field="*{email}" name="correo" type="text" required="required" class="casillaCorreo">
-									<div class= cajaError>
-									<div th:if="${#fields.hasErrors('email')}"
-													th:errorclass="text-danger" th:errors="*{email}"></div>
-  										<span th:if="${msg != null}" class="error" role="alert">
-  										El largo de la contraseña debe estar entre 10 y 15 caracteres.
-                    					</span>
-                    					<span th:if="${msg2 != null}" class="error" role="alert">
-  										Las contraseñas no coinciden.
-                    		 			</span>
-                    				</div>
+								<input th:field="*{email}" placeholder="ejemplo@ejemplo.com" name="correo" type="text" required="required" class="casillaCorreo">
 								</label>
+								<div class = "cajaError">
+										<div th:if="${#fields.hasErrors('email')}"
+													th:errorclass="text-danger" th:errors="*{email}">
+										</div>
+                    				</div>
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
-								<button type="submit" class="aceptar">Aceptar</button>
-									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
+									<a type="submit" id="openModal" class="actualizar">Registrar</a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
         								<span class="close">&times;</span>
         								<p class="botonModal">¿Estás seguro?</p>
         								<div class="botonModal">
-        									<a id="close" class="cancelar">Cancelar</a>
         									<button type="submit" class="aceptar">Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
         								</div>	
       								</div>	
     							</div>
-    							<script src="js/Consulta.js"></script>
+    							<script th:src="@{/js/Consulta.js}"></script>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</div>
+			<p class=" copyright">Nessfit© 2022.</p>
 		</div>
 </body>
 </html>
