@@ -34,11 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
      * Bean para encriptar contraseñas con BCrypt
      */
-	/*
+	
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
 	return new BCryptPasswordEncoder();
-    }*/
+    }
     
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,13 +54,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// Los recursos estáticos no requieren autenticación
 			.antMatchers("/css/**", "/images/**","/js/**").permitAll()
 			// Las vistas públicas no requieren autenticación
-			.antMatchers("/Registrar**","/InicioSesion**","/guardar**").anonymous()
-			// Las vistas con el subdominio administrador quedan protegidas al ROL
-			// administrador
+			.antMatchers("/InicioSesion**").anonymous()
+			
+			// Las vistas con el subdominio administrador quedan protegidas al ROL administrador
 			.antMatchers("/administrador/**").hasAuthority("ADMINISTRADOR")
+			// Las vistas con el subdominio administrativo quedan protegidas al ROL administrativo
+			.antMatchers("/administrativo/**").hasAuthority("ADMINISTRATIVO")
+			// Las vistas con el subdominio cliente quedan protegidas al ROL cliente
+			.antMatchers("/cliente/**").hasAuthority("CLIENTE")
+			
 			// Todas las demás URLs de la Aplicación requieren autenticación
 			.anyRequest().authenticated()
-			// El formulario de Login redirecciona a la url /login
+			// El formulario de Login redirecciona a la url /IniciarSesion
 			.and().formLogin().loginPage("/InicioSesion").usernameParameter("rut").passwordParameter("contrasena")
 			// Si las credenciales son válidas, utiliza el manejador de autenticación
 			.successHandler(new AuthenticationSuccessHandler() {

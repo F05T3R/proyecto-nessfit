@@ -11,4 +11,10 @@ public interface UsuarioService {
 	public void eliminar(String rutUsuario);
 	
 	public List<Usuario> listar();
+	
+	public List<Usuario> mostrarAdministrativos();
+	
+	public Usuario buscarPorRut(String rut);
+	
+	public Usuario buscarPorEmail(String email);
 }

@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuarios")
@@ -18,14 +21,19 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 4507764205332784955L;
 	@Id
 	private String rut;
+	
+	//@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String nombre;
+	//@Size(min = 3, message = "Los nombres o apellidos deben tener más de 2 caracteres")
 	private String apellido;
-	private String telefono;
+	
+	private long telefono;
+	@Email(message = "Su correo electrónico no es válido")
 	private String email;
 	private int estado;
 	private String contrasena;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_rol", referencedColumnName = "id")
 	private Rol rol;
 
@@ -53,11 +61,11 @@ public class Usuario implements Serializable{
 		this.apellido = apellido;
 	}
 
-	public String getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 

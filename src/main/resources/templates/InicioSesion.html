@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+  
 <div class="contenedor">
 	<div class="contenedor2" >
 		<div class="menuLogo">
@@ -20,18 +20,18 @@
 			</div>
 		</div>
 		<div class="menuBoton">
-			<h1>Inicia sesión en Nessfit</h1>
+			<h1>Iniciar sesión</h1>
 
 			<form th:action="@{/InicioSesion}" method="post">
 				<div class="casillas">
 					<label class="rut" for="rut">RUT:</label>
-  					<input class="rut"  type="text" id="rut" name="rut" required>
+  					<input placeholder="Ej: 112223334" class="rut"  type="text" id="rut" name="rut" required>
   					<div class= cajaError>
   						<span th:if="${param.novalido}" class="error" role="alert">
-  							“Las credenciales de acceso son incorrectas o el usuario no está registrado en el sistema.
+  							Las credenciales de acceso son incorrectas o el usuario no está registrado en el sistema.
                     	</span>
                     	<span th:if="${param.noautorizado}" class="error" role="alert">
-  							“Usuario deshabilitado. Contacte al administrador.
+  							Usuario deshabilitado. Contacte al administrador.
                     	</span>
   					</div>
   					<label class="contraseña"  for="contrasena">Contraseña:</label>
@@ -41,12 +41,9 @@
 				<input id="botonIniciar" style="float: none;" class="botonIniciar" type="submit" th:value="${'Iniciar sesión'}"></input>
 				</div>
 			</form>
-			
+			<p>Nessfit© 2022</p>
 		</div>
 	</div>
 </div>
-
-
-
 </body>
 </html>
