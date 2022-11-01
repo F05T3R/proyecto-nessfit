@@ -42,62 +42,62 @@
         	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1>Registrar Instalacion Deportiva</h1>
+					<h1>Registro Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
 						<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
 							method="post" id="demo-form2" data-parsley-validate
-							class="form-horizontal form-label-left" th:object="${usuario}">
+							class="form-horizontal form-label-left" th:object="${instalacionDeportiva}">
 							
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="rut">RUT:     
-								<input placeholder= "112223334" th:field="*{rut}" type="text" required="required" class="casillaRut">
-								</label>
-								<div class= "cajaError">
-									<div th:if="${#fields.hasErrors('rut')}"
-													th:errorclass="text-danger" th:errors="*{rut}"></div>
-                    				</div>
-											
-							</div>
-							<div>
-								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Nombre:
-								<input th:field="*{nombre}"name="nombre" type="text" required="required" class="casillaNombre">
+								for="rut">Nombre:     
+								<input th:field="*{nombre}" name="nombre" type="text" required="required" class="casillaNombre">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
 													th:errorclass="text-danger" th:errors="*{nombre}"></div>
                     				</div>
+											
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="apellido">Apellido:
-								<input th:field="*{apellido}" name="apellido" type="text" required="required" class="casillaApellido">
+								for="nombre">Direccion:
+								<input th:field="*{direccion}" name="direccion" type="text" required="required" class="casillaDireccion">
 								</label>
 								<div class= "cajaError">
-									<div th:if="${#fields.hasErrors('apellido')}"
-													th:errorclass="text-danger" th:errors="*{apellido}"></div>
+									<div th:if="${#fields.hasErrors('direccion')}"
+													th:errorclass="text-danger" th:errors="*{direccion}"></div>
+                    				</div>
+							</div>
+							<div>
+								<label class="col-form-label col-md-3 col-sm-3 label-align"
+								for="apellido">Tipo:
+								<input th:field="*{tipo}" name="tipo" type="text" required="required" class="casillaTipo">
+								</label>
+								<div class= "cajaError">
+									<div th:if="${#fields.hasErrors('tipo')}"
+													th:errorclass="text-danger" th:errors="*{tipo}"></div>
                     				</div>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="telefono">Teléfono:
-								<input th:field="*{telefono}" name="telefono" type="text" required="required" class="casillaTelefono">
+								for="telefono">Costo:
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCosto">
 								</label>
 								<div class= "cajaError">
-									<div class="error" th:if="${#fields.hasErrors('telefono')}"
-													th:errorclass="text-danger" th:errors="*{telefono}"></div>
+									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
+													th:errorclass="text-danger" th:errors="*{costoArriendo}"></div>
                     				</div>
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="correo">Correo electrónico:
-								<input th:field="*{email}" placeholder="ejemplo@ejemplo.com" name="correo" type="text" required="required" class="casillaCorreo">
+								for="correo">Estado:
+								<input th:field="*{estado}" name="estado" type="text" required="required" class="casillaEstado">
 								</label>
 								<div class = "cajaError">
-										<div th:if="${#fields.hasErrors('email')}"
-													th:errorclass="text-danger" th:errors="*{email}">
+										<div th:if="${#fields.hasErrors('estado')}"
+													th:errorclass="text-danger" th:errors="*{estado}">
 										</div>
                     				</div>
 							</div>
