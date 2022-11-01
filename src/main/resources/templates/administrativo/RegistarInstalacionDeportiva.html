@@ -21,10 +21,6 @@
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
       			<span class="fs-4">Registrar cliente</span>
     		</a>
-    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistarInstalacionDeportiva" class="boton">
-      			<span class="fs-4">Registrar Instalacion</span>
-    		</a>
-    		
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>
@@ -46,10 +42,10 @@
         	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1>Registrar cliente</h1>
+					<h1>Registrar Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/administrativo/RegistrarCliente}"
+						<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
 							method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${usuario}">
 							
