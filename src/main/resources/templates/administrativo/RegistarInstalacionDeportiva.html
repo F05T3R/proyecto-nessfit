@@ -73,7 +73,17 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="apellido">Tipo:
-								<input th:field="*{tipo}" name="tipo" type="text" required="required" class="casillaTipo">
+							
+									<select th:field = "*{tipo}" >
+										<option th:each = "tipos : ${tipos}"
+											th:text = "${tipos.getTipo}"
+											th:value = "${tipos}"
+									
+										></option> 
+									
+									</select>
+							
+							
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('tipo')}"

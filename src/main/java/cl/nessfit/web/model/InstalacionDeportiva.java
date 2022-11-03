@@ -25,7 +25,7 @@ public class InstalacionDeportiva implements Serializable{
 	
 	private String direccion;
 	private TipoInstalacion tipo;
-	@Size(min = 1000, message = "El costo mínimo de arriendo debe ser $1.000")
+	//@Size(min = 1000, message = "El costo mínimo de arriendo debe ser $1.000")
 	private long costoArriendo;
 	private int estado;
 	public String getNombre() {
