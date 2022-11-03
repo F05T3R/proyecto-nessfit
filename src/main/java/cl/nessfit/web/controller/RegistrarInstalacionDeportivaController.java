@@ -4,12 +4,14 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.nessfit.web.model.InstalacionDeportiva;
+import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 
 @Controller
@@ -20,7 +22,10 @@ public class RegistrarInstalacionDeportivaController {
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
 	@RequestMapping(value="/RegistarInstalacionDeportiva", method=RequestMethod.GET)
-    public String RegistrarInstalacionDeportiva(InstalacionDeportiva Instalacion) {
+    public String RegistrarInstalacionDeportiva(Model model) {
+		model.addAttribute(new InstalacionDeportiva());
+		model.addAttribute("tipos", TipoInstalacion.values());
+		
     	return "administrativo/RegistarInstalacionDeportiva";
     }
 	
@@ -31,7 +36,8 @@ public class RegistrarInstalacionDeportivaController {
 		    return "/administrativo/MenuPrincipal";
 		}
 		
-		instalacion.setEstado(1);
+		System.out.println(instalacion.getTipo());
+		
 		
 		InstalacionDeportivaService.guardar(instalacion);
 		
