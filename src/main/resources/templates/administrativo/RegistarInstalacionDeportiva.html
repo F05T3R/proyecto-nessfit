@@ -72,16 +72,17 @@
 							</div>
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="apellido">Tipo:
-							
-									<select th:field = "*{tipo}" >
-										<option th:each = "tipos : ${tipos}"
+								for="tipo">Tipo:
+								
+									<select th:field = "*{tipo}"  >
+										<option th:each = "tipos : ${tiposInstalaciones}"
 											th:text = "${tipos.getTipo}"
 											th:value = "${tipos}"
 									
 										></option> 
 									
 									</select>
+									
 							
 							
 								</label>
@@ -91,9 +92,10 @@
                     				</div>
 							</div>
                     		<div>
+                    		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="telefono">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCosto">
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaDireccion">
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
@@ -102,8 +104,18 @@
 							</div>
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="correo">Estado:
-								<input th:field="*{estado}" name="estado" type="text" required="required" class="casillaEstado">
+								for="estado">Estado:
+								
+								<select th:field = "*{estado}">
+								  
+								  <option th:value="1" >HABILITADO
+								  <option th:value="0" >DESHABILITADO
+								  
+								  
+								  </option>
+								</select>
+								
+								
 								</label>
 								<div class = "cajaError">
 										<div th:if="${#fields.hasErrors('estado')}"

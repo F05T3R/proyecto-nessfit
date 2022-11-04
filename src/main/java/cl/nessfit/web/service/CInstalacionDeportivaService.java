@@ -19,4 +19,12 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		
 	}
 
+	@Override
+	public InstalacionDeportiva buscarPorNombre(String nombre) {
+		InstalacionDeportiva instalacion = InstalacionDeportivaRepository.findByNombre(nombre);
+		return instalacion;
+		
+		
+	}
+
 }
