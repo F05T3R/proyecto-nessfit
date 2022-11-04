@@ -5,5 +5,6 @@ import cl.nessfit.web.model.InstalacionDeportiva;
 public interface InstalacionDeportivaService {
 	
 	public void guardar(InstalacionDeportiva Instalacion);
+	public InstalacionDeportiva buscarPorNombre(String nombre);
 	
 }

@@ -7,5 +7,6 @@ import cl.nessfit.web.model.InstalacionDeportiva;
 
 public interface InstalacionDeportivaRepository extends JpaRepository<InstalacionDeportiva, String>{
 	
+	public InstalacionDeportiva findByNombre(String nombre);
 	
 }
