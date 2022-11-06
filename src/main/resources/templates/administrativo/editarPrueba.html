@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/RegistrarAdministrativo-estilo.css}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class = "container">
+		<table class = "table">
+			<thead >
+				<tr >
+					<th> NOMBRE </th>
+					<th> DIRECCION </th>
+					<th> TIPO </th>
+					<th> ESTADO </th>
+					<th> COSTO ARRIENDO</th>	
+				</tr>
+			
+			</thead >
+			<tbody >
+				<tr th:each="listaInstalaciones : ${AllInstalaciones}">
+					<td th:text = "${listaInstalaciones.nombre}">  </td>
+					<td th:text = "${listaInstalaciones.direccion}">  </td>
+					<td th:text = "${listaInstalaciones.tipo}">  </td>
+					<td th:if = "${listaInstalaciones.estado == 1}" > HABILITADO  <td>
+					<td th:if = "${listaInstalaciones.estado == 0}" > DESHABILITADO  <td>
+					<td th:text = "${listaInstalaciones.costoArriendo}"> </td>	
+					<td > 
+					<a class = "btn btn-warning" th:href ="@{/editar/} + ${listaInstalaciones.nombre}" > Editar </a>
+					</td>
+				</tr>
+			
+			
+			
+			</tbody>
+		
+		</table>
+	</div>
+
+</body>
+</html>

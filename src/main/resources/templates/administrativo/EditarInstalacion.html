@@ -47,7 +47,7 @@
 					<h1>Registro Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
+						<form th:action="@{/administrativo/EditarInstalacion}"
 							method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${instalacionDeportiva}">
 							
@@ -97,7 +97,7 @@
                     		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="telefono">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCostoArriendo">
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaDireccion">
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
