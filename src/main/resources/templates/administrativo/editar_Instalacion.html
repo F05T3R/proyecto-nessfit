@@ -44,7 +44,7 @@
         	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1>Registro Instalacion Deportiva</h1>
+					<h1> Editar Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
 						<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
@@ -54,7 +54,7 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre:     
-								<input th:field="*{nombre}" name="nombre" type="text" required="required" class="casillaNombre">
+								<input th:field="*{nombre}" name="nombre" type="text" required="required" class="casillaNombre" readonly = "readonly">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
