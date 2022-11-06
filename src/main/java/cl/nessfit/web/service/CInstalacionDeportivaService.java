@@ -1,5 +1,7 @@
 package cl.nessfit.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,11 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		return instalacion;
 		
 		
+	}
+
+	@Override
+	public List<InstalacionDeportiva> listar() {
+		return (List<InstalacionDeportiva>)InstalacionDeportivaRepository.findAll();
 	}
 
 }
