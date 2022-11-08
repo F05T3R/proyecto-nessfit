@@ -18,6 +18,7 @@
 					<th> ESTADO </th>
 					<th> COSTO ARRIENDO</th>	
 				</tr>
+				
 			
 			</thead >
 			<tbody >
@@ -25,11 +26,12 @@
 					<td th:text = "${listaInstalaciones.nombre}">  </td>
 					<td th:text = "${listaInstalaciones.direccion}">  </td>
 					<td th:text = "${listaInstalaciones.tipo}">  </td>
-					<td th:if = "${listaInstalaciones.estado == 1}" > HABILITADO  <td>
-					<td th:if = "${listaInstalaciones.estado == 0}" > DESHABILITADO  <td>
+					<td th:text = "${listaInstalaciones.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ><td>
+					
 					<td th:text = "${listaInstalaciones.costoArriendo}"> </td>	
 					<td > 
-					<a class = "btn btn-warning" th:href ="@{/editar/} + ${listaInstalaciones.nombre}" > Editar </a>
+					
+					<a  th:href ="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
 					</td>
 				</tr>
 			
@@ -38,6 +40,7 @@
 			</tbody>
 		
 		</table>
+		
 	</div>
 
 </body>
