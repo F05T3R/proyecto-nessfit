@@ -47,7 +47,7 @@
 					<h1> Editar Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
+						<form th:action="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${ins.nombre})}"
 							method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${instalacionDeportiva}">
 							
