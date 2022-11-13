@@ -104,6 +104,25 @@ th, td{
 	padding: 20px;
 }
 
+.casillaBoton{
+	display: flex;
+  	justify-content: center;
+}
+
+.botonEditar{
+	background-color: #20c67a;
+	border-radius:4px;
+	border: none;
+	color: #000;
+	padding: 6px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 23px;
+	margin: 4px 10px;
+	cursor: pointer;
+}
+
 .copyright{
 	text-align:center;
 	margin-top:2rem;

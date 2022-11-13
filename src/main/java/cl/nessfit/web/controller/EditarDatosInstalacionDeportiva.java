@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.nessfit.web.model.InstalacionDeportiva;
+import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CUsuarioService;
@@ -48,10 +49,37 @@ public class EditarDatosInstalacionDeportiva {
 		System.out.println("1");
 		ModelAndView modelo = new ModelAndView("editar_Instalacion");
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
-		modelo.addObject("instalacionDeportiva", ins);
+		model.addAttribute("instalacionDeportiva", ins);
+		model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		
 		return modelo;
 	}
+	
+	
+	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
+	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
+		    return "/administrativo/editar_Instalacion";
+		}
+		
+		return "redirect:/administrativo/editarPrueba";
+	}
+	
+	/*@GetMapping("/editar1")
+	public String ejemplo(Model model) {
+		System.out.println("1");
+		
+		return "/administrativo/editarPrueba";
+	}
+	
+	@GetMapping("ejemplo")
+	public String xd(Model model) {
+		
+		return "/administrativo/editarPrueba";
+	}
+	
 	/*
 	@GetMapping("/editar/{nombre}")
 	public String retornarForm(@PathVariable String nombre,Model model) {
