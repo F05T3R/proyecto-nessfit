@@ -55,13 +55,13 @@
 									
 							></option> 
 									
-						</select>				
+						</select>			
 					</div>
 					<div class="calendario">
 						<div class= "informacion">
 							<div class="anterior" id="anterior">&#9664;</div>
-							<div class="mes" id="mes"></div>
-							<div class="año" id="año"></div>
+							<div th:value="${mes}" class="mes" id="mes"></div>
+							<div th:value="${anio}"class="año" id="año"></div>
 							<div class="siguiente" id="siguiente">&#9654;</div>
 						</div>
 						<div class="semana">

@@ -1,15 +1,5 @@
 package cl.nessfit.web.model;
 
-
-
-
-
-
-
-
-
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;

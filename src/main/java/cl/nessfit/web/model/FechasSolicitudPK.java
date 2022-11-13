@@ -9,5 +9,5 @@ public class FechasSolicitudPK implements Serializable{
 	
 	 	
 	private int idSolicitud;
-	private Date fecha;
+	private String fecha;
 }
