@@ -31,7 +31,11 @@
 					<td th:text = "${listaInstalaciones.costoArriendo}"> </td>	
 					<td > 
 					
+<<<<<<< Updated upstream
 					<a  th:href ="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
+=======
+					<a  th:href ="@{/administrativo/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
+>>>>>>> Stashed changes
 					</td>
 				</tr>
 			
@@ -40,7 +44,34 @@
 			</tbody>
 		
 		</table>
+<<<<<<< Updated upstream
 		
+=======
+		<nav th:if="${AllInstalaciones.totalPages > 0}"
+			aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"
+					th:classappend="${AllInstalaciones.number == 0 ? 'disabled' : ''}"><a
+					th:href="@{/administrativo/editarPrueba(page=${AllInstalaciones.number - 1})}"
+					class="page-link">Anterior</a></li>
+
+				<li class="page-item"
+					th:classappend="${i eq AllInstalaciones.number + 1} ? 'active'"
+					th:each="i : ${#numbers.sequence( 1, AllInstalaciones.totalPages, 1)}">
+					<a class="page-link"
+					th:href="@{/administrativo/editarPrueba?page={tmpPag} (tmpPag=${i-1}) }"
+					th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+				</li>
+				<li class="page-item"
+					th:classappend="${AllInstalaciones.number == (AllInstalaciones.totalPages - 1) ? 'disabled' : ''}">
+					<a
+					th:href="@{/administrativo/editarPrueba(page=${AllInstalaciones.number + 1})}"
+					class="page-link">Siguiente</a>
+				</li>
+			</ul>
+		</nav>
+
+>>>>>>> Stashed changes
 	</div>
 
 </body>
