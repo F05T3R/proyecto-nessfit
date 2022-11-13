@@ -24,7 +24,8 @@ import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CUsuarioService;
-import cl.nessfit.web.utils.ValidacionInstalacion;
+import cl.nessfit.web.utils.ValidacionEditarInstalacion;
+
 
 @Controller
 @RequestMapping(value="/administrativo")
@@ -36,7 +37,7 @@ public class EditarDatosInstalacionDeportiva {
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
 	@Autowired
-	private ValidacionInstalacion validacion;
+	private ValidacionEditarInstalacion validacion;
 	
 	@InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -66,10 +67,24 @@ public class EditarDatosInstalacionDeportiva {
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
+		System.out.println("2");
+
+		
+		if(instalacion.getCostoArriendo() < 1000) {
+			System.out.println("2aaa");
+			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
+		}
+		
+		if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
+			result.rejectValue("estado", null, "Estado no válido");
+		}
+		
 		if (result.hasErrors()) {
 			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
 		}
+		
+		InstalacionDeportivaService.guardar(instalacion);
 		
 		return "redirect:/administrativo/editarPrueba";
 	}
