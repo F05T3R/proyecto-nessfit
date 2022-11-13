@@ -12,4 +12,5 @@ public interface InstalacionDeportivaService {
 	public void guardar(InstalacionDeportiva Instalacion);
 	public InstalacionDeportiva buscarPorNombre(String nombre);
 	public Page<InstalacionDeportiva> listar(Pageable pageable);
+	public List<InstalacionDeportiva> crearLista();
 }
