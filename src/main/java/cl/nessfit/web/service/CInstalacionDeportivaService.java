@@ -41,4 +41,17 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		return (List<InstalacionDeportiva>)InstalacionDeportivaRepository.findAll();
 	}
 
+	@Override
+	public void eliminar(String nombre) {
+		InstalacionDeportivaRepository.deleteById(nombre);
+		
+	}
+
+	
+	/*@Override
+	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
+		return InstalacionDeportivaRepository.findOperative(pageable);
+	}
+	*/
+
 }

@@ -12,5 +12,11 @@ public interface InstalacionDeportivaService {
 	public void guardar(InstalacionDeportiva Instalacion);
 	public InstalacionDeportiva buscarPorNombre(String nombre);
 	public Page<InstalacionDeportiva> listar(Pageable pageable);
+<<<<<<< Updated upstream
 	public List<InstalacionDeportiva> crearLista();
+=======
+	//public Page<InstalacionDeportiva> listarOperativas(Pageable pageable);
+	public List<InstalacionDeportiva> crearLista();
+	public void eliminar(String nombre);
+>>>>>>> Stashed changes
 }
