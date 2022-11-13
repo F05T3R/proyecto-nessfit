@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,9 +33,17 @@ public class EditarDatosInstalacionDeportiva {
 	@Autowired
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
+	@Autowired
+	private ValidacionInstalacion validacion;
+	
+	@InitBinder("InstalacionDeportiva")
+    public void initBinder(WebDataBinder binder) {
+    	binder.addValidators(validacion);
+    }
+	
 	@GetMapping("/editarPrueba")
-	public String editarInstalacion(Model model) {
-		List<InstalacionDeportiva> lista = InstalacionDeportivaService.listar();
+	public String editarInstalacion(Model model, Pageable page) {
+		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(page);
 		model.addAttribute("AllInstalaciones", lista);
 		return "/administrativo/editarPrueba";
 	}
