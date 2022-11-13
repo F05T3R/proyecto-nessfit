@@ -2,7 +2,10 @@ package cl.nessfit.web.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +15,8 @@ public class Solicitud implements Serializable {
 
 	private static final long serialVersionUID = 4507764205332784955L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	
 	private String rutUsuario;
@@ -19,6 +24,8 @@ public class Solicitud implements Serializable {
 	private String nombreCentro;
 	
 	private int totalPagar;
+	
+	private int estado;
 	
 	public int getId() {
 		return id;
@@ -35,6 +42,10 @@ public class Solicitud implements Serializable {
 		return totalPagar;
 	}
 	
+	public int getEstado() {
+		return estado;
+	}
+	
 	public void setId(int id) {
 		this.id=id;
 	}
@@ -46,5 +57,8 @@ public class Solicitud implements Serializable {
 	}
 	public void setTotalPagar(int totalPagar) {
 		this.totalPagar=totalPagar;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 }
