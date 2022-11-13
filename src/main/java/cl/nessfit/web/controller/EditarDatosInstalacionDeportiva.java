@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.nessfit.web.model.InstalacionDeportiva;
+import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CUsuarioService;
@@ -56,6 +57,7 @@ public class EditarDatosInstalacionDeportiva {
 		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		model.addAttribute("instalacionDeportiva", ins);
+		model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		
 		return "/administrativo/editar_Instalacion";
 	}
@@ -65,6 +67,7 @@ public class EditarDatosInstalacionDeportiva {
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
 		if (result.hasErrors()) {
+			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
 		}
 		

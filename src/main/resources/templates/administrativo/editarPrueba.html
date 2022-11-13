@@ -69,10 +69,10 @@
 					<td th:text = "${instalacionDeportiva.nombre}">  </td>
 					<td th:text = "${instalacionDeportiva.direccion}">  </td>
 					<td th:text = "${instalacionDeportiva.tipo}">  </td>
-					<td th:text = "${instalacionDeportiva.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ><td>
+					<td th:text = "${instalacionDeportiva.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ></td>
 					<td th:text = "${instalacionDeportiva.costoArriendo}"> </td>
 					<td>
-						<a  th:href ="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})} " class = "btn btn-warning"   > Editar </a>
+						<a  th:href ="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})} " class = "botonEditar"   > Editar </a>
 				</td>
 				</tr>
 			</tbody>
