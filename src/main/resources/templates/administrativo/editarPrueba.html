@@ -26,12 +26,10 @@
 					<td th:text = "${listaInstalaciones.nombre}">  </td>
 					<td th:text = "${listaInstalaciones.direccion}">  </td>
 					<td th:text = "${listaInstalaciones.tipo}">  </td>
-					<td th:text = "${listaInstalaciones.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ><td>
+					<td th:text = "${listaInstalaciones.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ></td>
 					
 					<td th:text = "${listaInstalaciones.costoArriendo}"> </td>	
 					<td > 
-					
-
 					<a  th:href ="@{/administrativo/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
 					</td>
 				</tr>

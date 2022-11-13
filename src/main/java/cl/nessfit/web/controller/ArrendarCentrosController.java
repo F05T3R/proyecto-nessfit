@@ -69,9 +69,11 @@ public class ArrendarCentrosController {
 
 		if (request.getParameterValues("dia") != null) {
 			for (String dia : request.getParameterValues("dia")) {
-				System.out.println(dia);
 				contador++;
 			}
+		}
+		if(contador==0) {
+			return "redirect:ArrendarCentro";
 		}
 		solicitud.setNombreCentro(ins.getNombre());
 		solicitud.setEstado(0);
