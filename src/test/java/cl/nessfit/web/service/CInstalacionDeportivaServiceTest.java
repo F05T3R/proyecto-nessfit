@@ -1,11 +1,16 @@
 package cl.nessfit.web.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import cl.nessfit.web.model.InstalacionDeportiva;
 import cl.nessfit.web.model.TipoInstalacion;
@@ -37,5 +42,26 @@ class CInstalacionDeportivaServiceTest {
 		Assertions.assertNotNull(ins2);
 		
 	}
+
+	
+	@Test
+	void listar(Pageable pageable) {
+		InstalacionDeportiva ins = new InstalacionDeportiva();
+		ins.setNombre("Test_2");
+		ins.setDireccion("Direccion2");
+		ins.setCostoArriendo(3400);
+		ins.setEstado(0);
+		ins.setTipo(TipoInstalacion.QUINCHO);
+		
+		data.guardar(ins);
+		
+		//data.save(insPrueba);
+		
+		Page<InstalacionDeportiva> lista = data.listar(pageable);
+		
+		assertThat(lista).isNotNull();
+		assertThat(lista.getSize()).isEqualTo(1);
+	}
+
 
 }
