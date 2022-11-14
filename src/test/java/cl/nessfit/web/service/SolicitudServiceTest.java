@@ -31,8 +31,15 @@ class SolicitudServiceTest {
 		Solicitud solicitud = data.buscarPorId(prueba.getId());
 		System.out.println(solicitud.getId());
         Assertions.assertNotNull(solicitud);
-        //borrar instalacion
-        //String idAux = Integer.toString(solicitud.getId());
         data.eliminar(solicitud.getId());
+	}
+	
+	@Test
+	void eliminar() {
+		data.guardar(prueba);
+		Solicitud solicitud = data.buscarPorId(prueba.getId());
+		data.eliminar(solicitud.getId());
+		Solicitud solicitud2 = data.buscarPorId(solicitud.getId());
+		Assertions.assertNull(solicitud2);
 	}
 }
