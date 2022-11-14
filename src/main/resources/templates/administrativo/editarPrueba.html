@@ -26,11 +26,16 @@
 					<td th:text = "${listaInstalaciones.nombre}">  </td>
 					<td th:text = "${listaInstalaciones.direccion}">  </td>
 					<td th:text = "${listaInstalaciones.tipo}">  </td>
-					<td th:text = "${listaInstalaciones.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ></td>
+					<td th:text = "${listaInstalaciones.estado} == 1? 'HABILITADO' : 'DESHABILITADO'" ><td>
 					
 					<td th:text = "${listaInstalaciones.costoArriendo}"> </td>	
 					<td > 
+					
+<<<<<<< Updated upstream
+					<a  th:href ="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
+=======
 					<a  th:href ="@{/administrativo/editar/{nombre} (nombre = ${listaInstalaciones.nombre})} " class = "btn btn-warning"   > Editar </a>
+>>>>>>> Stashed changes
 					</td>
 				</tr>
 			
@@ -39,6 +44,9 @@
 			</tbody>
 		
 		</table>
+<<<<<<< Updated upstream
+		
+=======
 		<nav th:if="${AllInstalaciones.totalPages > 0}"
 			aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
@@ -62,6 +70,8 @@
 				</li>
 			</ul>
 		</nav>
+
+>>>>>>> Stashed changes
 	</div>
 	</div>
 	<p class=" copyright">Nessfit� 2022.</p>
