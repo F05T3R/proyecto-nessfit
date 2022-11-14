@@ -25,24 +25,11 @@ public class Solicitud implements Serializable {
 	
 	private int totalPagar;
 	
-<<<<<<< Updated upstream
-=======
-	private String fechaCompra;
-	
-	public String getFechaCompra() {
-		return fechaCompra;
-	}
-
-	public void setFechaCompra(String fechaCompra) {
-		this.fechaCompra = fechaCompra;
-	}
->>>>>>> Stashed changes
 	private int estado;
 	
 	public int getId() {
 		return id;
 	}
-	
 	public String getRutUsuario() {
 		return rutUsuario;
 	}

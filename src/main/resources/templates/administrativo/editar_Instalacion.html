@@ -54,9 +54,7 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre:     
-								
-								<input th:field="*{nombre}" name="nombre" type="text" required="required" hidden class="casillaNombre" readonly = "readonly">
-								<input th:field="*{nombre}" type="text" disabled="disabled" class="casillaNombre">
+								<input th:field="*{nombre}" name="nombre" type="text" required="required" class="casillaNombre" readonly = "readonly">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
@@ -98,8 +96,8 @@
                     		<div>
                     		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="costoArriendo">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCostoArriendo">
+								for="telefono">Costo:
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaDireccion">
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
@@ -112,8 +110,8 @@
 								
 								<select th:field = "*{estado}">
 								  
-								  <option th:value="1" > OPERATIVA
-								  <option th:value="0" > INOPERATIVA
+								  <option th:value="1" >HABILITADO
+								  <option th:value="0" >DESHABILITADO
 								  
 								  
 								  </option>
@@ -129,7 +127,7 @@
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
-									<a type="submit" id="openModal" class="actualizar"> Editar </a>
+									<a type="submit" id="openModal" class="actualizar">Registrar</a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
