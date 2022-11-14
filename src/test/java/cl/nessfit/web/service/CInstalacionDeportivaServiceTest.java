@@ -3,6 +3,7 @@ package cl.nessfit.web.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,18 +16,33 @@ class CInstalacionDeportivaServiceTest {
 
     @Autowired
     CInstalacionDeportivaService data;
-
-    @Test
-    void test() {
-        fail("Not yet implemented");
+    InstalacionDeportiva prueba = new InstalacionDeportiva();
+    @BeforeEach
+    void setup() {
+        prueba.setCostoArriendo(0);
+        prueba.setEstado(0);
+        prueba.setNombre("1");
+        prueba.setDireccion("2");
+        prueba.setTipo(TipoInstalacion.CANCHA);
     }
 
     @Test
     void agregar() {
-        InstalacionDeportiva ins = new InstalacionDeportiva();
+        data.guardar(prueba);
+
+        InstalacionDeportiva ins2 = data.buscarPorNombre(prueba.getNombre());
+
+        Assertions.assertNotNull(ins2);
+        //borrar instalacion
+        data.eliminar(ins2.getNombre());
+    }
+    
+    @Test
+    void eliminar() {
+    	InstalacionDeportiva ins = new InstalacionDeportiva();
         ins.setCostoArriendo(0);
         ins.setEstado(0);
-        ins.setNombre("1");
+        ins.setNombre("2");
         ins.setDireccion("2");
         ins.setTipo(TipoInstalacion.CANCHA);
 
@@ -36,6 +52,9 @@ class CInstalacionDeportivaServiceTest {
 
         Assertions.assertNotNull(ins2);
         //borrar instalacion
+        data.eliminar(ins2.getNombre());
+        InstalacionDeportiva ins3 = data.buscarPorNombre(ins2.getNombre());
+        Assertions.assertNull(ins3);
     }
-
+    
 }

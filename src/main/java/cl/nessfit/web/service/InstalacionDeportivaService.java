@@ -9,4 +9,5 @@ public interface InstalacionDeportivaService {
 	public void guardar(InstalacionDeportiva Instalacion);
 	public InstalacionDeportiva buscarPorNombre(String nombre);
 	public List<InstalacionDeportiva> listar();
+	public void eliminar(String nombre);
 }
