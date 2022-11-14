@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +26,7 @@ import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CUsuarioService;
-import cl.nessfit.web.utils.ValidacionInstalacion;
+import cl.nessfit.web.utils.ValidacionEditarInstalacion;
 
 @Controller
 @RequestMapping(value="/administrativo")
@@ -36,16 +38,16 @@ public class EditarDatosInstalacionDeportiva {
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
 	@Autowired
-	private ValidacionInstalacion validacion;
+	private ValidacionEditarInstalacion validacion;
 	
-	@InitBinder
+	@InitBinder("InstalacionDeportiva")
     public void initBinder(WebDataBinder binder) {
     	binder.addValidators(validacion);
     }
 	
 	@GetMapping("/editarPrueba")
-	public String editarInstalacion(Model model) {
-		List<InstalacionDeportiva> lista = InstalacionDeportivaService.listar();
+	public String editarInstalacion(Model model, Pageable page) {
+		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(page);
 		model.addAttribute("AllInstalaciones", lista);
 		return "/administrativo/editarPrueba";
 	}
@@ -57,7 +59,6 @@ public class EditarDatosInstalacionDeportiva {
 		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		model.addAttribute("instalacionDeportiva", ins);
-		model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		
 		return "/administrativo/editar_Instalacion";
 	}
@@ -66,10 +67,23 @@ public class EditarDatosInstalacionDeportiva {
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
+		System.out.println("2");
+
+		
+		if(instalacion.getCostoArriendo() < 1000) {
+			System.out.println("2aaa");
+			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
+		}
+		
+		if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
+			result.rejectValue("estado", null, "Estado no válido");
+		}
+		
 		if (result.hasErrors()) {
-			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
 		}
+		
+		InstalacionDeportivaService.guardar(instalacion);
 		
 		return "redirect:/administrativo/editarPrueba";
 	}
