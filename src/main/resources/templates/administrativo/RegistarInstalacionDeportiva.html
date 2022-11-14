@@ -81,7 +81,7 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="tipo">Tipo:
 								
-									<select th:field = "*{tipo}" required="required" class="casillaTipo"  >
+									<select th:field = "*{tipo}"  >
 										<option th:each = "tipos : ${tiposInstalaciones}"
 											th:text = "${tipos.getTipo}"
 											th:value = "${tipos}"
@@ -101,13 +101,8 @@
                     		<div>
                     		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-<<<<<<< Updated upstream
 								for="telefono">Costo:
 								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaDireccion">
-=======
-								for="costoArriendo">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCostoArriendo">
->>>>>>> Stashed changes
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
@@ -120,8 +115,8 @@
 								
 								<select th:field = "*{estado}">
 								  
-								  <option th:value="1" > OPERATIVA
-								  <option th:value="0" > INOPERATIVA
+								  <option th:value="1" >HABILITADO
+								  <option th:value="0" >DESHABILITADO
 								  
 								  
 								  </option>

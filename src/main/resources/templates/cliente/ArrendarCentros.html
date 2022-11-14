@@ -48,29 +48,12 @@
 							
 					<div class="casilla">
 						<h2>Seleccione un centro</h2>
-<<<<<<< Updated upstream
 						<select name = "nombre" >
 							<option th:each = "ins : ${AllInstalaciones}"
 									th:text = "${ins.nombre}"
 									
 									
 							></option> 
-=======
-							
-						<select name = "nombre" >
-							
-								<option  
-									
-								
-									th:unless="${#lists.size(AllInstalaciones) == 0}"
-									th:each = "ins : ${AllInstalaciones}"
-										
-									th:if = "${ins.estado} == 1"
-											th:text = "${ins.nombre}"
-									
-									
-								></option> 
->>>>>>> Stashed changes
 									
 						</select>			
 					</div>
