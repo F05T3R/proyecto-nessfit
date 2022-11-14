@@ -1,17 +1,11 @@
 package cl.nessfit.web.controller;
 
-<<<<<<< Updated upstream
-=======
-import java.util.Calendar;
->>>>>>> Stashed changes
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,22 +49,9 @@ public class ArrendarCentrosController {
 	
 	 
 	@RequestMapping(value="/ArrendarCentro", method=RequestMethod.GET)
-<<<<<<< Updated upstream
     public String ArrendarCentro(Model model) {
 		
 	 	List<InstalacionDeportiva> lista = InstalacionDeportivaService.crearLista();
-=======
-    public String ArrendarCentro(Model model, Pageable pageable) {
-		
-	 	Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
-	 	
-	 	/*for(int i = 0; i<lista.getTotalElements(); i++) {
-	 		if(lista.getContent().get(i).getEstado() == 0) {
-	 			lista.getContent().remove(i);
-	 		}
-	 	}
-	 	*/
->>>>>>> Stashed changes
 	 	 
 		model.addAttribute("AllInstalaciones", lista);
     	return "cliente/ArrendarCentros";
@@ -88,37 +69,16 @@ public class ArrendarCentrosController {
 
 		if (request.getParameterValues("dia") != null) {
 			for (String dia : request.getParameterValues("dia")) {
-				System.out.println(dia);
 				contador++;
 			}
 		}
-<<<<<<< Updated upstream
+		if(contador==0) {
+			return "redirect:ArrendarCentro";
+		}
 		solicitud.setNombreCentro(ins.getNombre());
 		solicitud.setEstado(0);
 		solicitud.setTotalPagar((int) ins.getCostoArriendo() * contador);
 		solicitud.setRutUsuario(usuario.getRut());
-=======
-		
-		if(contador == 0) {
-			return "redirect:/MenuPrincipal";
-		}
-		
-		Calendar fechaHoy = Calendar.getInstance();
-		int añoHoy = fechaHoy.get(Calendar.YEAR);
-        int mesHoy = fechaHoy.get(Calendar.MONTH);
-        int diaHoy = fechaHoy.get(Calendar.DAY_OF_MONTH);
-        String fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
-        //System.out.println(fechaHoy);
-		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
-		//System.out.println(fechaCompra);
-		
-		solicitud.setNombreCentro(ins.getNombre());
-		solicitud.setEstado(0);
-		System.out.println(ins.getCostoArriendo());
-		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
-		solicitud.setRutUsuario(usuario.getRut());
-		solicitud.setFechaCompra(fechaCompra);
->>>>>>> Stashed changes
 		
 		solicitudService.guardar(solicitud);
 		Solicitud solicitud2 = solicitud;
