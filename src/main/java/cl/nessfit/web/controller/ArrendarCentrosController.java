@@ -1,7 +1,10 @@
 package cl.nessfit.web.controller;
 
+<<<<<<< Updated upstream
+=======
 import java.util.List;
 
+>>>>>>> Stashed changes
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -17,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< Updated upstream
+import cl.nessfit.web.model.DetalleSolicitud;
+import cl.nessfit.web.model.Solicitud;
+import cl.nessfit.web.model.Usuario;
+=======
 import cl.nessfit.web.model.FechasSolicitud;
 import cl.nessfit.web.model.InstalacionDeportiva;
 import cl.nessfit.web.model.Solicitud;
@@ -25,6 +33,7 @@ import cl.nessfit.web.repository.FechasSolicitudRepository;
 import cl.nessfit.web.repository.SolicitudRepository;
 import cl.nessfit.web.service.CFechasSolicitudService;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
+>>>>>>> Stashed changes
 import cl.nessfit.web.service.CSolicitudService;
 import cl.nessfit.web.service.CUsuarioService;
 import cl.nessfit.web.service.InstalacionDeportivaService;
@@ -36,8 +45,32 @@ public class ArrendarCentrosController {
 	private int num_id;
 
 	@Autowired
+    CSolicitudService solicitudService;
+	
+	@Autowired
     CUsuarioService usuarioService;
 	
+<<<<<<< Updated upstream
+	 
+	  @GetMapping("/ArrendarCentro")
+	    public String FormObtener(Model model) {
+		return "cliente/ArrendarCentros";
+	    }
+	  @PostMapping("/ArrendarCentro")
+	    public String FormArrendarSolcitud(HttpServletRequest request, @Valid Solicitud solicitud ,BindingResult result, Model model) {
+		 // DetalleSolicitud detalleSolicitud = new DetalleSolcitud();
+	  if(request.getParameterValues("dia") != null) {
+		  for(String dia : request.getParameterValues("dia")) {
+			  System.out.println(dia);
+		  }
+		  
+	  } 
+		// 1.- usuario logeado
+			Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+		  
+		  return "redirect:ArrendarCentro";
+	  }
+=======
 	@Autowired
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
@@ -91,6 +124,7 @@ public class ArrendarCentrosController {
 		}
 		return "redirect:ArrendarCentro";
 	}
+>>>>>>> Stashed changes
 	  	  
 	 
 	 @ModelAttribute("rutUser")
