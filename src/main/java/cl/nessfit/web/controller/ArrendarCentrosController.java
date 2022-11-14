@@ -1,7 +1,5 @@
 zpackage cl.nessfit.web.controller;
 
-=======
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -20,25 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cl.nessfit.web.model.FechasSolicitud;
 import cl.nessfit.web.model.Solicitud;
 import cl.nessfit.web.model.Usuario;
-=======
-import cl.nessfit.web.model.FechasSolicitud;
-import cl.nessfit.web.model.InstalacionDeportiva;
-import cl.nessfit.web.model.Solicitud;
-import cl.nessfit.web.model.Usuario;
-import cl.nessfit.web.repository.FechasSolicitudRepository;
-import cl.nessfit.web.repository.SolicitudRepository;
-import cl.nessfit.web.service.CFechasSolicitudService;
-import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CSolicitudService;
 
 import cl.nessfit.web.service.CUsuarioService;
-import cl.nessfit.web.service.InstalacionDeportivaService;
-import cl.nessfit.web.service.SolicitudService;
 
 @Controller
 public class ArrendarCentrosController {
-
-	private int num_id;
 
 	@Autowired
     CSolicitudService solicitudService;
@@ -66,7 +51,6 @@ public class ArrendarCentrosController {
 		  
 		  return "redirect:ArrendarCentro";
 	  }
-=======
 	@Autowired
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
@@ -118,6 +102,7 @@ public class ArrendarCentrosController {
 		}
 		return "redirect:ArrendarCentro";
 	}
+
 	  	  
 	 
 	 @ModelAttribute("rutUser")

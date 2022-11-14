@@ -7,14 +7,25 @@ import cl.nessfit.web.model.FechasSolicitud;
 import cl.nessfit.web.repository.FechasSolicitudRepository;
 
 @Service
-public class CFechasSolicitudService implements FechasSolicitudService{
-
+public class CFechasSolicitudService implements FechaSolicitudService {
 	@Autowired
-	private FechasSolicitudRepository fechasSolicitudRepository;
-	
+    private FechasSolicitudRepository fechasSolicitudRepository;
+
+    @Override
+    public void guardar(FechasSolicitud fechasSolicitud) {
+        fechasSolicitudRepository.save(fechasSolicitud);
+
+    }
+
 	@Override
-	public void guardar(FechasSolicitud fechasSolicitud) {
-		fechasSolicitudRepository.save(fechasSolicitud);
+	public FechasSolicitud buscar(int id, String fecha) {
+		return fechasSolicitudRepository.findByIdSolicitudAndFecha(id, fecha);
+	}
+
+	@Override
+	public void eliminar(FechasSolicitud delete) {
+		
+		fechasSolicitudRepository.delete(delete);
 		
 	}
 }
