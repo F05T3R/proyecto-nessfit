@@ -23,7 +23,7 @@ public class InicioSesionController {
 	@Autowired
     BCryptPasswordEncoder passwordEncoder;
 	
-	@RequestMapping(value = "/InicioSesion", method = RequestMethod.GET)
+	@RequestMapping(value = {"/InicioSesion",""}, method = RequestMethod.GET)
 	public String InicioSesion() {
 		return "InicioSesion";
 	}

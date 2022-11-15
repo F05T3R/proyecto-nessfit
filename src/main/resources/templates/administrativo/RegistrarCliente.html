@@ -21,6 +21,10 @@
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
       			<span class="fs-4">Registrar cliente</span>
     		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+      			<span class="fs-4">Registrar Instalacion</span>
+    		</a>
+    		
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>

@@ -47,14 +47,15 @@
 					<h1> Editar Instalacion Deportiva</h1>
 					<hr>
 					<div class="casilla">
-						<form th:action="@{/administrativo/editarPrueba/editar/{nombre} (nombre = ${ins.nombre})}"
+						<form th:action="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})}"
 							method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${instalacionDeportiva}">
 							
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre:     
-								<input th:field="*{nombre}" name="nombre" type="text" required="required" class="casillaNombre" readonly = "readonly">
+								<input th:field="*{nombre}" name="nombre" type="text" required="required" hidden class="casillaNombre" readonly = "readonly">
+								<input th:field="*{nombre}" type="text" disabled="disabled" class="casillaNombre">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
@@ -96,8 +97,8 @@
                     		<div>
                     		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="telefono">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaDireccion">
+								for="costoArriendo">Costo:
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCostoArriendo">
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
@@ -110,8 +111,8 @@
 								
 								<select th:field = "*{estado}">
 								  
-								  <option th:value="1" >HABILITADO
-								  <option th:value="0" >DESHABILITADO
+								  <option th:value="1" >OPERATIVA
+								  <option th:value="0" >INOPERATIVA
 								  
 								  
 								  </option>
@@ -127,7 +128,7 @@
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
-									<a type="submit" id="openModal" class="actualizar">Registrar</a>
+									<a type="submit" id="openModal" class="actualizar"> Editar </a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">

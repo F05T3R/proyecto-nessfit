@@ -1,11 +1,11 @@
 package cl.nessfit.web.controller;
-
+import java.util.Calendar;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +27,6 @@ import cl.nessfit.web.service.CFechasSolicitudService;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CSolicitudService;
 import cl.nessfit.web.service.CUsuarioService;
-import cl.nessfit.web.service.InstalacionDeportivaService;
-import cl.nessfit.web.service.SolicitudService;
 
 @Controller
 public class ArrendarCentrosController {
@@ -47,16 +45,21 @@ public class ArrendarCentrosController {
 	@Autowired
 	CFechasSolicitudService fechasSolicitudService;
 	
-	 
 	@RequestMapping(value="/ArrendarCentro", method=RequestMethod.GET)
-    public String ArrendarCentro(Model model) {
-		
-	 	List<InstalacionDeportiva> lista = InstalacionDeportivaService.crearLista();
-	 	 
-		model.addAttribute("AllInstalaciones", lista);
-    	return "cliente/ArrendarCentros";
-    }
-
+	public String ArrendarCentro(Model model, Pageable pageable) {
+			
+	Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
+		 	
+		 	/*for(int i = 0; i<lista.getTotalElements(); i++) {
+		 		if(lista.getContent().get(i).getEstado() == 0) {
+		 			lista.getContent().remove(i);
+		 		}
+		 	}
+		 	*/
+	model.addAttribute("AllInstalaciones", lista);
+	return "cliente/ArrendarCentros";
+	}
+	
 	@RequestMapping(value="/ArrendarCentro", method=RequestMethod.POST)
 	public String formArrendarCentro(HttpServletRequest request, Model model, String nombre) {
 		// DetalleSolicitud detalleSolicitud = new DetalleSolcitud();
@@ -69,16 +72,30 @@ public class ArrendarCentrosController {
 
 		if (request.getParameterValues("dia") != null) {
 			for (String dia : request.getParameterValues("dia")) {
+				System.out.println(dia);
 				contador++;
 			}
 		}
-		if(contador==0) {
-			return "redirect:ArrendarCentro";
+		
+		if(contador == 0) {
+			return "redirect:/MenuPrincipal";
 		}
+		
+		Calendar fechaHoy = Calendar.getInstance();
+		int añoHoy = fechaHoy.get(Calendar.YEAR);
+        int mesHoy = fechaHoy.get(Calendar.MONTH);
+        int diaHoy = fechaHoy.get(Calendar.DAY_OF_MONTH);
+        String fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
+        //System.out.println(fechaHoy);
+		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
+		//System.out.println(fechaCompra);
+		
 		solicitud.setNombreCentro(ins.getNombre());
 		solicitud.setEstado(0);
-		solicitud.setTotalPagar((int) ins.getCostoArriendo() * contador);
+		System.out.println(ins.getCostoArriendo());
+		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
 		solicitud.setRutUsuario(usuario.getRut());
+		solicitud.setFechaCompra(fechaCompra);	  
 		
 		solicitudService.guardar(solicitud);
 		Solicitud solicitud2 = solicitud;
@@ -93,17 +110,17 @@ public class ArrendarCentrosController {
 		}
 		return "redirect:ArrendarCentro";
 	}
-	  	  
-	 
-	 @ModelAttribute("rutUser")
-	    public String auth() {
-	    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
-	    	return usuario.getNombre();
-	    }
-	    
-	    @ModelAttribute("rolUser")
-	    public String rol() {
-	    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
-	        .getAuthority();
-	    }
+	
+	@ModelAttribute("rutUser")
+    public String auth() {
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
+    }
+    
+    @ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
 }
+

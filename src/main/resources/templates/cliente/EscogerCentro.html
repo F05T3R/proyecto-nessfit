@@ -43,48 +43,21 @@
 				<div class="contenedor2 ">
 					<h1>Arrendar centro</h1>
 					<hr>
-					<form th:action="@{/ArrendarCentro}" method="post" id="demo-form2" data-parsley-validate
+					<form th:action="@{/EscogerCentro}" method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${usuario}">
 							
 					<div class="casilla">
 						<h2>Seleccione un centro</h2>
 						<select name = "nombre" >
-							
-								<option  
+							<option th:each = "ins : ${AllInstalaciones}"
+									th:text = "${ins.nombre}"
+							></option> 
 									
-								
-									th:unless="${#lists.size(AllInstalaciones) == 0}"
-									th:each = "ins : ${AllInstalaciones}"
-										
-									th:if = "${ins.estado} == 1"
-											th:text = "${ins.nombre}"
-									
-									
-								></option> 
-						</select>				
-					</div>
-					<div class="calendario">
-						<div class= "informacion">
-							<div class="anterior" id="anterior">&#9664;</div>
-							<div th:value="${mes}" class="mes" id="mes"></div>
-							<div th:value="${anio}"class="año" id="año"></div>
-							<div class="siguiente" id="siguiente">&#9654;</div>
-						</div>
-						<div class="semana">
-							<div class="diaSemana">Lun</div>
-							<div class="diaSemana">Mar</div>
-							<div class="diaSemana">Mie</div>
-							<div class="diaSemana">Jue</div>
-							<div class="diaSemana">Vie</div>
-							<div class="diaSemana">Sab</div>
-							<div class="diaSemana">Dom</div>
-						</div>
-						<div class="dias" id="dias"></div>
-					</div>
-					<script src="js/Calendario.js"></script>
-					
+						</select>			
+					</div>					
 					<div class="botonSolicitud">
 						<div>
+						<a class="solicitud" th:href ="@{/cliente/ArrendarCentros/{nombre} (nombre = ${ins.nombre})} " class = "btn btn-warning"> Solicitar</a>
 							<button type="submit" class="solicitud">Solicitar</button>
 						</div>
 					</div>						

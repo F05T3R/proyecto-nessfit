@@ -16,4 +16,14 @@ public class CSolicitudService implements SolicitudService {
 		solicitudRepository.save(solicitud);
 		
 	}
+
+	@Override
+	public Solicitud buscarPorId(int id) {
+		return solicitudRepository.findById(id);
+	}
+
+	@Override
+	public void eliminar(int id) {
+		solicitudRepository.delete(buscarPorId(id));
+	}
 }

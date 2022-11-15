@@ -33,15 +33,15 @@ function EscribirMes(mes){
 	
 	for(let i = 1; i<=getTotalDias(mes);i++){
 		if(añoPresente<añoActual){
-			fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
+			fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${i}-${mes+1}-${añoActual}" class="diaCheck" id="dia-${i}" autocomplete="off">
 										<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
 		}else if(añoPresente === añoActual){
 			if(mesPresente<numeroMes){
-				fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" name="dia" id="dia-${i}" autocomplete="off">
+				fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input type="checkbox" value="${i}-${mes+1}-${añoActual}" class="diaCheck" name="dia" id="dia-${i}" autocomplete="off">
 									<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
 			}else if(mesPresente === numeroMes){
 				if(i>=diaActual) {
-            		fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
+            		fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${i}-${mes+1}-${añoActual}" class="diaCheck" id="dia-${i}" autocomplete="off">
 										<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
         		}else{
             		fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;

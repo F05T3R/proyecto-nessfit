@@ -92,13 +92,13 @@ public class validacionUsuario implements Validator {
 	    }
 	    
 	    else if(digitoVerificador == 10) {
-	    	if(((rutListaAux[rutListaAux.length-1]).equals("k")) || ((rutListaAux[rutListaAux.length-1]).equals("K"))) {
+	    	if((rutListaAux[rutListaAux.length-1]).equals("K")) {
 	    		
 	    		usuario.setRut(rutAux.toUpperCase());
 		    	return;
 		    }
 	    	else {
-	    		errors.rejectValue("rut", null, "RUT inválido");
+	    		errors.rejectValue("rut", null, "RUT inválido (Si termina en K debe ser en Mayuscula)");
 	    	}
 	    }
 	    
