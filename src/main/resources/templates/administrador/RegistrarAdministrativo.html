@@ -54,9 +54,9 @@
 								for="rut">RUT:     
 								</label>
 								<input placeholder= "112223334" th:field="*{rut}" type="text" required="required" class="casillaRut">
-								<div th:if="${#fields.hasErrors('rut')}"
-													th:errorclass="text-danger" th:errors="*{rut}"></div>
 									<div class="cajaError">
+									<div th:if="${#fields.hasErrors('rut')}"
+													th:errorclass="text-danger" th:errors="*{rut}"></div>
   										<span th:if="${msg != null}" class="error" role="alert">
   										El largo de la contraseña debe estar entre 10 y 15 caracteres.
                     					</span>
