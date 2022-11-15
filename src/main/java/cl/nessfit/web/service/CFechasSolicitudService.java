@@ -7,7 +7,9 @@ import cl.nessfit.web.model.FechasSolicitud;
 import cl.nessfit.web.repository.FechasSolicitudRepository;
 
 @Service
-public class CFechasSolicitudService implements FechaSolicitudService {
+
+public class CFechasSolicitudService implements FechasSolicitudService {
+
 	@Autowired
     private FechasSolicitudRepository fechasSolicitudRepository;
 

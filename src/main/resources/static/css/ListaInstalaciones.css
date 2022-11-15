@@ -123,8 +123,30 @@ th, td{
 	cursor: pointer;
 }
 
+nav{
+	 text-align: center;
+}
+.paginador {
+  display: inline-block;
+  list-style: none;
+}
+
+.paginador li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+}
+
+
 .copyright{
 	text-align:center;
 	margin-top:2rem;
 	
+
 }
+
+}
+li a{
+	text-decoration: none;
+}
+
