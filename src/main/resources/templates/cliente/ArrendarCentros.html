@@ -43,26 +43,9 @@
 				<div class="contenedor2 ">
 					<h1>Arrendar centro</h1>
 					<hr>
-					<form th:action="@{/ArrendarCentro}" method="post" id="demo-form2" data-parsley-validate
-							class="form-horizontal form-label-left" th:object="${usuario}">
-							
-					<div class="casilla">
-						<h2>Seleccione un centro</h2>
-						<select name = "nombre" >
-							
-								<option  
-									
-								
-									th:unless="${#lists.size(AllInstalaciones) == 0}"
-									th:each = "ins : ${AllInstalaciones}"
-										
-									th:if = "${ins.estado} == 1"
-											th:text = "${ins.nombre}"
-									
-									
-								></option> 
-						</select>				
-					</div>
+					<form th:action="@{ArrendarCentros}"  id="demo-form2" data-parsley-validate 
+							class="form-horizontal form-label-left" th:object="${nombre}">
+					<h2>Seleccione la(s) fecha(s)</h2>		
 					<div class="calendario">
 						<div class= "informacion">
 							<div class="anterior" id="anterior">&#9664;</div>
@@ -81,17 +64,28 @@
 						</div>
 						<div class="dias" id="dias"></div>
 					</div>
-					<script src="js/Calendario.js"></script>
 					
-					<div class="botonSolicitud">
-						<div>
-							<button type="submit" class="solicitud">Solicitar</button>
-						</div>
-					</div>						
+					<div class="casillaBotones">
+								<div class="aceptar">
+									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
+								</div>
+								<div id="myModal" class="modal">
+      								<div class="modal-content">
+        								<span class="close">&times;</span>
+        								<p class="botonModal">¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $XXX”.</p>
+        								<div class="botonModal">
+        									<button type="submit" class="aceptar">Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
+        								</div>	
+      								</div>	
+    							</div>
+    							<script th:src="@{/js/Consulta.js}"></script>
+							</div>						
 					</form>
 				</div>
 			</div>
 			<p class=" copyright">Nessfit© 2022.</p>
 		</div> 
+		<script type="text/javascript"  th:src="@{/js/Calendario.js}"></script>
 </body>
 </html>

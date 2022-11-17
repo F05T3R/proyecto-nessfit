@@ -49,29 +49,27 @@ public class EditarDatosInstalacionDeportiva {
 	public String editarInstalacion(Model model, Pageable page) {
 		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(page);
 		model.addAttribute("AllInstalaciones", lista);
+		
 		return "/administrativo/editarPrueba";
 	}
 	
 	
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.GET)
 	public String mostrarFormularioEditar(@PathVariable(value = "nombre") String nombre, Model model) {
-		System.out.println("1");
 		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		model.addAttribute("instalacionDeportiva", ins);
-		
+		model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		return "/administrativo/editar_Instalacion";
 	}
 	
 	
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
-		
-		System.out.println("2");
 
 		
 		if(instalacion.getCostoArriendo() < 1000) {
-			System.out.println("2aaa");
+			
 			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
 		}
 		
@@ -80,6 +78,7 @@ public class EditarDatosInstalacionDeportiva {
 		}
 		
 		if (result.hasErrors()) {
+			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
 		}
 		

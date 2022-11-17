@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/RegistrarAdministrativo-estilo.css}">
+<link rel="stylesheet" th:href="@{/css/EditarInstalacionesDeportivas-estilos.css}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
         	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1> Editar Instalacion Deportiva</h1>
+					<h1> Editar instalacion deportiva</h1>
 					<hr>
 					<div class="casilla">
 						<form th:action="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})}"
@@ -77,7 +77,7 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="tipo">Tipo:
 								
-									<select th:field = "*{tipo}"  >
+									<select th:field = "*{tipo}" class="casillaTipo"  >
 										<option th:each = "tipos : ${tiposInstalaciones}"
 											th:text = "${tipos.getTipo}"
 											th:value = "${tipos}"
@@ -109,7 +109,7 @@
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="estado">Estado:
 								
-								<select th:field = "*{estado}">
+								<select th:field = "*{estado}" class="casillaEstado">
 								  
 								  <option th:value="1" >OPERATIVA
 								  <option th:value="0" >INOPERATIVA
