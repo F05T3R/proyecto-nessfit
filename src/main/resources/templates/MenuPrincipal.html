@@ -29,10 +29,9 @@
       			<span class="fs-4">Registrar Instalacion</span>
     		</a>
     		
-    		<a th:if="${rolUser == 'CLIENTE'}" href="/ArrendarCentro" class="boton">
+    		<a th:if="${rolUser == 'CLIENTE'}" href="cliente/EscogerCentro" class="boton">
       			<span class="fs-4">Arrendar Centro</span>
     		</a>
-    		
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/editarPrueba" class="boton">
       			<span class="fs-4">Editar Datos de Instalaciones</span>
     		</a>
