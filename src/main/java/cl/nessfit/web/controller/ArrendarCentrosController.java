@@ -12,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.nessfit.web.model.FechasSolicitud;
 import cl.nessfit.web.model.InstalacionDeportiva;
@@ -29,6 +31,7 @@ import cl.nessfit.web.service.CSolicitudService;
 import cl.nessfit.web.service.CUsuarioService;
 
 @Controller
+
 public class ArrendarCentrosController {
 
 	private int num_id;
@@ -45,34 +48,37 @@ public class ArrendarCentrosController {
 	@Autowired
 	CFechasSolicitudService fechasSolicitudService;
 	
-	@RequestMapping(value="/ArrendarCentro", method=RequestMethod.GET)
-	public String ArrendarCentro(Model model, Pageable pageable) {
-			
-	Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
-		 	
-		 	/*for(int i = 0; i<lista.getTotalElements(); i++) {
-		 		if(lista.getContent().get(i).getEstado() == 0) {
-		 			lista.getContent().remove(i);
-		 		}
-		 	}
-		 	*/
-	model.addAttribute("AllInstalaciones", lista);
-	return "cliente/ArrendarCentros";
+	@RequestMapping(value="cliente/EscogerCentro", method=RequestMethod.GET)
+	public String EscogerCentro( Model model, Pageable pageable) {
+		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
+		model.addAttribute("AllInstalaciones", lista);
+		
+		
+		return "/cliente/EscogerCentro";
 	}
 	
-	@RequestMapping(value="/ArrendarCentro", method=RequestMethod.POST)
-	public String formArrendarCentro(HttpServletRequest request, Model model, String nombre) {
-		// DetalleSolicitud detalleSolicitud = new DetalleSolcitud();
-		int contador = 0;
-
+	@RequestMapping(value = {"cliente/ArrendarCentrosPrueba"})
+	public String mostrarFormularioArrendar(@RequestParam String nombre, Model model) {
+		System.out.println(nombre);
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
+		model.addAttribute("instalacionDeportiva", ins);
+		System.out.println(ins.getNombre());
+		return "/cliente/ArrendarCentros"; 
+	}
+	@RequestMapping(value="cliente/ArrendarCentros")
+	public String formArrendarCentro(@Valid InstalacionDeportiva ins, BindingResult result, RedirectAttributes attr, Model model ,HttpServletRequest request) {
+		System.out.println("1");
+		System.out.println(ins.getNombre());
+		int contador = 0; 
+
+		//InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 
 		Solicitud solicitud = new Solicitud();
 		Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
 
 		if (request.getParameterValues("dia") != null) {
 			for (String dia : request.getParameterValues("dia")) {
-				System.out.println(dia);
+				System.out.println(dia);  
 				contador++;
 			}
 		}
@@ -89,10 +95,8 @@ public class ArrendarCentrosController {
         //System.out.println(fechaHoy);
 		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
 		//System.out.println(fechaCompra);
-		
 		solicitud.setNombreCentro(ins.getNombre());
 		solicitud.setEstado(0);
-		System.out.println(ins.getCostoArriendo());
 		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
 		solicitud.setRutUsuario(usuario.getRut());
 		solicitud.setFechaCompra(fechaCompra);	  
@@ -108,7 +112,7 @@ public class ArrendarCentrosController {
 				fechasSolicitudService.guardar(fecha);
 			}
 		}
-		return "redirect:ArrendarCentro";
+		return "redirect:ArrendarCentros";
 	}
 	
 	@ModelAttribute("rutUser")
