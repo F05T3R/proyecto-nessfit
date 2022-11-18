@@ -13,6 +13,8 @@ let año = document.getElementById("año");
 let anteriorMes = document.getElementById("anterior");
 let siguienteMes = document.getElementById("siguiente");
 
+let contador = 0;
+
 mes.textContent = nombreMes[numeroMes];
 año.textContent = añoActual.toString();
 
@@ -22,7 +24,14 @@ siguienteMes.addEventListener('click',()=>SiguienteMes());
 let añoPresente = añoActual;
 let mesPresente = numeroMes;
 let diaPresente = diaActual;
+
+let costoInput = document.getElementById("costo");
+let valor = costoInput.getAttribute("value")
+let valorFinal = 0;
+console.log(valor);
+console.log(valorFinal);
 EscribirMes(numeroMes);
+mostrarMensaje();
 
 function EscribirMes(mes){
 	for(let i = ComienzoSemana(); i>0;i--){
@@ -53,6 +62,7 @@ function EscribirMes(mes){
 			fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;
 		}
 	}
+	contador=0;
 }
 function getTotalDias(mes){
 	if(mes === -1) mes = 11;
@@ -106,12 +116,23 @@ function CambiarColor(elemento){
 	var numeroDia= elemento.getAttribute('name');
 	var checkBox = document.getElementById(`dia-${numeroDia}`);
 	var casilla = document.getElementById(`dia-${numeroDia}H`)
-	console.log(numeroDia)
-	console.log(checkBox)
-	console.log(casilla)
 	if(checkBox.checked){
 		casilla.style.color = "#000";
+		contador--;
 	}else{
 		casilla.style.color = "#2196f3";
+		contador++;
 	}
+	getValor();
+	mostrarMensaje();
+	console.log(contador);
+}
+function getValor() {
+	valorFinal = valor;
+	valorFinal = valorFinal*contador;
+	console.log(valorFinal);
+}
+function mostrarMensaje(){
+	var mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
+	var etiqueta= document.getElementById("mensaje").innerHTML = mensaje;
 }

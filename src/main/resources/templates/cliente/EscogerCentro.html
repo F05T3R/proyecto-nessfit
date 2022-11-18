@@ -46,11 +46,13 @@
 				<div class="casilla">
 					<h2>Seleccione un centro deportivo.</h2>
 					<select name="nombre" class="instalacion">
+					<option th:if="${AllInstalaciones.isEmpty()}">No hay registros</option>
 					<option 
-							 th:unless="${#lists.size(AllInstalaciones) == 0}"
+							 th:unless="${AllInstalaciones.isEmpty()}"
 							th:each="ins : ${AllInstalaciones}" 
 							th:if="${ins.estado} == 1"
 								th:text="${ins.nombre}" th:value="${ins.nombre}"></option>
+								
 					
 					</select>
 				</div>
