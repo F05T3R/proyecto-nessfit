@@ -67,7 +67,7 @@
 								<td th:text="${instalacionDeportiva.direccion}"></td>
 								<td th:text="${instalacionDeportiva.tipo}"></td>
 								<td
-									th:text="${instalacionDeportiva.estado} == 1? 'HABILITADO' : 'DESHABILITADO'"></td>
+									th:text="${instalacionDeportiva.estado} == 1? 'OPERATIVA' : 'INOPERATIVA'"></td>
 								<td th:text="${instalacionDeportiva.costoArriendo}"></td>
 								<td><a
 									th:href="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})} "

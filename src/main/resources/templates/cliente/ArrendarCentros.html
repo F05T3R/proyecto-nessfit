@@ -47,7 +47,6 @@
 							class="form-horizontal form-label-left" >
 							<input type="hidden" name="nombre" th:value = "${instalacionDeportiva.nombre}" ></input>
 							<input type="hidden" name="costo" id="costo" th:value = "${instalacionDeportiva.costoArriendo}" ></input>
-							<input type="hidden" name="fechas" id="fechas" th:value = "listaFechasInstalacion" ></input>
 					<h2>Seleccione la(s) fecha(s)</h2>		
 					<div class="calendario">
 						<div class= "informacion">
@@ -67,15 +66,14 @@
 						</div>
 						<div class="dias" id="dias"></div>
 					</div>
-					
 					<div class="casillaBotones">
 								<div class="aceptar">
-									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
+									<a type="submit" id="openModal" class="actualizar">Solicitar</a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
         								<span class="close">&times;</span>
-        								<p class="botonModal">¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $XXX”.</p>
+        								<p class="botonModal" id="mensaje"></p>
         								<div class="botonModal">
         									<button type="submit" class="aceptar">Aceptar</button>
         									<a id="close" class="cancelar">Cancelar</a>

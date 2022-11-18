@@ -78,34 +78,17 @@ public class ArrendarCentrosController {
 		if(ins == null) {
 			return "redirect:/MenuPrincipal";
 		}
-		
-		List<String> lista = fechasSolicitudService.listarIns(nombre);
-		ArrayList<Date> listaFechas = new ArrayList<Date>();
-		//System.out.println(lista);
-		for(int i = 0; i<lista.size(); i++) {
-			Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(lista.get(i));
-			listaFechas.add(fecha);
-			/*int anio = fecha.getYear()+1900;
-			int dia = fecha.getDate();
-			int mes = fecha.getMonth()+1;
-			String fecha2 =  + dia + "/" + mes + "/" + anio ;
-			System.out.println(fecha2);
-			*/
-			
-			
-		}
-		System.out.println(listaFechas);
-		model.addAttribute("listaFechasInstalacion", listaFechas);
 		model.addAttribute("instalacionDeportiva", ins);
 		System.out.println(ins.getNombre());
 		return "/cliente/ArrendarCentros"; 
 	}
 	@RequestMapping(value="cliente/ArrendarCentros")
-	public String formArrendarCentro(@Valid InstalacionDeportiva ins, BindingResult result, RedirectAttributes attr, Model model ,HttpServletRequest request) {
+	public String formArrendarCentro(@RequestParam String nombre, RedirectAttributes attr, Model model ,HttpServletRequest request) {
 		System.out.println("1");
+		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		System.out.println(ins.getNombre());
 		int contador = 0; 
-
+		System.out.println(contador);
 		//InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 
 		Solicitud solicitud = new Solicitud();
@@ -118,10 +101,13 @@ public class ArrendarCentrosController {
 			}
 		}
 		
+		System.out.println(contador);
 		if(contador == 0) {
-			return "redirect:/MenuPrincipal";
+			System.out.println("5");
+			return "redirect:/cliente/EscogerCentro";
 		}
 		
+		System.out.println("6");
 		Calendar fechaHoy = Calendar.getInstance();
 		int añoHoy = fechaHoy.get(Calendar.YEAR);
         int mesHoy = fechaHoy.get(Calendar.MONTH);
@@ -147,7 +133,7 @@ public class ArrendarCentrosController {
 				fechasSolicitudService.guardar(fecha);
 			}
 		}
-		return "redirect:ArrendarCentros";
+		return "redirect:/MenuPrincipal";
 	}
 	
 	@ModelAttribute("rutUser")

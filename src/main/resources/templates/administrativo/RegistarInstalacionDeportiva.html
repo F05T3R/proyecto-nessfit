@@ -81,6 +81,7 @@
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="tipo">Tipo: <select th:field="*{tipo}"
 								required="required" class="casillaTipo">
+									
 									<option th:each="tipos : ${tiposInstalaciones}"
 										th:text="${tipos.getTipo}" th:value="${tipos}"></option>
 
@@ -110,7 +111,7 @@
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="estado">Estado: <select th:field="*{estado}"class="casillaEstado">
 
-									<option th:value="1">OPERATIVA
+									<option selected th:value="1" >OPERATIVA</option>
 									<option th:value="0">INOPERATIVA</option>
 							</select>
 
