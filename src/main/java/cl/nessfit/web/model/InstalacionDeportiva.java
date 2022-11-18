@@ -9,7 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.beans.factory.annotation.Required;
 
 @Entity
 @Table(name = "instalacionesDeportivas")
@@ -21,13 +24,14 @@ public class InstalacionDeportiva implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull
 	private String nombre;
 	
 	private String direccion;
 	private TipoInstalacion tipo;
 	//@Size(min = 1000, message = "El costo mínimo de arriendo debe ser $1.000")
 	private long costoArriendo;
-	private int estado;
+	private Integer estado;
 	public String getNombre() {
 		return nombre;
 	}
@@ -53,10 +57,10 @@ public class InstalacionDeportiva implements Serializable{
 	public void setCostoArriendo(long costoArriendo) {
 		this.costoArriendo = costoArriendo;
 	}
-	public int getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 	
