@@ -1,5 +1,7 @@
 package cl.nessfit.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,10 @@ public class CSolicitudService implements SolicitudService {
 	@Override
 	public void eliminar(int id) {
 		solicitudRepository.delete(buscarPorId(id));
+	}
+
+	@Override
+	public List<Solicitud> buscarRut(String rutCompra) {
+		return solicitudRepository.buscarPorRut(rutCompra);
 	}
 }
