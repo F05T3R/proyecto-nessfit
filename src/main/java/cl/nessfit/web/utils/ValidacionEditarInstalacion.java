@@ -23,6 +23,9 @@ public class ValidacionEditarInstalacion implements Validator{
 	public void validate(Object target, Errors errors) {
 		InstalacionDeportiva instalacion = (InstalacionDeportiva) target;
 		
+		if (instalacion.getDireccion() == "") {
+			errors.rejectValue("direccion", null, "Complete este campo ");
+		}
 		
 		if(instalacion.getCostoArriendo() < 1000) {
 			errors.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");

@@ -28,6 +28,10 @@ public class validacionUsuario implements Validator {
 	    	errors.rejectValue("email", null, "El RUT y/o correo electrónico ya existen en el sistema. Intente iniciar sesión");
 	    }
 	    
+		if (usuario.getEmail() == "") {
+			errors.rejectValue("email", null, "Complete este campo ");
+		}
+	    
 	    // lógica para validar
 	    
 	    if(String.valueOf(usuario.getTelefono()).length() < 11 || String.valueOf(usuario.getTelefono()).length() > 16) {

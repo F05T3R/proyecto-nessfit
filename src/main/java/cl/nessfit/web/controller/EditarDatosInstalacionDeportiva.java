@@ -67,6 +67,9 @@ public class EditarDatosInstalacionDeportiva {
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 
+		if (instalacion.getDireccion() == "") {
+			result.rejectValue("direccion", null, "Complete este campo ");
+		}
 		
 		if(instalacion.getCostoArriendo() < 1000) {
 			
