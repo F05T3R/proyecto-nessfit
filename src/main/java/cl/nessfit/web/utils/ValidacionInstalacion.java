@@ -29,6 +29,14 @@ public class ValidacionInstalacion implements Validator{
 	    	errors.rejectValue("nombre", null, "La Instalacion ya existe en el sistema. ");
 	    }
 		
+		if (instalacion.getNombre() == "") {
+			errors.rejectValue("nombre", null, "Complete este campo ");
+		}
+		
+		if (instalacion.getDireccion() == "") {
+			errors.rejectValue("direccion", null, "Complete este campo ");
+		}
+		
 		if(instalacion.getCostoArriendo() < 1000) {
 			errors.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
 		}
