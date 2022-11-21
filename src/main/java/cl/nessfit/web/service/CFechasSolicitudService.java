@@ -1,5 +1,7 @@
 package cl.nessfit.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,10 @@ public class CFechasSolicitudService implements FechasSolicitudService{
 	public void guardar(FechasSolicitud fechasSolicitud) {
 		fechasSolicitudRepository.save(fechasSolicitud);
 		
+	}
+
+	@Override
+	public List<String> listarIns(String nombre) {
+		return fechasSolicitudRepository.listarFechasInstalacion(nombre);
 	}
 }

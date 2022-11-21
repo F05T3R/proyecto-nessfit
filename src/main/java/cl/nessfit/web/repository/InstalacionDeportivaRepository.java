@@ -13,6 +13,6 @@ public interface InstalacionDeportivaRepository extends JpaRepository<Instalacio
 	
 	public InstalacionDeportiva findByNombre(String nombre);
 	public List<InstalacionDeportiva> findAll();
-	//@Query ("SELECT * FROM nessfit.instalacionesdeportivas n where n.estado = 1")
-	//public List<InstalacionDeportiva> findOperative();
+	//@Query (value="SELECT * FROM instalacionesdeportivas n where n.estado = 1", nativeQuery=true)
+	public List<InstalacionDeportiva> findByEstadoIs(int num);
 }

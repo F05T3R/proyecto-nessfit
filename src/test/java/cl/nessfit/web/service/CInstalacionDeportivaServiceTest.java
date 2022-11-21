@@ -42,8 +42,7 @@ class CInstalacionDeportivaServiceTest {
 		Assertions.assertNotNull(ins2);
 		
 	}
-<<<<<<< Updated upstream
-=======
+
 	
 	@Test
 	void listar(Pageable pageable) {
@@ -63,6 +62,6 @@ class CInstalacionDeportivaServiceTest {
 		assertThat(lista).isNotNull();
 		assertThat(lista.getSize()).isEqualTo(1);
 	}
->>>>>>> Stashed changes
+
 
 }

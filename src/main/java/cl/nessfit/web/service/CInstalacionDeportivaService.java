@@ -47,6 +47,12 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page<InstalacionDeportiva> listarOperativas() {
+		return (Page<InstalacionDeportiva>) InstalacionDeportivaRepository.findByEstadoIs(1);
+	}
+
 	
 	/*@Override
 	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {

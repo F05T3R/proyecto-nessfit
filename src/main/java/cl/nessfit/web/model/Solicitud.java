@@ -25,8 +25,6 @@ public class Solicitud implements Serializable {
 	
 	private int totalPagar;
 	
-<<<<<<< Updated upstream
-=======
 	private String fechaCompra;
 	
 	public String getFechaCompra() {
@@ -36,7 +34,7 @@ public class Solicitud implements Serializable {
 	public void setFechaCompra(String fechaCompra) {
 		this.fechaCompra = fechaCompra;
 	}
->>>>>>> Stashed changes
+
 	private int estado;
 	
 	public int getId() {
