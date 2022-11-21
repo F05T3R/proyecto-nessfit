@@ -44,7 +44,10 @@
 					<h1>Arrendar centro</h1>
 					<hr>
 					<form th:action="@{ArrendarCentros}"  id="demo-form2" data-parsley-validate 
-							class="form-horizontal form-label-left" th:object="${nombre}">
+							class="form-horizontal form-label-left" >
+							<input type="hidden" name="nombre" th:value = "${instalacionDeportiva.nombre}" ></input>
+							<input type="hidden" name="costo" id="costo" th:value = "${instalacionDeportiva.costoArriendo}" ></input>
+							<input type="hidden" name="fechas" id="fechas" th:value = "listaFechasInstalacion" ></input>
 					<h2>Seleccione la(s) fecha(s)</h2>		
 					<div class="calendario">
 						<div class= "informacion">

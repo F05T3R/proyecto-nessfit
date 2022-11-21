@@ -46,8 +46,9 @@
 				<div class="casilla">
 					<h2>Seleccione un centro deportivo.</h2>
 					<select name="nombre" class="instalacion">
+					<option th:if="${AllInstalaciones.isEmpty() || cont==total }">No hay centros deportivos que mostrar</option>
 					<option 
-							 th:unless="${#lists.size(AllInstalaciones) == 0}"
+							th:unless="${AllInstalaciones.isEmpty()}"
 							th:each="ins : ${AllInstalaciones}" 
 							th:if="${ins.estado} == 1"
 								th:text="${ins.nombre}" th:value="${ins.nombre}"></option>
@@ -56,7 +57,7 @@
 				</div>
 				<div class="botonSolicitud">
 					<div>
-						<button class="aceptar" type="submit">Solicitar</button>
+						<button class="aceptar" type="submit" th:if="${total>cont && AllInstalaciones.isEmpty()==False }">Solicitar</button>
 					</div>
 				</div>
 				</form>

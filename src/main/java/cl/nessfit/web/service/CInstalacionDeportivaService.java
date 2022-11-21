@@ -46,6 +46,13 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		InstalacionDeportivaRepository.deleteById(nombre);
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page<InstalacionDeportiva> listarOperativas() {
+		return (Page<InstalacionDeportiva>) InstalacionDeportivaRepository.findByEstadoIs(1);
+	}
+
 	
 	/*@Override
 	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
