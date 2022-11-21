@@ -14,17 +14,48 @@ import cl.nessfit.web.model.TipoInstalacion;
 @SpringBootTest
 class CInstalacionDeportivaServiceTest {
 
-    @Autowired
-    CInstalacionDeportivaService data;
-    InstalacionDeportiva prueba = new InstalacionDeportiva();
-    @BeforeEach
-    void setup() {
-        prueba.setCostoArriendo(0);
-        prueba.setEstado(0);
-        prueba.setNombre("1");
-        prueba.setDireccion("2");
-        prueba.setTipo(TipoInstalacion.CANCHA);
-    }
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void agregar() {
+		InstalacionDeportiva ins = new InstalacionDeportiva();
+		ins.setCostoArriendo(0);
+		ins.setEstado(0);
+		ins.setNombre("1");
+		ins.setDireccion("2");
+		ins.setTipo(TipoInstalacion.CANCHA);
+		
+		data.guardar(ins);
+		
+		InstalacionDeportiva ins2 = data.buscarPorNombre(ins.getNombre());
+		
+		Assertions.assertNotNull(ins2);
+		
+	}
+
+	
+	@Test
+	void listar(Pageable pageable) {
+		InstalacionDeportiva ins = new InstalacionDeportiva();
+		ins.setNombre("Test_2");
+		ins.setDireccion("Direccion2");
+		ins.setCostoArriendo(3400);
+		ins.setEstado(0);
+		ins.setTipo(TipoInstalacion.QUINCHO);
+		
+		data.guardar(ins);
+		
+		//data.save(insPrueba);
+		
+		Page<InstalacionDeportiva> lista = data.listar(pageable);
+		
+		assertThat(lista).isNotNull();
+		assertThat(lista.getSize()).isEqualTo(1);
+	}
+
 
     @Test
     void agregar() {

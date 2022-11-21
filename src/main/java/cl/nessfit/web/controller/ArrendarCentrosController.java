@@ -1,5 +1,9 @@
 package cl.nessfit.web.controller;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;  
+import java.util.Date; 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -53,19 +57,47 @@ public class ArrendarCentrosController {
 	@RequestMapping(value="cliente/EscogerCentro", method=RequestMethod.GET)
 	public String EscogerCentro( Model model, Pageable pageable) {
 		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
+		List<InstalacionDeportiva> lis = lista.toList();
+		int contador = 0;
 		model.addAttribute("AllInstalaciones", lista);
+		for(int i = 0; i < lis.size(); i++) {
+			if(lis.get(i).getEstado() == 0) {
+				contador++;
+			}
+		}
 		
+		model.addAttribute("cont", contador);
+		model.addAttribute("total", (int)lis.size());
+		System.out.println(contador);
 		
 		return "/cliente/EscogerCentro";
 	}
 	
 	@RequestMapping(value = {"cliente/ArrendarCentrosPrueba"})
-	public String mostrarFormularioArrendar(@RequestParam String nombre, Model model) {
+	public String mostrarFormularioArrendar(@RequestParam String nombre, Model model) throws ParseException {
 		System.out.println(nombre);
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		if(ins == null) {
 			return "redirect:/MenuPrincipal";
 		}
+		
+		List<String> lista = fechasSolicitudService.listarIns(nombre);
+		ArrayList<Date> listaFechas = new ArrayList<Date>();
+		//System.out.println(lista);
+		for(int i = 0; i<lista.size(); i++) {
+			Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(lista.get(i));
+			listaFechas.add(fecha);
+			/*int anio = fecha.getYear()+1900;
+			int dia = fecha.getDate();
+			int mes = fecha.getMonth()+1;
+			String fecha2 =  + dia + "/" + mes + "/" + anio ;
+			System.out.println(fecha2);
+			*/
+			
+			
+		}
+		System.out.println(listaFechas);
+		model.addAttribute("listaFechasInstalacion", listaFechas);
 		model.addAttribute("instalacionDeportiva", ins);
 		System.out.println(ins.getNombre());
 		return "/cliente/ArrendarCentros"; 
