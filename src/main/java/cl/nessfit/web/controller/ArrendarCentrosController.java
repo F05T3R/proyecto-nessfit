@@ -78,7 +78,6 @@ public class ArrendarCentrosController {
 		if(ins == null) {
 			return "redirect:/MenuPrincipal";
 		}
-		
 		List<String> lista = fechasSolicitudService.listarIns(nombre);
 		ArrayList<Date> listaFechas = new ArrayList<Date>();
 		//System.out.println(lista);
@@ -94,8 +93,8 @@ public class ArrendarCentrosController {
 			
 			
 		}
-		System.out.println(listaFechas);
-		model.addAttribute("listaFechasInstalacion", listaFechas);
+		System.out.println(lista);
+		model.addAttribute("listaFechasInstalacion", lista);
 		model.addAttribute("instalacionDeportiva", ins);
 		System.out.println(ins.getNombre());
 		return "/cliente/ArrendarCentros"; 

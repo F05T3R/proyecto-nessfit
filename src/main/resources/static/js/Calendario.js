@@ -27,9 +27,30 @@ let diaPresente = diaActual;
 
 let costoInput = document.getElementById("costo");
 let valor = costoInput.getAttribute("value")
+
+let fechaInput = document.getElementById("fechas");
+let fechaSolicitada = fechaInput.getAttribute("value")
+var array = fechaSolicitada.split(",");
+
+let palabra;
+let palabraN;
+
+for(let i = 0;i<array.length;i++){
+	palabraN = "";
+	for(let j = 0; j<array[i].length;j++){
+		palabra = array[i];
+		if(palabra[j] != "["){
+			if(palabra[j] != "]"){
+				if(palabra[j] != " "){
+					palabraN = palabraN + palabra[j];
+				}
+			}
+		}
+	}
+	array[i]=palabraN;
+}
+
 let valorFinal = 0;
-console.log(valor);
-console.log(valorFinal);
 EscribirMes(numeroMes);
 mostrarMensaje();
 
@@ -39,19 +60,30 @@ function EscribirMes(mes){
             ${getTotalDias(numeroMes-1)-(i-1)}
         </div>`;
     }
-	
 	for(let i = 1; i<=getTotalDias(mes);i++){
 		if(añoPresente<añoActual){
-			fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
+			if(ExisteFecha(i,mes+1,añoActual)){
+				fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;
+			}else{
+				fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
 										<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
+			}
 		}else if(añoPresente === añoActual){
 			if(mesPresente<numeroMes){
+				if(ExisteFecha(i,mes+1,añoActual)){
+				fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;
+				}else{
 				fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" name="dia" id="dia-${i}" autocomplete="off">
 									<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
+				}
 			}else if(mesPresente === numeroMes){
 				if(i>=diaActual) {
-            		fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
-										<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
+					if(ExisteFecha(i,mes+1,añoActual)){
+						fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;
+					}else{
+            			fecha.innerHTML += `<div class="dia" id="dia-${i}H"><input name="dia" type="checkbox" value="${añoActual}-${mes+1}-${i}" class="diaCheck" id="dia-${i}" autocomplete="off">
+											<label onclick="CambiarColor(this)" name="${i}" class="diaTexto" for="dia-${i}">${i}</label><br></div>`;
+					}
         		}else{
             		fecha.innerHTML += `<div class="diaDeshabilitado">${i}</div>`;
         		}
@@ -125,14 +157,28 @@ function CambiarColor(elemento){
 	}
 	getValor();
 	mostrarMensaje();
-	console.log(contador);
 }
 function getValor() {
 	valorFinal = valor;
 	valorFinal = valorFinal*contador;
-	console.log(valorFinal);
 }
 function mostrarMensaje(){
 	var mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
 	var etiqueta= document.getElementById("mensaje").innerHTML = mensaje;
+}
+function ExisteFecha(diaBuscado,mesBuscado,añoBuscado){
+    let diaLista;
+    let mesLista;
+    let añoLista;
+    let fechaLista;
+	for(let i=0;i<array.length;i++){
+		fechaLista = array[i].split("-");
+		añoLista = fechaLista[0];
+		mesLista = fechaLista[1];
+		diaLista = fechaLista[2];
+		if(añoLista == añoBuscado && mesLista == mesBuscado && diaLista == diaBuscado){
+			return true
+		}
+	}
+	return false;
 }
