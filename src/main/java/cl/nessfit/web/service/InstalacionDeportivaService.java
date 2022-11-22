@@ -17,4 +17,5 @@ public interface InstalacionDeportivaService {
 	//public Page<InstalacionDeportiva> listarOperativas(Pageable pageable);
 	//public List<InstalacionDeportiva> crearLista();
 	public void eliminar(String nombre);
+
 }
