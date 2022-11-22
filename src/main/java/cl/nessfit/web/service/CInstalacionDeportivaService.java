@@ -30,12 +30,12 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		
 		
 	}
-	
+
 	@Override
 	public Page<InstalacionDeportiva> listar(Pageable pageable) {
 		return InstalacionDeportivaRepository.findAll(pageable);
 	}
-
+	
 	@Override
 	public List<InstalacionDeportiva> crearLista() {
 		return (List<InstalacionDeportiva>)InstalacionDeportivaRepository.findAll();
@@ -46,6 +46,13 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		InstalacionDeportivaRepository.deleteById(nombre);
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page<InstalacionDeportiva> listarOperativas() {
+		return (Page<InstalacionDeportiva>) InstalacionDeportivaRepository.findByEstadoIs(1);
+	}
+
 	
 	/*@Override
 	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {

@@ -58,6 +58,7 @@ public class CambiarContraseñaController {
 		}
 		
 		if(!(nuevaContrasena.equals(nuevaContrasenaRepetir))) {
+            System.out.println("Entre");
             model.addAttribute("msg2", "Contraseña incorrecta");
             model.addAttribute("nuevaContrasena", nuevaContrasena);
             model.addAttribute("nuevaContrasenaRepetir", nuevaContrasenaRepetir);
