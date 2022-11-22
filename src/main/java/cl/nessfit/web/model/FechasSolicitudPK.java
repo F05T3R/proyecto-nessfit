@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class FechasSolicitudPK implements Serializable{
 	
+	 	
 	private int idSolicitud;
-    private String fecha;
+	private String fecha;
 }

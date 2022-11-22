@@ -78,6 +78,23 @@ public class ArrendarCentrosController {
 		if(ins == null) {
 			return "redirect:/MenuPrincipal";
 		}
+		List<String> lista = fechasSolicitudService.listarIns(nombre);
+		ArrayList<Date> listaFechas = new ArrayList<Date>();
+		//System.out.println(lista);
+		for(int i = 0; i<lista.size(); i++) {
+			Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(lista.get(i));
+			listaFechas.add(fecha);
+			/*int anio = fecha.getYear()+1900;
+			int dia = fecha.getDate();
+			int mes = fecha.getMonth()+1;
+			String fecha2 =  + dia + "/" + mes + "/" + anio ;
+			System.out.println(fecha2);
+			*/
+			
+			
+		}
+		System.out.println(lista);
+		model.addAttribute("listaFechasInstalacion", lista);
 		model.addAttribute("instalacionDeportiva", ins);
 		System.out.println(ins.getNombre());
 		return "/cliente/ArrendarCentros"; 

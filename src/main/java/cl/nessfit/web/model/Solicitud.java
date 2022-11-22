@@ -13,9 +13,9 @@ import javax.persistence.Table;
 @Table(name = "solicitudes")
 public class Solicitud implements Serializable {
 
-    private static final long serialVersionUID = 4507764205332784955L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private static final long serialVersionUID = 4507764205332784955L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	
