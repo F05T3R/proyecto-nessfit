@@ -55,6 +55,8 @@ EscribirMes(numeroMes);
 mostrarMensaje();
 
 function EscribirMes(mes){
+	contador = 0;
+	mostrarMensaje();
 	for(let i = ComienzoSemana(); i>0;i--){
         fecha.innerHTML += ` <div class="diaDeshabilitado">
             ${getTotalDias(numeroMes-1)-(i-1)}
@@ -163,7 +165,11 @@ function getValor() {
 	valorFinal = valorFinal*contador;
 }
 function mostrarMensaje(){
-	var mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
+	if(contador == 0){
+		var mensaje =`No hay fechas elegidas.`
+	}else{
+		var mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
+	}
 	var etiqueta= document.getElementById("mensaje").innerHTML = mensaje;
 }
 function ExisteFecha(diaBuscado,mesBuscado,añoBuscado){
