@@ -163,7 +163,15 @@ function getValor() {
 	valorFinal = valorFinal*contador;
 }
 function mostrarMensaje(){
-	var mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
+	var mensaje;
+	if(contador == 0){
+		mensaje =`Seleccione uno o mas días`
+		
+	}
+	else{
+		mensaje =`¿Está seguro de proceder con la solicitud de arriendo? El costo total de arriendo es de $${valorFinal}.`
+	}
+	
 	var etiqueta= document.getElementById("mensaje").innerHTML = mensaje;
 }
 function ExisteFecha(diaBuscado,mesBuscado,añoBuscado){

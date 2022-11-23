@@ -57,7 +57,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre: <input th:field="*{nombre}"
-								name="nombre" type="text" required="required"
+								name="nombre" type="text" 
 								class="casillaNombre">
 							</label>
 							<div class="cajaError">
@@ -114,9 +114,14 @@
 									<option selected th:value="1" >OPERATIVA</option>
 									<option th:value="0">INOPERATIVA</option>
 							</select>
-
+								
+							
 
 							</label>
+							<div class="cajaError">
+								<div class="error" th:if="${#fields.hasErrors('estado')}"
+									th:errorclass="text-danger" th:errors="*{estado}"></div>
+							</div>
 						</div>
 						<div class="casillaBotones">
 							<div class="botonActualizar">
