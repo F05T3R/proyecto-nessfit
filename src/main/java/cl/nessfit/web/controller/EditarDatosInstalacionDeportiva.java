@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.nessfit.web.model.InstalacionDeportiva;
+import cl.nessfit.web.model.TipoInstalacion;
 import cl.nessfit.web.model.Usuario;
 import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CUsuarioService;
@@ -59,6 +60,7 @@ public class EditarDatosInstalacionDeportiva {
 		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		model.addAttribute("instalacionDeportiva", ins);
+		model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		
 		return "/administrativo/editar_Instalacion";
 	}
@@ -71,7 +73,7 @@ public class EditarDatosInstalacionDeportiva {
 
 		
 		if(instalacion.getCostoArriendo() < 1000) {
-			System.out.println("2aaa");
+			
 			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
 		}
 		
@@ -80,6 +82,7 @@ public class EditarDatosInstalacionDeportiva {
 		}
 		
 		if (result.hasErrors()) {
+			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
 		}
 		
@@ -114,3 +117,4 @@ public class EditarDatosInstalacionDeportiva {
 	
 	
 }
+
