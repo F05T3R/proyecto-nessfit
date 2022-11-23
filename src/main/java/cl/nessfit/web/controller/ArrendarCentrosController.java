@@ -63,7 +63,7 @@ public class ArrendarCentrosController {
 				contador++;
 			}
 		}
-		
+	
 		model.addAttribute("cont", contador);
 		model.addAttribute("total", (int)lis.size());
 		System.out.println(contador);

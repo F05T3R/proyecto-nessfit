@@ -24,27 +24,33 @@ public class ValidacionInstalacion implements Validator{
 	public void validate(Object target, Errors errors) {
 		InstalacionDeportiva instalacion = (InstalacionDeportiva) target;
 		
+		if(instalacion.getEstado() == null) {
+			System.out.println("ENTRE AQUI");
+			errors.rejectValue("estado", null, "error");
+		}
+		else {
+			if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
+				errors.rejectValue("estado", null, "Estado no válido");
+			}
+		}
 		
 		InstalacionDeportiva existe = InstalacionDeportivaService.buscarPorNombre(instalacion.getNombre());
 		if (existe != null) {
 	    	errors.rejectValue("nombre", null, "La Instalacion ya existe en el sistema. ");
 	    }
 		
-		if (instalacion.getNombre() == "") {
+		if (instalacion.getNombre().isBlank()) {  
 			errors.rejectValue("nombre", null, "Complete este campo ");
 		}
 		
-		if (instalacion.getDireccion() == "") {
+		if (instalacion.getDireccion().isBlank()) {
 			errors.rejectValue("direccion", null, "Complete este campo ");
 		}
-		
 		if(instalacion.getCostoArriendo() < 1000) {
 			errors.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
 		}
 		
-		if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
-			errors.rejectValue("estado", null, "Estado no válido");
-		}
+		
 		
 	}
 	

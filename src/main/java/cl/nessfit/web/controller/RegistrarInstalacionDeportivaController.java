@@ -50,7 +50,7 @@ public class RegistrarInstalacionDeportivaController {
 		    
 		}
 		
-		System.out.println(instalacion.getTipo());
+		
 		
 		/*if(instalacion.getTipo() == TipoInstalacion.CANCHA.getTipo()) {
 			instalacion.setTipo(TipoInstalacion.CANCHA.getTipo());
