@@ -48,29 +48,35 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
-				<h1>Lista de Solicitudes</h1>
+				<h1 th:if="${rolUser == 'ADMINISTRADOR'}">Lista de Usuarios</h1>
+				<h1 th:if="${rolUser == 'ADMINISTRATIVO'}" >Lista de Clientes</h1>
+				<input placeHolder="Busqueda por Rut" name="rutBuscar" ></input>
+				<a th:href="@{/buscarUsuario}">Buscar</a>
 				<hr>
 				<div class="casilla">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>nombreCentro</th>
-								<th>fechaCompra</th>
-								<th>Estado</th>
-								<th>Total</th>
-								
+								<th>RUT</th>
+								<th>NOMBRE</th>
+								<th>TELEFONO</th>
+								<th>USUARIO</th>
+								<th>ESTADO</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="solicitud : ${lista}">
-								<td th:text="${solicitud.id}"></td>
-								<td th:text="${solicitud.nombreCentro}"></td>
-								<td th:text="${solicitud.fechaCompra}"></td>
+							<tr th:each=" usuario : ${listaUsuarios}">
+								<td th:text="${usuario.rut}"></td>
+								<td th:text="${usuario.nombre} + ' ' +  ${usuario.apellido}"></td>
+								<td th:text="${usuario.telefono}"></td>
+								<td th:text="${usuario.rol.id} == 2?  'Administrador' : 'Cliente '"></td>
 								<td
-									th:text="${solicitud.estado} == 1? 'Aprobada' : 'Pendiente'"></td>
-								<td th:text="${solicitud.totalPagar}"></td>
-								
+									th:text="${usuario.estado} == 1? 'Habilitado' : 'Deshabilitado'"></td>
+								<td>
+								<a  
+								    id = "${usuario.nombre} + ' ' +  ${usuario.apellido}"  th:href="@{/cambioEstado/{rut} (rut = ${usuario.rut})}"
+									class="botonEditar"> Editar </a></td>
+									
 							</tr>
 						</tbody>
 

@@ -1,8 +1,11 @@
 package cl.nessfit.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import cl.nessfit.web.model.Solicitud;
@@ -33,4 +36,11 @@ public class CSolicitudService implements SolicitudService {
 	public List<Solicitud> buscarRut(String rutCompra) {
 		return solicitudRepository.buscarPorRut(rutCompra);
 	}
+
+	@Override
+	public List<Solicitud> listarPendientes() {
+		return solicitudRepository.listarPendientes();
+	}
+
+	
 }

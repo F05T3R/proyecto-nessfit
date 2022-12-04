@@ -48,37 +48,69 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
-				<h1>Lista de Solicitudes</h1>
+				<h1>Listado de Fechas</h1>
 				<hr>
 				<div class="casilla">
+				<input type="hidden" name="id" th:value = "${solicitud.id}" ></input>
 					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>nombreCentro</th>
-								<th>fechaCompra</th>
-								<th>Estado</th>
-								<th>Total</th>
-								
+								<th>FECHA </th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="solicitud : ${lista}">
-								<td th:text="${solicitud.id}"></td>
-								<td th:text="${solicitud.nombreCentro}"></td>
-								<td th:text="${solicitud.fechaCompra}"></td>
-								<td
-									th:text="${solicitud.estado} == 1? 'Aprobada' : 'Pendiente'"></td>
-								<td th:text="${solicitud.totalPagar}"></td>
+							<tr th:each="listas : ${lista}">
+								<td th:text="${listas.idSolicitud}    "></td>
+								<td th:text="${listas.fecha}" 
+								     ></td>
+								
 								
 							</tr>
 						</tbody>
 
 					</table>
 					
+					<div class="casillaBotones">
+								<div class="botonActualizar">
+									<a type="submit" id="openModal" class="actualizar" th:href="@{/administrativo/confirmar/{id} (id = ${solicitud.id})}">CONFIRMAR SOLICITUD</a>
+								</div>
+								<div id="myModal" class="modal">
+      								<div class="modal-content">
+        								<span class="close">&times;</span>
+        								<p class="botonModal">¿Estás seguro?</p>
+        								<div class="botonModal">
+        									<button type="submit" class="aceptar" >Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
+        								</div>	
+      								</div>	
+    							</div>
+    							<div class="botonActualizar">
+									<a type="submit" id="openModal" class="actualizar" th:href="@{/administrativo/cancelar/{id} (id = ${solicitud.id})}">RECHAZAR SOLICITUD</a>
+								</div>
+								<div id="myModal" class="modal">
+      								<div class="modal-content">
+        								<span class="close">&times;</span>
+        								<p class="botonModal">¿Estás seguro?</p>
+        								<div class="botonModal">
+        									<button type="submit" class="aceptar" >Aceptar</button>
+        									<a id="close" class="cancelar">Cancelar</a>
+        								</div>	
+      								</div>	
+    							</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</div>
 		</div>
+	</div>
 		<p class=" copyright">Nessfit© 2022.</p>
 	</div>
 </body>

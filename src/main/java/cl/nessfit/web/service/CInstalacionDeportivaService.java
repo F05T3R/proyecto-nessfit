@@ -47,14 +47,20 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Page<InstalacionDeportiva> listarOperativas() {
+	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
 		return (Page<InstalacionDeportiva>) InstalacionDeportivaRepository.findByEstadoIs(1);
 	}
 
 	
-	/*@Override
+	@Override
 	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
 		return InstalacionDeportivaRepository.findOperative(pageable);
 	}
