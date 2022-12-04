@@ -136,7 +136,7 @@ public class ArrendarCentrosController {
 		solicitud.setNombreCentro(ins.getNombre());
 		solicitud.setEstado(0);
 		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
-		solicitud.setRutUsuario(usuario.getRut());
+		solicitud.setUsuario(usuario);
 		solicitud.setFechaCompra(fechaCompra);	  
 		
 		solicitudService.guardar(solicitud);

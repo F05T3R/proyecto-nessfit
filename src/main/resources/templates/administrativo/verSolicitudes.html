@@ -48,29 +48,37 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
-				<h1>Lista de Solicitudes</h1>
+				<h1 >Lista de Solicitudes</h1>
+				
 				<hr>
 				<div class="casilla">
+					
 					<table class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>nombreCentro</th>
-								<th>fechaCompra</th>
-								<th>Estado</th>
-								<th>Total</th>
-								
+								<th>FECHA</th>
+								<th>CENTRO</th>
+								<th>COSTO TOTAL</th>
+								<th>RUT</th>
+								<th>NOMBRE CLIENTE</th>
+								<th>ESTADO</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="solicitud : ${lista}">
+							<tr th:each=" solicitud : ${lista}" >
 								<td th:text="${solicitud.id}"></td>
-								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.fechaCompra}"></td>
-								<td
-									th:text="${solicitud.estado} == 1? 'Aprobada' : 'Pendiente'"></td>
+								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
-								
+								<td th:text="${solicitud.usuario.rut}"></td>
+								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+								<td th:text="${solicitud.estado} == 0?  'Pendiente' : 'Error'"></td>
+								<td>
+								<a id = "${solicitud.id} "  th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
+									class="botonEditar" 
+								    > Ver detalle </a></td>
+									
 							</tr>
 						</tbody>
 

@@ -48,29 +48,42 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
-				<h1>Lista de Solicitudes</h1>
+				<h1 th:if="${lista.isEmpty()}">No hay solicitudes por mostrar</h1>
+				<h1 th:if="!${lista.isEmpty()}">Lista de Solicitudes</h1>
+				
 				<hr>
 				<div class="casilla">
-					<table class="table">
+					
+					<table th:if="!${lista.isEmpty()}" class="table">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>nombreCentro</th>
-								<th>fechaCompra</th>
-								<th>Estado</th>
-								<th>Total</th>
-								
+								<th>FECHA</th>
+								<th>CENTRO</th>
+								<th>COSTO TOTAL</th>
+								<th>RUT</th>
+								<th>NOMBRE CLIENTE</th>
+								<th>ESTADO</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="solicitud : ${lista}">
+						 	
+							<tr th:if="!${lista.isEmpty()}" th:each=" solicitud : ${lista}" >
 								<td th:text="${solicitud.id}"></td>
-								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.fechaCompra}"></td>
-								<td
-									th:text="${solicitud.estado} == 1? 'Aprobada' : 'Pendiente'"></td>
+								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
+								<td th:text="${solicitud.usuario.rut}"></td>
+								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+								<td th:if="${solicitud.estado == 0}"    th:text="PENDIENTE"></td>
+								<td th:if="${solicitud.estado == 1}"    th:text="APROBADA"></td>
+								<td th:if="${solicitud.estado == -1}"    th:text="CANCELADA"></td>
 								
+								<td>
+								<a id = "${solicitud.id} "  th:href="@{/cliente/verSolicitud/{id} (id = ${solicitud.id})}"
+									class="botonEditar" 
+								    > Ver detalle </a></td>
+									
 							</tr>
 						</tbody>
 

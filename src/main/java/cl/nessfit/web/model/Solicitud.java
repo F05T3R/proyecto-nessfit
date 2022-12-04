@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +22,9 @@ public class Solicitud implements Serializable {
     @Column(name = "id", updatable = false, nullable = false)
 	private int id;
 	
-	private String rutUsuario;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "rutUsuario", referencedColumnName = "rut")
+	private Usuario usuario;
 	
 	private String nombreCentro;
 	
@@ -41,10 +46,14 @@ public class Solicitud implements Serializable {
 		return id;
 	}
 	
-	public String getRutUsuario() {
-		return rutUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public String getNombreCentro() {
 		return nombreCentro;
 	}
@@ -60,9 +69,7 @@ public class Solicitud implements Serializable {
 	public void setId(int id) {
 		this.id=id;
 	}
-	public void setRutUsuario(String rutUsuario) {
-		this.rutUsuario=rutUsuario;
-	}
+	
 	public void setNombreCentro(String nombreCentro) {
 		this.nombreCentro=nombreCentro;
 	}

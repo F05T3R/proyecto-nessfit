@@ -1,6 +1,7 @@
 package cl.nessfit.web.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,11 @@ public class CFechasSolicitudService implements FechasSolicitudService{
 	public List<String> listarIns(String nombre) {
 		return fechasSolicitudRepository.listarFechasInstalacion(nombre);
 	}
+
+	@Override
+	public List<FechasSolicitud> listarFechas(Integer id) {
+		return fechasSolicitudRepository.findByIdSolicitud(id);
+	}
+
+	
 }
