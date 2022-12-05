@@ -85,6 +85,19 @@ hr{
 	border-color: #3f8880;
 	background-color: #fff;
 }
+.nav-link{
+	background-color: #20c67a;
+	border-radius:4px;
+	border: none;
+	color: #000;
+	padding: 6px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 10px;
+	cursor: pointer;
+}
 hr{
 	margin: 1rem 0;
 	background-color: currentColor;

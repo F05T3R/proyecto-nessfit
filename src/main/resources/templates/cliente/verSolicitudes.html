@@ -50,10 +50,13 @@
 			<div class="contenedor2">
 				<h1 th:if="${lista.isEmpty()}">No hay solicitudes por mostrar</h1>
 				<h1 th:if="!${lista.isEmpty()}">Lista de Solicitudes</h1>
-				
 				<hr>
+				
+				<a class="nav-link" th:href="@{/cliente/verSolicitudes/(format=pdf)}"
+					title="Exportar a PDF" target="_blank"> Exportar a PDF
+				</a>
+				
 				<div class="casilla">
-					
 					<table th:if="!${lista.isEmpty()}" class="table">
 						<thead>
 							<tr>
@@ -74,7 +77,7 @@
 								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
 								<td th:text="${solicitud.usuario.rut}"></td>
-								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+								<td th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}" ></td>
 								<td th:if="${solicitud.estado == 0}"    th:text="PENDIENTE"></td>
 								<td th:if="${solicitud.estado == 1}"    th:text="APROBADA"></td>
 								<td th:if="${solicitud.estado == -1}"    th:text="CANCELADA"></td>

@@ -72,7 +72,7 @@
 								<td th:text="${solicitud.nombreCentro}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
 								<td th:text="${solicitud.usuario.rut}"></td>
-								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+								<td th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}" ></td>
 								<td th:text="${solicitud.estado} == 0?  'Pendiente' : 'Error'"></td>
 								<td>
 								<a id = "${solicitud.id} "  th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
