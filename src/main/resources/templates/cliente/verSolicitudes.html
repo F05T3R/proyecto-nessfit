@@ -52,7 +52,7 @@
 				<h1 th:if="!${lista.isEmpty()}">Lista de Solicitudes</h1>
 				<hr>
 				
-				<a class="nav-link" th:href="@{/cliente/verSolicitudes/(format=pdf)}"
+				<a th:if="!${lista.isEmpty()}" class="nav-link" th:href="@{/cliente/verSolicitudes/(format=pdf)}"
 					title="Exportar a PDF" target="_blank"> Exportar a PDF
 				</a>
 				
