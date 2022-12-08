@@ -15,4 +15,8 @@ public interface InstalacionDeportivaRepository extends JpaRepository<Instalacio
 	public List<InstalacionDeportiva> findAll();
 	//@Query (value="SELECT * FROM instalacionesdeportivas n where n.estado = 1", nativeQuery=true)
 	public List<InstalacionDeportiva> findByEstadoIs(int num);
+	@Query(value="select * from instalacionesdeportivas i where i.estado=1", nativeQuery=true)
+	public List<InstalacionDeportiva> findOperatives();
+	@Query(value="select * from instalacionesdeportivas i where i.estado=1 and i.tipo=:tipo", nativeQuery=true)
+	public List<InstalacionDeportiva> findByTipo(int tipo);
 }

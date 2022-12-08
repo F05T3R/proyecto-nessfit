@@ -11,7 +11,7 @@
 </head>
 
 <body>
-         
+        
          <div class="barraLateral">
          	<img src="/images/NESSFIT_LOGO.png">
          	<hr>
@@ -27,9 +27,10 @@
     		<a th:if="${rolUser == 'CLIENTE'}" href="/cliente/verSolicitudes" class="boton">
       			<span class="fs-4">Visualizar Solicitudes</span>
     		</a>
-    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
-      			<span class="fs-4">Registrar cliente</span>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/estadisticas" class="boton">
+      			<span class="fs-4">Ver estadisticas</span>
     		</a>
+    		
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
     		</a>
@@ -59,6 +60,7 @@
          		<div>
          			<p th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" th:text="${rutUser}" class="botonSuperior"></p>
          		</div>
+         		
          	</div>
          	<div>
          	<p class=" copyright">Nessfit© 2022.</p>

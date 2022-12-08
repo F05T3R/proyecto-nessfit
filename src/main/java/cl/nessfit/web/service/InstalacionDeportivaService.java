@@ -12,8 +12,9 @@ public interface InstalacionDeportivaService {
 	public void guardar(InstalacionDeportiva Instalacion);
 	public InstalacionDeportiva buscarPorNombre(String nombre);
 	public Page<InstalacionDeportiva> listar(Pageable pageable);
-	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable);
+	public List<InstalacionDeportiva> listarOperativas();
 	public List<InstalacionDeportiva> crearLista();
+	public List<InstalacionDeportiva> listarTipo(int tipo);
 	//public Page<InstalacionDeportiva> listarOperativas(Pageable pageable);
 	//public List<InstalacionDeportiva> crearLista();
 	public void eliminar(String nombre);

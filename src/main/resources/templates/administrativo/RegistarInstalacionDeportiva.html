@@ -56,7 +56,7 @@
 
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="rut">Nombre: <input th:field="*{nombre}"
+								for="rut">Nombre: <input th:field="*{nombre}" 
 								name="nombre" type="text" 
 								class="casillaNombre">
 							</label>
@@ -95,12 +95,12 @@
 									th:errorclass="text-danger" th:errors="*{tipo}"></div>
 							</div>
 						</div>
-						<div>
+						<div >
 
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="costoArriendo">Costo: <input
-								th:field="*{costoArriendo}" name="costoArriendo" type="text"
-								required="required" class="casillaCostoArriendo">
+								th:field="*{costoArriendo}"  name="costoArriendo" type="number" value="0"
+								required="required" class="casillaCostoArriendo" placeHolder="Costo por dia de arriendo"> 
 							</label>
 							<div class="cajaError">
 								<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"

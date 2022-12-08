@@ -48,9 +48,13 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 	}
 
 	@Override
-	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InstalacionDeportiva> listarOperativas() {
+		return InstalacionDeportivaRepository.findOperatives();
+	}
+
+	@Override
+	public List<InstalacionDeportiva> listarTipo(int tipo) {
+		return InstalacionDeportivaRepository.findByTipo(tipo);
 	}
 
 	/*@SuppressWarnings("unchecked")

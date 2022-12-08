@@ -2,6 +2,7 @@ package cl.nessfit.web.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -37,24 +38,29 @@ public class CambiarEstadoUsuario {
 		return "listarUsuarios";
 	}
 	
+	
+	
 	@RequestMapping("/buscarUsuario")
-	public String busquedaRut(@RequestParam(name="rutBuscar") String rutBuscar, Model model) {
+	public String busquedaRut(@RequestParam() String rutBuscar, Model model) {
 		if(rutBuscar.isBlank() || rutBuscar.isEmpty()) {
 			return "redirect:/listarUsuarios";
 		}
-		List<Usuario> lista = usuarioService.listarParecidos(rutBuscar);
+		List<Usuario> lista;
+		Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		if(usuario.getRol().getId() == 2) {
+			lista = usuarioService.listarAdministrativo(rutBuscar);
+		}
+		else if(usuario.getRol().getId() == 1) {
+			lista = usuarioService.listarAdministrador(rutBuscar);;
+		}
+		else {
+			return "MenuPrincipal";
+		}
+		 
 		model.addAttribute("listaUsuarios", lista);
-		return "redirect:/listarUsuarios";
+		return "/listarUsuarios";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@RequestMapping(value="/cambioEstado/{rut}")

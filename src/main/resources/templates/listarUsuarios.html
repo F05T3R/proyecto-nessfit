@@ -50,8 +50,18 @@
 			<div class="contenedor2">
 				<h1 th:if="${rolUser == 'ADMINISTRADOR'}">Lista de Usuarios</h1>
 				<h1 th:if="${rolUser == 'ADMINISTRATIVO'}" >Lista de Clientes</h1>
+				<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton" style="position: absolute; right: 0;">
+      			<span class="fs-4" >Registrar cliente 
+
+				</span>
+    			</a>
+				
+				<form th:action="@{/buscarUsuario}">
 				<input placeHolder="Busqueda por Rut" name="rutBuscar" ></input>
-				<a th:href="@{/buscarUsuario}">Buscar</a>
+				<button  type="submit">Buscar</button>
+				
+				</form>
+				
 				<hr>
 				<div class="casilla">
 					<table class="table">
@@ -65,7 +75,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each=" usuario : ${listaUsuarios}">
+							<tr th:if="${#lists.size(listaUsuarios) == 0}">
+											<th colspan="50" class="text-center">Sin registro</th>
+										</tr>
+							<tr th:unless="${#lists.size(listaUsuarios) == 0}"
+								th:each=" usuario : ${listaUsuarios}">
+								
 								<td th:text="${usuario.rut}"></td>
 								<td th:text="${usuario.nombre} + ' ' +  ${usuario.apellido}"></td>
 								<td th:text="${usuario.telefono}"></td>
@@ -74,7 +89,7 @@
 									th:text="${usuario.estado} == 1? 'Habilitado' : 'Deshabilitado'"></td>
 								<td>
 								<a  
-								    id = "${usuario.nombre} + ' ' +  ${usuario.apellido}"  th:href="@{/cambioEstado/{rut} (rut = ${usuario.rut})}"
+									id = "${usuario.nombre} + ' ' +  ${usuario.apellido}"  th:href="@{/cambioEstado/{rut} (rut = ${usuario.rut})}"
 									class="botonEditar"> Editar </a></td>
 									
 							</tr>

@@ -44,6 +44,9 @@ public class RegistrarInstalacionDeportivaController {
 	@RequestMapping(value="/RegistarInstalacionDeportiva", method=RequestMethod.POST)
 	public String formCrearInstalacion(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
+		
+		
+		
 		if (result.hasErrors()) {
 			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/RegistarInstalacionDeportiva";

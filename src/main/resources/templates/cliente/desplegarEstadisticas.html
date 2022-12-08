@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/ListaInstalaciones.css}">
+<meta charset="UTF-8" />
+<title>Despliegue estadisticas</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
-	rel="stylesheet">
-<title>Inicio sesión - Nessfit</title>
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
 </head>
-
 <body>
-
-	<div class="barraLateral">
+<div class="barraLateral">
 		<img src="/images/NESSFIT_LOGO.png">
 		<hr>
 		<a href="/MenuPrincipal" class="boton"> <span class="fs-4">Inicio</span>
@@ -39,7 +38,51 @@
 				Sesión</span>
 		</a>
 	</div>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+	<div id="container" style="height: 400px"></div>
+	<script th:inline="javascript">
+		Highcharts.chart('container', {
+			chart : {
+				type : 'pie',
+				options3d : {
+					enabled : true,
+					alpha : 50,
+					beta : 0
+				}
+			},
+			title : {
+				text : 'Solicitudes'
+			},
+			tooltip : {
+				pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions : {
+				pie : {
+					allowPointSelect : true,
+					cursor : 'pointer',
+					depth : 35,
+					dataLabels : {
+						enabled : true,
+						format : '{point.name}'
+					}
+				}
+			},
+			series : [ {
+				type : 'pie',
+				name : 'Ratio',
+				data : [ [ 'Cancha', [[${Cancha}]] ], [ 'Gimnasio', [[${Gimnasio}]] ], [ 'Piscina', [[${Piscina}]] ], [ 'Quincho', [[${Quincho}]] ], [ 'Estadio', [[${Estadio}]] ]  ]
+			} ]
+		});
+	</script>
+	
+	
+	
+	
+	
+	
 	<div class="menuContenido">
 		<div class="barraSuperior">
 			<div>
@@ -50,13 +93,10 @@
 			<div class="contenedor2">
 				<h1 th:if="${lista.isEmpty()}">No hay solicitudes por mostrar</h1>
 				<h1 th:if="!${lista.isEmpty()}">Lista de Solicitudes</h1>
+				
 				<hr>
-				
-				<a th:if="!${lista.isEmpty()}" class="nav-link" th:href="@{/cliente/verSolicitudes/(format=pdf)}"
-					title="Exportar a PDF" target="_blank"> Exportar a PDF
-				</a>
-				
 				<div class="casilla">
+					
 					<table th:if="!${lista.isEmpty()}" class="table">
 						<thead>
 							<tr>
@@ -77,7 +117,7 @@
 								<td th:text="${solicitud.instalacion.nombre}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
 								<td th:text="${solicitud.usuario.rut}"></td>
-								<td th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}" ></td>
+								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
 								<td th:if="${solicitud.estado == 0}"    th:text="PENDIENTE"></td>
 								<td th:if="${solicitud.estado == 1}"    th:text="APROBADA"></td>
 								<td th:if="${solicitud.estado == -1}"    th:text="CANCELADA"></td>
@@ -97,5 +137,6 @@
 		</div>
 		<p class=" copyright">Nessfit© 2022.</p>
 	</div>
+	
 </body>
 </html>

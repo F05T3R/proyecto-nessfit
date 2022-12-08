@@ -1,5 +1,6 @@
 package cl.nessfit.web.controller;
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
@@ -34,11 +35,12 @@ import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CSolicitudService;
 import cl.nessfit.web.service.CUsuarioService;
 
+
 @Controller
 
 public class ArrendarCentrosController {
 
-	private int num_id;
+	
 
 	@Autowired
     CUsuarioService usuarioService;
@@ -54,19 +56,17 @@ public class ArrendarCentrosController {
 	
 	@RequestMapping(value="cliente/EscogerCentro", method=RequestMethod.GET)
 	public String EscogerCentro( Model model, Pageable pageable) {
-		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
-		List<InstalacionDeportiva> lis = lista.toList();
-		int contador = 0;
+		List<InstalacionDeportiva> lista = InstalacionDeportivaService.listarOperativas();
+		
+		
 		model.addAttribute("AllInstalaciones", lista);
-		for(int i = 0; i < lis.size(); i++) {
-			if(lis.get(i).getEstado() == 0) {
-				contador++;
-			}
-		}
-	
-		model.addAttribute("cont", contador);
-		model.addAttribute("total", (int)lis.size());
-		System.out.println(contador);
+		model.addAttribute("canchas", InstalacionDeportivaService.listarTipo(0));
+	    model.addAttribute("gimnasios", InstalacionDeportivaService.listarTipo(1));
+	    model.addAttribute("piscinas", InstalacionDeportivaService.listarTipo(2));
+	    model.addAttribute("quinchos", InstalacionDeportivaService.listarTipo(3));
+	    model.addAttribute("estadios", InstalacionDeportivaService.listarTipo(4));
+		
+		
 		
 		return "/cliente/EscogerCentro";
 	}
@@ -126,14 +126,21 @@ public class ArrendarCentrosController {
 		
 		System.out.println("6");
 		Calendar fechaHoy = Calendar.getInstance();
+		Date fechaSolicitud = new Date();
 		int añoHoy = fechaHoy.get(Calendar.YEAR);
         int mesHoy = fechaHoy.get(Calendar.MONTH);
         int diaHoy = fechaHoy.get(Calendar.DAY_OF_MONTH);
-        String fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
+        String fechaCompra;
+        if(diaHoy<10) {
+        	fechaCompra = añoHoy + "-" + (mesHoy+1) + "-0" + diaHoy;
+        }
+        else {
+        	fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
+        }
         //System.out.println(fechaHoy);
 		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
 		//System.out.println(fechaCompra);
-		solicitud.setNombreCentro(ins.getNombre());
+		solicitud.setInstalacion(ins);
 		solicitud.setEstado(0);
 		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
 		solicitud.setUsuario(usuario);

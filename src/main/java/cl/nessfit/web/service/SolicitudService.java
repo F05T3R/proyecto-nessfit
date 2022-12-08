@@ -15,7 +15,7 @@ public interface SolicitudService {
 	public void eliminar(int id);
 	public List<Solicitud> buscarRut(String rutCompra);
 	public List<Solicitud> listarPendientes();
-	
+	public List<Solicitud> listarPorFechas(String fecha1, String fecha2);
 }
 
 
