@@ -1,6 +1,7 @@
 package cl.nessfit.web.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,10 @@ public class Solicitud implements Serializable {
 	@JoinColumn(name = "rutUsuario", referencedColumnName = "rut")
 	private Usuario usuario;
 	
-	private String nombreCentro;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "nombreCentro", referencedColumnName = "nombre")
+	private InstalacionDeportiva instalacion;
+	
 	
 	private int totalPagar;
 	
@@ -54,8 +58,8 @@ public class Solicitud implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public String getNombreCentro() {
-		return nombreCentro;
+	public InstalacionDeportiva getInstalacion() {
+		return instalacion;
 	}
 	
 	public int getTotalPagar() {
@@ -70,8 +74,8 @@ public class Solicitud implements Serializable {
 		this.id=id;
 	}
 	
-	public void setNombreCentro(String nombreCentro) {
-		this.nombreCentro=nombreCentro;
+	public void setInstalacion(InstalacionDeportiva instalacion) {
+		this.instalacion=instalacion;
 	}
 	public void setTotalPagar(int totalPagar) {
 		this.totalPagar=totalPagar;

@@ -22,5 +22,7 @@ public interface UsuarioService {
 	public Usuario buscarPorEmail(String email);
 	
 	public List<Usuario> mostrarTodos();
-	public List<Usuario> listarParecidos(String rut);
+	public List<Usuario> listarAdministrativo(String rut);
+	public List<Usuario> listarAdministrador(String rut);
+	
 }

@@ -42,5 +42,10 @@ public class CSolicitudService implements SolicitudService {
 		return solicitudRepository.listarPendientes();
 	}
 
+	@Override
+	public List<Solicitud> listarPorFechas(String fecha1, String fecha2) {
+		return solicitudRepository.listarDespliegue(fecha1, fecha2);
+	}
+
 	
 }

@@ -39,44 +39,34 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2 ">
-				<h1>Arrendar centro</h1>
+				<h1>Escoger Periodo</h1>
 				<hr>
-			<form th:action="@{ArrendarCentrosPrueba}" id="demo-form2" data-parsley-validate
+			<form th:action="@{/despliegueEstadisticas}"  id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left">
 				<div class="casilla">
-					<h2>Seleccione un centro deportivo.</h2>
 					
-					<select class="form-control" name="nombre">
-						<option th:if="${AllInstalaciones.isEmpty()}">No hay centros deportivos que mostrar</option>
-							<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Piscinas">
-								<option th:each="piscina : ${piscinas}"
-										th:value="${piscina.nombre}" th:text="${piscina.nombre}">
-								</optgroup>
-								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Canchas">
-									<option th:each="cancha : ${canchas}"
-										th:value="${cancha.nombre}" th:text="${cancha.nombre}">
-								</optgroup>
-								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Gimnasios">
-									<option th:each="gimnasio : ${gimnasios}"
-										th:value="${gimnasio.nombre}" th:text="${gimnasio.nombre}">
-								</optgroup>
-								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Quinchos">
-									<option th:each="quincho : ${quinchos}"
-										th:value="${quincho.nombre}" th:text="${quincho.nombre}">
-								</optgroup>
-								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Estadio">
-									<option th:each="estadio : ${estadios}"
-										th:value="${estadio.nombre}" th:text="${estadio.nombre}">
-								</optgroup>
-						</select>
-
-					</div>
-				<div class="botonSolicitud">
-					<div>
-						<button class="aceptar" type="submit" th:if="${AllInstalaciones.isEmpty()==False }">Solicitar</button>
-					</div>
+					
+					<label>
+						Ingresa el Inicio
+						<input required type="date" name="fechaInicio"/>
+					
+					</label>
+					<span class="validity"></span>
+					
+					
+					
+					<label>
+						Ingresa el Final
+						<input required type="date" name="fechaTermino"/>
+						
+					
+					</label>
+					<span class="validity"></span>
+					
+					<p><button>Escoger</button></p>
 				</div>
-				</form>
+				
+			</form>
 			</div>
 		</div>
 		<p class=" copyright">Nessfit© 2022.</p>

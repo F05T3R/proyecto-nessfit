@@ -71,7 +71,7 @@
 							<tr th:if="!${lista.isEmpty()}" th:each=" solicitud : ${lista}" >
 								<td th:text="${solicitud.id}"></td>
 								<td th:text="${solicitud.fechaCompra}"></td>
-								<td th:text="${solicitud.nombreCentro}"></td>
+								<td th:text="${solicitud.instalacion.nombre}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
 								<td th:text="${solicitud.usuario.rut}"></td>
 								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>

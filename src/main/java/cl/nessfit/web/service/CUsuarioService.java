@@ -56,8 +56,13 @@ public class CUsuarioService implements UsuarioService{
 		return usuarioRepository.findList();
 	}
 	@Override
-	public List<Usuario> listarParecidos(String rut) {
-		return usuarioRepository.findListByRut(rut);
+	public List<Usuario> listarAdministrativo(String rut) {
+		return usuarioRepository.findForAdministrativo(rut);
 	}
+	@Override
+	public List<Usuario> listarAdministrador(String rut) {
+		return usuarioRepository.findForAdministrador(rut);
+	}
+	
 	
 }

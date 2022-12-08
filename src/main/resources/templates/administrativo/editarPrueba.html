@@ -9,6 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
 	rel="stylesheet">
+
 <title>Inicio sesión - Nessfit</title>
 </head>
 
@@ -48,10 +49,11 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
-				<h1>Lista de instalaciones deportivas</h1>
+				<h1 th:if="${AllInstalaciones.isEmpty()}">No hay instalaciones deportivas por mostrar</h1>
+				<h1 th:if="!${AllInstalaciones.isEmpty()}">Lista de instalaciones deportivas</h1>
 				<hr>
 				<div class="casilla">
-					<table class="table">
+					<table th:if="!${AllInstalaciones.isEmpty()}" class="table" id="ins">
 						<thead>
 							<tr>
 								<th>NOMBRE</th>
@@ -107,6 +109,8 @@
 			</div>
 		</div>
 		<p class=" copyright">Nessfit© 2022.</p>
+		
+		
 	</div>
 </body>
 </html>

@@ -52,6 +52,7 @@
 				<hr>
 				<div class="casilla">
 				<input type="hidden" name="id" th:value = "${solicitud.id}" ></input>
+				<input type="hidden" name="estado" th:value="${solicitud.estado}"></input>
 					<table class="table">
 						<thead>
 							<tr>
@@ -72,8 +73,10 @@
 					</table>
 					
 					<div class="casillaBotones">
+							<form th:if="${solicitud.estado==0}" th:action="@{/administrativo/confirmar/{id} (id = ${solicitud.id})}">
 								<div class="botonActualizar">
-									<a type="submit" id="openModal" class="actualizar" th:href="@{/administrativo/confirmar/{id} (id = ${solicitud.id})}">CONFIRMAR SOLICITUD</a>
+									<a type="submit" id="openModal" class="aceptar" >CONFIRMAR SOLICITUD</a>
+									
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
@@ -85,8 +88,12 @@
         								</div>	
       								</div>	
     							</div>
-    							<div class="botonActualizar">
-									<a type="submit" id="openModal" class="actualizar" th:href="@{/administrativo/cancelar/{id} (id = ${solicitud.id})}">RECHAZAR SOLICITUD</a>
+    							<script th:src="@{/js/Consulta.js}"></script>
+    						</form>
+    						
+    						<form th:if="${solicitud.estado==0}" th:action="@{/administrativo/cancelar/{id} (id = ${solicitud.id})}">
+								<div class="botonActualizar">
+									<a type="submit" id="openModal" class="cancelar" >RECHAZAR SOLICITUD</a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
@@ -98,6 +105,10 @@
         								</div>	
       								</div>	
     							</div>
+    							<script th:src="@{/js/Consulta.js}"></script>
+    						</form>
+    							
+    						
 					
 					
 					

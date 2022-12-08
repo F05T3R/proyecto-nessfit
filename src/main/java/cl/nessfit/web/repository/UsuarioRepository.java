@@ -20,6 +20,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String>{
     @Query(value = "Select * from usuarios u where u.id_rol != 1", nativeQuery = true)
     public List<Usuario> findList();
     
-    @Query(value="Select * from usuarios u where s.rut like =:rutBuscar%", nativeQuery=true)
-    public List<Usuario> findListByRut(String rutBuscar);
+    @Query(value="Select * from usuarios u where u.rut LIKE :rutBuscar% and (u.id_rol=3 or u.id_rol=2)", nativeQuery=true)
+    public List<Usuario> findForAdministrador(String rutBuscar);
+    @Query(value="Select * from usuarios u where u.rut LIKE :rutBuscar% and u.id_rol=3", nativeQuery=true)
+    public List<Usuario> findForAdministrativo(String rutBuscar);
 }
