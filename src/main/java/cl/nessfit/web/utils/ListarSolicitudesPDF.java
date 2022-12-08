@@ -129,9 +129,24 @@ public class ListarSolicitudesPDF extends AbstractPdfView{
 			celda.setPadding(5);
 			tablaSolicitud.addCell(celda);
 			
-			celda = new PdfPCell (new Phrase (String.valueOf(solicitud.getEstado()), fuenteDataCeldas));
-			celda.setPadding(5);
-			tablaSolicitud.addCell(celda);
+			if (solicitud.getEstado() == 0) {
+				celda = new PdfPCell (new Phrase ("PENDIENTE", fuenteDataCeldas));
+				celda.setPadding(5);
+				tablaSolicitud.addCell(celda);
+			}
+			
+			if (solicitud.getEstado() == 1) {
+				celda = new PdfPCell (new Phrase ("APROBADA", fuenteDataCeldas));
+				celda.setPadding(5);
+				tablaSolicitud.addCell(celda);
+			}
+			
+			if (solicitud.getEstado() == -1) {
+				celda = new PdfPCell (new Phrase ("CANCELADA", fuenteDataCeldas));
+				celda.setPadding(5);
+				tablaSolicitud.addCell(celda);
+			}
+			
 		}
 		document.add(tablaTitulo);
 		document.add(tablaSolicitud);
