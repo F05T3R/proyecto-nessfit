@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Styles -->
+
+</head>
+<style>
+#chartdiv {
+	width: 100%;
+	height: 500px;
+}
+</style>
+<body class="nav-md">
+
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col menu_fixed">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title" style="border: 0;">
+						<a th:href="@{/}" class="site_title"><i class="fa fa-futbol-o"></i>
+							<span>Nessfit</span></a>
+					</div>
+
+
+					<div class="clearfix"></div>
+
+					<!-- menu profile quick info -->
+					
+					<!-- /menu profile quick info -->
+
+					<br />
+
+					<!-- sidebar menu -->
+					
+					<!-- /sidebar menu -->
+
+
+				</div>
+			</div>
+
+			<!-- top navigation -->
+			
+			<!-- /top navigation -->
+
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Estadisticas del sistema</h3>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Filtrar por fecha</h2>
+
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+
+									<section class="content invoice">
+										<!-- title row -->
+
+										<!-- info row -->
+										<form method="get" th:action="@{/administrativo/estadisticas}">
+											<div class="row invoice-info">
+												<div class="col-sm-5 invoice-col">
+													<label class="form-label">Fecha Inicio:</label> <input
+														class="form-control" type="date" name="inicio">
+												</div>
+												<!-- /.col -->
+												<div class="col-sm-5 invoice-col">
+													<label class="form-label">Fecha Término:</label> <input
+														class="form-control" type="date" name="fin"> 
+												</div>
+												<!-- /.col -->
+												<div class="col-sm-2 invoice-col">
+												<label class="form-label"></label>
+													<input type="submit" value="enviar" class="form-control btn btn-success">
+												</div>
+											</div>
+										</form>
+										<!-- /.row -->
+										<hr>
+										<div class="clearfix"></div>
+
+										<!-- info row -->
+										<div class="row invoice-info">
+											<div id="chartdiv"></div>
+
+										</div>
+										<!-- /.row -->
+										<hr>
+										<div class="clearfix"></div>
+
+										<!-- Table row -->
+										<h4>Días solicitados</h4>
+										<div class="row">
+											<div class="  table">
+												<table class="table">
+													<thead>
+														<tr>
+															
+															<th>Id</th>
+															<th>Fecha</th>
+															<th>Centro Deportivo</th>
+															<th>Costo total</th>
+															<th>Rut Cliente</th>
+															<th>Nombre Cliente</th>
+															<th>Estado</th>
+															<th>Acciones</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:if="${solicitudes.isEmpty()}">
+															<th colspan="5" class="text-center">Sin solicitudes
+																pendientes</th>
+														</tr>
+														<tr th:unless="${solicitudes.isEmpty()}"
+															th:each="solicitud : ${solicitudes}">
+															
+															<td th:text="${solicitud.id}"></td>
+															<td th:text="${solicitud.fechaCompra}"></td>
+															<td th:text="${solicitud.instalacion.nombre}"></td>
+															<td th:text="${solicitud.totalPagar}"></td>
+															<td th:text="${solicitud.usuario.rut}"></td>
+															<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+															<td th:if="${solicitud.estado == 0}"    th:text="PENDIENTE"></td>
+															<td th:if="${solicitud.estado == 1}"    th:text="APROBADA"></td>
+															<td th:if="${solicitud.estado == -1}"    th:text="CANCELADA"></td>
+									
+															<td>
+															<a id = "${solicitud.id} "  th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
+																class="botonEditar" 
+															    > Ver detalle </a></td>
+														</tr>
+													</tbody>
+												</table>
+
+											</div>
+											<!-- /.col -->
+										</div>
+										<!-- /.row -->
+
+
+
+										<!-- this row will not appear when printing -->
+										<div class="row no-print">
+											<div class=" ">
+												<button class="btn btn-default" onclick="window.print();">
+													<i class="fa fa-print"></i> Print
+												</button>
+												<button class="btn btn-primary pull-right"
+													style="margin-right: 5px;">
+													<i class="fa fa-download"></i> Generate PDF
+												</button>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+
+			<!-- footer content -->
+			<footer>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+	<!-- Bootstrap -->
+	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+	<!-- NProgress -->
+	<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+	<!-- jQuery custom content scroller -->
+	<script
+		th:src="@{/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js}"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script th:src="@{/build/js/custom.min.js}"></script>
+
+	<!-- Resources -->
+	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+
+	<script th:inline="javascript">
+	
+		/*<![CDATA[*/
+	
+		let cuentaCancha = [[${cuentaCancha}]]
+		let cuentaGimnasio = [[${cuentaGimnasio}]]
+		let cuentaPiscina = [[${cuentaPiscina}]]
+		let cuentaQuincho = [[${cuentaQuincho}]]
+		let cuentaEstadio = [[${cuentaEstadio}]]
+
+		/*]]>*/
+
+		am5.ready(function() {
+		
+		// Create root element
+		// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+		var root = am5.Root.new("chartdiv");
+		
+		// Set themes
+		// https://www.amcharts.com/docs/v5/concepts/themes/
+		root.setThemes([
+		  am5themes_Animated.new(root)
+		]);
+		
+		// Create chart
+		// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+		var chart = root.container.children.push(
+		  am5percent.PieChart.new(root, {
+		    endAngle: 270
+		  })
+		);
+		
+		// Create series
+		// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+		var series = chart.series.push(
+		  am5percent.PieSeries.new(root, {
+		    valueField: "value",
+		    categoryField: "category",
+		    endAngle: 270
+		  })
+		);
+		
+		series.states.create("hidden", {
+		  endAngle: -90
+		});
+		
+		
+		// Set data
+		// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+		series.data.setAll([{
+		  category: "Cancha",
+		  value: cuentaCancha
+		}, {
+		  category: "Gimnasio",
+		  value: cuentaGimnasio,
+
+		}, {
+		  category: "Piscina",
+		  value: cuentaPiscina,
+
+		}, {
+		  category: "Quincho",
+		  value: cuentaQuincho,
+
+		}, {
+		  category: "Estadio",
+		  value: cuentaEstadio,
+
+		}]);
+		
+		series.appear(10, 10);
+
+		}); // end am5.ready()
+	</script>
+</body>
+</html>

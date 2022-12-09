@@ -45,20 +45,35 @@
 							class="form-horizontal form-label-left">
 				<div class="casilla">
 					<h2>Seleccione un centro deportivo.</h2>
-					<select name="nombre" class="instalacion">
-					<option th:if="${AllInstalaciones.isEmpty() || cont==total }">No hay centros deportivos que mostrar</option>
-					<option 
-							th:unless="${AllInstalaciones.isEmpty()}"
-							th:each="ins : ${AllInstalaciones}" 
-							th:if="${ins.estado} == 1"
-								th:text="${ins.nombre}" th:value="${ins.nombre}"></option>
-								
 					
-					</select>
-				</div>
+					<select name="nombre" class="instalacion">
+						<option th:if="${AllInstalaciones.isEmpty()}">No hay centros deportivos que mostrar</option>
+							<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Piscinas">
+								<option th:each="piscina : ${piscinas}"
+										th:value="${piscina.nombre}" th:text="${piscina.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Canchas">
+									<option th:each="cancha : ${canchas}"
+										th:value="${cancha.nombre}" th:text="${cancha.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Gimnasios">
+									<option th:each="gimnasio : ${gimnasios}"
+										th:value="${gimnasio.nombre}" th:text="${gimnasio.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Quinchos">
+									<option th:each="quincho : ${quinchos}"
+										th:value="${quincho.nombre}" th:text="${quincho.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Estadio">
+									<option th:each="estadio : ${estadios}"
+										th:value="${estadio.nombre}" th:text="${estadio.nombre}">
+								</optgroup>
+						</select>
+
+					</div>
 				<div class="botonSolicitud">
 					<div>
-						<button class="aceptar" type="submit" th:if="${total>cont && AllInstalaciones.isEmpty()==False }">Solicitar</button>
+						<button class="aceptar" type="submit" th:if="${AllInstalaciones.isEmpty()==False }">Solicitar</button>
 					</div>
 				</div>
 				</form>

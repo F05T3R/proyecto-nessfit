@@ -8,4 +8,5 @@ public interface FechasSolicitudService {
 
 	public void guardar(FechasSolicitud fechasSolicitud);
 	public List<String> listarIns(String nombre);
+	public List<FechasSolicitud> listarFechas(Integer id);
 }

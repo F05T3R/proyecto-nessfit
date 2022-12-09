@@ -47,14 +47,24 @@ public class CInstalacionDeportivaService implements InstalacionDeportivaService
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Page<InstalacionDeportiva> listarOperativas() {
+	public List<InstalacionDeportiva> listarOperativas() {
+		return InstalacionDeportivaRepository.findOperatives();
+	}
+
+	@Override
+	public List<InstalacionDeportiva> listarTipo(int tipo) {
+		return InstalacionDeportivaRepository.findByTipo(tipo);
+	}
+
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
 		return (Page<InstalacionDeportiva>) InstalacionDeportivaRepository.findByEstadoIs(1);
 	}
 
 	
-	/*@Override
+	@Override
 	public Page<InstalacionDeportiva> listarOperativas(Pageable pageable) {
 		return InstalacionDeportivaRepository.findOperative(pageable);
 	}

@@ -47,5 +47,22 @@ public class CUsuarioService implements UsuarioService{
 	Usuario usuario = usuarioRepository.findByEmail(email);
 	return usuario;
     }
+	@Override
+	public List<Usuario> mostrarClientes() {
+		return usuarioRepository.findByRolId(3);
+	}
+	@Override
+	public List<Usuario> mostrarTodos() {
+		return usuarioRepository.findList();
+	}
+	@Override
+	public List<Usuario> listarAdministrativo(String rut) {
+		return usuarioRepository.findForAdministrativo(rut);
+	}
+	@Override
+	public List<Usuario> listarAdministrador(String rut) {
+		return usuarioRepository.findForAdministrador(rut);
+	}
+	
 	
 }

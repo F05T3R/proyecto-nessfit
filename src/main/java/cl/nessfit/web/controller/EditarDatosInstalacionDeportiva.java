@@ -1,4 +1,5 @@
 package cl.nessfit.web.controller;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -68,32 +69,18 @@ public class EditarDatosInstalacionDeportiva {
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
 	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
-		if(instalacion.getEstado() == null) {
-           
-            result.rejectValue("estado", null, "Estado no válido");
-        }
-        else {
-            if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
-                result.rejectValue("estado", null, "Estado no válido");
-            }
-        }
+		System.out.println("2");
 
 		
 		if(instalacion.getCostoArriendo() < 1000) {
-			System.out.println("2aaa");
+			
 			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");
 		}
 		
 		if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
 			result.rejectValue("estado", null, "Estado no válido");
 		}
-		if (instalacion.getNombre().isBlank()) {
-            result.rejectValue("nombre", null, "Complete este campo ");
-        }
-
-        if (instalacion.getDireccion().isBlank()) {
-            result.rejectValue("direccion", null, "Complete este campo ");
-        }
+		
 		if (result.hasErrors()) {
 			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/editar_Instalacion";
@@ -130,3 +117,4 @@ public class EditarDatosInstalacionDeportiva {
 	
 	
 }
+

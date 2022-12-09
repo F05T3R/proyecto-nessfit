@@ -1,5 +1,6 @@
 package cl.nessfit.web.controller;
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
@@ -34,11 +35,12 @@ import cl.nessfit.web.service.CInstalacionDeportivaService;
 import cl.nessfit.web.service.CSolicitudService;
 import cl.nessfit.web.service.CUsuarioService;
 
+
 @Controller
 
 public class ArrendarCentrosController {
 
-	private int num_id;
+	
 
 	@Autowired
     CUsuarioService usuarioService;
@@ -54,19 +56,17 @@ public class ArrendarCentrosController {
 	
 	@RequestMapping(value="cliente/EscogerCentro", method=RequestMethod.GET)
 	public String EscogerCentro( Model model, Pageable pageable) {
-		Page<InstalacionDeportiva> lista = InstalacionDeportivaService.listar(pageable);
-		List<InstalacionDeportiva> lis = lista.toList();
-		int contador = 0;
-		model.addAttribute("AllInstalaciones", lista);
-		for(int i = 0; i < lis.size(); i++) {
-			if(lis.get(i).getEstado() == 0) {
-				contador++;
-			}
-		}
+		List<InstalacionDeportiva> lista = InstalacionDeportivaService.listarOperativas();
 		
-		model.addAttribute("cont", contador);
-		model.addAttribute("total", (int)lis.size());
-		System.out.println(contador);
+		
+		model.addAttribute("AllInstalaciones", lista);
+		model.addAttribute("canchas", InstalacionDeportivaService.listarTipo(0));
+	    model.addAttribute("gimnasios", InstalacionDeportivaService.listarTipo(1));
+	    model.addAttribute("piscinas", InstalacionDeportivaService.listarTipo(2));
+	    model.addAttribute("quinchos", InstalacionDeportivaService.listarTipo(3));
+	    model.addAttribute("estadios", InstalacionDeportivaService.listarTipo(4));
+		
+		
 		
 		return "/cliente/EscogerCentro";
 	}
@@ -101,54 +101,55 @@ public class ArrendarCentrosController {
 	}
 	@RequestMapping(value="cliente/ArrendarCentros")
 	public String formArrendarCentro(@RequestParam String nombre, RedirectAttributes attr, Model model ,HttpServletRequest request) {
-		System.out.println("1");
+		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
-		System.out.println(ins.getNombre());
-		int contador = 0; 
-		System.out.println(contador);
 		//InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 
 		Solicitud solicitud = new Solicitud();
 		Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
-
-		if (request.getParameterValues("dia") != null) {
-			for (String dia : request.getParameterValues("dia")) {
-				System.out.println(dia);  
-				contador++;
+		
+		
+		String dia = null;
+		
+		
+		if (request.getParameterValues("fechasEscogidas") != null) {
+			for (String diaAux : request.getParameterValues("fechasEscogidas")) {
+				dia = diaAux;
+				System.out.println(dia);
 			}
 		}
-		
-		System.out.println(contador);
-		if(contador == 0) {
-			System.out.println("5");
+		if(dia.isBlank()) {
 			return "redirect:/cliente/EscogerCentro";
 		}
+		String[] listaFechas = dia.split(",");
 		
-		System.out.println("6");
 		Calendar fechaHoy = Calendar.getInstance();
 		int añoHoy = fechaHoy.get(Calendar.YEAR);
         int mesHoy = fechaHoy.get(Calendar.MONTH);
         int diaHoy = fechaHoy.get(Calendar.DAY_OF_MONTH);
-        String fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
-        //System.out.println(fechaHoy);
-		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
-		//System.out.println(fechaCompra);
-		solicitud.setNombreCentro(ins.getNombre());
+        String fechaCompra;
+        if(diaHoy<10) {
+        	fechaCompra = añoHoy + "-" + (mesHoy+1) + "-0" + diaHoy;
+        }
+        else {
+        	fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
+        }
+        
+        solicitud.setInstalacion(ins);
 		solicitud.setEstado(0);
-		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
-		solicitud.setRutUsuario(usuario.getRut());
+		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * listaFechas.length));
+		solicitud.setUsuario(usuario);
 		solicitud.setFechaCompra(fechaCompra);	  
 		
 		solicitudService.guardar(solicitud);
 		Solicitud solicitud2 = solicitud;
 		
-		if (request.getParameterValues("dia") != null) {
-			for (String dia : request.getParameterValues("dia")) {
-				FechasSolicitud fecha = new FechasSolicitud();
-				fecha.setIdSolicitud(solicitud2.getId());
-				fecha.setFecha(dia);
-				fechasSolicitudService.guardar(fecha);
-			}
+		
+		for(int i = 0; i<listaFechas.length;i++) {
+			FechasSolicitud fecha = new FechasSolicitud();
+			fecha.setIdSolicitud(solicitud2.getId());
+			fecha.setFecha(listaFechas[i]);
+			fechasSolicitudService.guardar(fecha);
 		}
 		return "redirect:/MenuPrincipal";
 	}

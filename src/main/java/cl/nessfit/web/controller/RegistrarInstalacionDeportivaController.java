@@ -44,13 +44,16 @@ public class RegistrarInstalacionDeportivaController {
 	@RequestMapping(value="/RegistarInstalacionDeportiva", method=RequestMethod.POST)
 	public String formCrearInstalacion(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
 		
+		
+		
+		
 		if (result.hasErrors()) {
 			model.addAttribute("tiposInstalaciones", TipoInstalacion.values());
 		    return "/administrativo/RegistarInstalacionDeportiva";
 		    
 		}
 		
-		System.out.println(instalacion.getTipo());
+		
 		
 		/*if(instalacion.getTipo() == TipoInstalacion.CANCHA.getTipo()) {
 			instalacion.setTipo(TipoInstalacion.CANCHA.getTipo());

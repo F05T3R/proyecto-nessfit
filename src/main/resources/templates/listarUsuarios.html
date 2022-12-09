@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/ListaInstalaciones.css}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
+	rel="stylesheet">
+<title>Inicio sesión - Nessfit</title>
+</head>
+
+<body>
+
+	<div class="barraLateral">
+		<img src="/images/NESSFIT_LOGO.png">
+		<hr>
+		<a href="/MenuPrincipal" class="boton"> <span class="fs-4">Inicio</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistrarCliente" class="boton"> <span
+			class="fs-4">Registrar cliente</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRADOR'}"
+			href="/administrador/RegistrarAdministrativo" class="boton"> <span
+			class="fs-4">Registrar administrativo</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+			<span class="fs-4">Registrar Instalacion</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/editarPrueba" class="boton"> <span
+			class="fs-4">Editar Datos de Instalaciones</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
+			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
+				datos</span>
+		</a> <a href="/CambiarContrase�a" class="boton"> <span class="fs-4">Cambiar
+				contraseña</span>
+		</a> <a href="/logout" class="boton"> <span class="fs-4">Cerrar
+				Sesión</span>
+		</a>
+	</div>
+
+	<div class="menuContenido">
+		<div class="barraSuperior">
+			<div>
+				
+			</div>
+		</div>
+		<div class="contenedor">
+			<div class="contenedor2">
+				<h1 th:if="${rolUser == 'ADMINISTRADOR'}">Lista de Usuarios</h1>
+				<h1 th:if="${rolUser == 'ADMINISTRATIVO'}" >Lista de Clientes</h1>
+				<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton" style="position: absolute; right: 0;">
+      			<span class="fs-4" >Registrar cliente 
+
+				</span>
+    			</a>
+				
+				<form th:action="@{/buscarUsuario}">
+				<input placeHolder="Busqueda por Rut" name="rutBuscar" ></input>
+				<button  type="submit">Buscar</button>
+				
+				</form>
+				
+				<hr>
+				<div class="casilla">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>RUT</th>
+								<th>NOMBRE</th>
+								<th>TELEFONO</th>
+								<th>USUARIO</th>
+								<th>ESTADO</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${#lists.size(listaUsuarios) == 0}">
+											<th colspan="50" class="text-center">Sin registro</th>
+										</tr>
+							<tr th:unless="${#lists.size(listaUsuarios) == 0}"
+								th:each=" usuario : ${listaUsuarios}">
+								
+								<td th:text="${usuario.rut}"></td>
+								<td th:text="${usuario.nombre} + ' ' +  ${usuario.apellido}"></td>
+								<td th:text="${usuario.telefono}"></td>
+								<td th:text="${usuario.rol.id} == 2?  'Administrador' : 'Cliente '"></td>
+								<td
+									th:text="${usuario.estado} == 1? 'Habilitado' : 'Deshabilitado'"></td>
+								<td>
+								<a  
+									id = "${usuario.nombre} + ' ' +  ${usuario.apellido}"  th:href="@{/cambioEstado/{rut} (rut = ${usuario.rut})}"
+									class="botonEditar"> Editar </a></td>
+									
+							</tr>
+						</tbody>
+
+					</table>
+					
+				</div>
+			</div>
+		</div>
+		<p class=" copyright">Nessfit© 2022.</p>
+	</div>
+</body>
+</html>
