@@ -113,7 +113,7 @@ public class ListarSolicitudesPDF extends AbstractPdfView{
 			celda.setPadding(5);
 			tablaSolicitud.addCell(celda);
 			
-			celda = new PdfPCell (new Phrase (solicitud.getNombreCentro(), fuenteDataCeldas));
+			celda = new PdfPCell (new Phrase (solicitud.getInstalacion().getNombre(), fuenteDataCeldas));
 			celda.setPadding(5);
 			tablaSolicitud.addCell(celda);
 			
