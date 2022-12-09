@@ -18,7 +18,7 @@ class SolicitudServiceTest {
 	
 	@BeforeEach
 	void setup() {
-		//prueba.setInstalacion("AguasMojadas");
+		//prueba.setNombreCentro("AguasMojadas");
 		//prueba.setRutUsuario("128016023");
 		prueba.setFechaCompra("2021/03/03");
 		prueba.setEstado(1);

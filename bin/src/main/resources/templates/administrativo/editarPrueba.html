@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/ListaInstalaciones.css}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
+	rel="stylesheet">
+
+<title>Inicio sesión - Nessfit</title>
+</head>
+
+<body>
+
+	<div class="barraLateral">
+		<img src="/images/NESSFIT_LOGO.png">
+		<hr>
+		<a href="/MenuPrincipal" class="boton"> <span class="fs-4">Inicio</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistrarCliente" class="boton"> <span
+			class="fs-4">Registrar cliente</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRADOR'}"
+			href="/administrador/RegistrarAdministrativo" class="boton"> <span
+			class="fs-4">Registrar administrativo</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+			<span class="fs-4">Registrar Instalacion</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/editarPrueba" class="boton"> <span
+			class="fs-4">Editar Datos de Instalaciones</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
+			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
+				datos</span>
+		</a> <a href="/CambiarContrase�a" class="boton"> <span class="fs-4">Cambiar
+				contraseña</span>
+		</a> <a href="/logout" class="boton"> <span class="fs-4">Cerrar
+				Sesión</span>
+		</a>
+	</div>
+
+	<div class="menuContenido">
+		<div class="barraSuperior">
+			<div>
+				
+			</div>
+		</div>
+		<div class="contenedor">
+			<div class="contenedor2">
+				<h1 th:if="${AllInstalaciones.isEmpty()}">No hay instalaciones deportivas por mostrar</h1>
+				<h1 th:if="!${AllInstalaciones.isEmpty()}">Lista de instalaciones deportivas</h1>
+				<hr>
+				<div class="casilla">
+					<table th:if="!${AllInstalaciones.isEmpty()}" class="table" id="ins">
+						<thead>
+							<tr>
+								<th>NOMBRE</th>
+								<th>DIRECCION</th>
+								<th>TIPO</th>
+								<th>ESTADO</th>
+								<th>COSTO ARRIENDO</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="instalacionDeportiva : ${AllInstalaciones}">
+								<td th:text="${instalacionDeportiva.nombre}"></td>
+								<td th:text="${instalacionDeportiva.direccion}"></td>
+								<td th:text="${instalacionDeportiva.tipo}"></td>
+								<td
+									th:text="${instalacionDeportiva.estado} == 1? 'OPERATIVA' : 'INOPERATIVA'"></td>
+								<td th:text="${instalacionDeportiva.costoArriendo}"></td>
+								<td><a
+									th:href="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})} "
+									class="botonEditar"> Editar </a></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="cajaPaginador">
+						<nav th:if="${AllInstalaciones.totalPages > 0}"
+							aria-label="Page navigation example">
+							<ul class="paginador">
+								<li class="anterior"
+									th:classappend="${AllInstalaciones.number == 0 ? 'disabled' : ''}"><a
+									th:href="@{/administrativo/editarPrueba(page=${AllInstalaciones.number - 1})}"
+									class="page-link">Anterior</a></li>
+
+								<li class="page-item"
+									th:classappend="${i eq AllInstalaciones.number + 1} ? 'active'"
+									th:each="i : ${#numbers.sequence( 1, AllInstalaciones.totalPages, 1)}">
+									<a class="page-link"
+									th:href="@{/administrativo/editarPrueba?page={tmpPag} (tmpPag=${i-1}) }"
+									th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+								</li>
+								<li class="siguiente"
+									th:classappend="${AllInstalaciones.number == (AllInstalaciones.totalPages - 1) ? 'disabled' : ''}">
+									<a
+									th:href="@{/administrativo/editarPrueba(page=${AllInstalaciones.number + 1})}"
+									class="page-link">Siguiente</a>
+								</li>
+							</ul>
+						</nav>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class=" copyright">Nessfit© 2022.</p>
+		
+		
+	</div>
+</body>
+</html>

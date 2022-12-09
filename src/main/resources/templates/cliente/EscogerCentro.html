@@ -46,7 +46,7 @@
 				<div class="casilla">
 					<h2>Seleccione un centro deportivo.</h2>
 					
-					<select class="form-control" name="nombre">
+					<select name="nombre" class="instalacion">
 						<option th:if="${AllInstalaciones.isEmpty()}">No hay centros deportivos que mostrar</option>
 							<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Piscinas">
 								<option th:each="piscina : ${piscinas}"
