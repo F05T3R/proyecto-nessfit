@@ -152,7 +152,6 @@ modal:active{
 	border-style: solid;
 	border-color: #3f8880;
 	background-color: #fff;
-	
 }
 hr{
 	margin: 1rem 0;
@@ -162,24 +161,52 @@ hr{
 .casilla{
 	margin:2rem;
 }
-.copyright{
-	text-align:center;
-	margin-top:2rem;
-	
-}
-.opciones{
-	width:50%;
-	margin:1em 0;
+label{
 	font-size:18px;
 }
-.botonSolicitud{
-	display:flex;
-	width:100%;
-	margin: 2em 0;
-	justify-content:center;
+.casillaDireccion{
+	margin:0 0 0 7rem;
 }
-.solicitud{
+.casillaNombre{
+	margin:0 0 0 7.6rem;
+}
+.casillaTipo{
+	margin:0 0 0 9.5rem;
+	padding: 4px 10px;
+	width:150px;
+	font-size:17px;
+}
+.casillaCostoArriendo{
+	margin:0 0 0 8.8rem;
+}
+.casillaEstado{
+	margin:0 0 0 8.3rem;
+	padding: 4px 10px;
+	width:150px;
+	font-size:17px;
+}
+input{
 	
+	width: 75%;
+	font-size:16px;
+  	padding: 7px 10px;
+  	margin: 8px 0;
+  	box-sizing: border-box;
+}
+.cajaError{
+	width:400px;
+	height:28px;
+	font-size:14px;
+	color:red;
+}
+.casillaBotones{
+	display: flex;
+  	justify-content: center;
+}
+.botonActualizar{
+	margin: 1rem 0;
+}
+.actualizar{
 	background-color: #20c67a;
 	border-radius:4px;
 	border: none;
@@ -187,95 +214,13 @@ hr{
 	padding: 6px 20px;
 	text-align: center;
 	text-decoration: bold;
-	font-size: 16px;
-	margin: 4px 5em;
-	cursor: pointer;
-}
-.instalacion{
-	margin:1.5em 0;
-	padding: 4px 10px;
-	width:250px;
-	font-size:17px;
-}
-.casillaBotones{
-	display: flex;
-  	justify-content: center;
-  	margin: 1.5em 0;
-}
-.volver{
-	background-color: #ff5232;
-	border-radius:4px;
-	border: none;
-	color: #000;
-	padding: 6px 20px;
-	text-align: center;
-	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 23px;
 	margin: 4px 10px;
 	cursor: pointer;
 }
-
-/*-----------Calendario-----------------*/
-
-.calendario{
-	border-style: solid;
-	background: white;
-	width:80%;
-	max-width:600px;
-	margin: 1em auto;
-	padding: 1em 1em;
+.copyright{
+	text-align:center;
+	margin-top:2rem;
 	
 }
-.informacion{
-	display:flex;
-	align-items:center;
-	padding:0 2em;
-	font-size:1.3em;
-	text-transform: capitalize;
-}
-.siguiente, .anterior {
-	color: black;
-	cursor:pointer;
-	font-size:1.3em;
-}
-.anterior{
-	margin-right:auto;
-}
-.siguiente{
-	margin-left:auto;
-}
-.semana, .dias{
-	display:grid;
-	grid-template-columns:repeat(7,1fr);
-	grid-gap:10px;
-	text-align:center;
-}
-.mes, .año{
-	padding: .5em 1em;
-}
-.dias{
-	text-align:center;
-	line-height:2;
-}
-.dia{
-	border-style: solid;
-	
-}
-.diaCheck{
-	opacity: 0;
-  	width: 0;
-  	height: 0;
-}
-.diaTexto{
-	cursor: pointer;
-}
-.diaCheck:checked +.diaTexto{
-	color: #2196F3;
-}
-.diaDeshabilitado{
-	border-style: solid;
-	border-color: #757575;
-	color: #424242;
-}
-
