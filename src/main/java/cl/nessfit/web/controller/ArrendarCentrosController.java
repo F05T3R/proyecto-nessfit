@@ -160,7 +160,7 @@ public class ArrendarCentrosController {
     	return usuario.getNombre();
     }
     
-    @ModelAttribute("rolUser")
+	@ModelAttribute("rolUser")
     public String rol() {
     return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
         .getAuthority();
