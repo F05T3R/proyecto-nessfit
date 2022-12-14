@@ -70,7 +70,6 @@ public class VerSolicitudes {
 	
 	@RequestMapping(value = {"cliente/verSolicitud/{id}"}, method = RequestMethod.GET)
 	public String mostrarFormularioVisualizarCliente(@PathVariable(value = "id") Integer id, Model model) {
-		System.out.println("1");
 		
 		List<FechasSolicitud> listaFechas = fechasService.listarFechas(id);
 		Solicitud soli = solicitudService.buscarPorId(id);
@@ -84,6 +83,8 @@ public class VerSolicitudes {
 	@RequestMapping(value = "administrativo/confirmar/{id}")
 	public String confirmarSolicitud(@PathVariable(value = "id") Integer id, Model model) {
 		
+		System.out.println("1");
+		
 		Solicitud solicitud = solicitudService.buscarPorId(id);
 		
 		solicitud.setEstado(1);
@@ -96,6 +97,7 @@ public class VerSolicitudes {
 	@RequestMapping(value = "administrativo/cancelar/{id}")
 	public String cancelarSolicitud(@PathVariable(value = "id") Integer id, Model model) {
 		
+		System.out.println("2");
 		Solicitud solicitud = solicitudService.buscarPorId(id);
 		
 		solicitud.setEstado(-1);

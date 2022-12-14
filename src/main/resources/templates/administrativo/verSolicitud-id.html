@@ -90,7 +90,7 @@
 						<form th:if="${solicitud.estado==0}"
 							th:action="@{/administrativo/confirmar/{id} (id = ${solicitud.id})}">
 							<div class="botonActualizar">
-								<a type="submit" id="openModal" class="aceptar">CONFIRMAR
+								<a type="submit" id="openModal" onclick="Confirmar();" class="aceptar">CONFIRMAR
 									SOLICITUD</a>
 
 							</div>
@@ -104,16 +104,15 @@
 									</div>
 								</div>
 							</div>
-							<script th:src="@{/js/Consulta.js}"></script>
 						</form>
 
 						<form th:if="${solicitud.estado==0}"
 							th:action="@{/administrativo/cancelar/{id} (id = ${solicitud.id})}">
 							<div class="botonActualizar">
-								<a type="submit" id="abrirModal" class="cancelar">RECHAZAR
+								<a type="submit" id="abrirModal" onclick="Cancelar();" class="cancelar">RECHAZAR
 									SOLICITUD</a>
 							</div>
-							<div id="Modal" class="modal">
+							<div id="Modal" class="modal2">
 								<div class="modal-content">
 									<span class="cerrar">&times;</span>
 									<p class="botonModal">¿Estás seguro?</p>
@@ -123,8 +122,6 @@
 									</div>
 								</div>
 							</div>
-							<script th:src="@{/js/Consulta.js}"></script>
-							<script th:src="@{/js/ActivarModal.js}"></script>
 						</form>
 					</div>
 				</div>
@@ -132,5 +129,6 @@
 		<p class=" copyright">Nessfit© 2022.</p>
 	</div>
 	</div>
+	<script th:src="@{/js/ActivarModal.js}"></script>
 </body>
 </html>
