@@ -3,7 +3,7 @@ package cl.nessfit.web.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,16 +15,11 @@ import org.springframework.data.domain.Pageable;
 import cl.nessfit.web.model.InstalacionDeportiva;
 import cl.nessfit.web.model.TipoInstalacion;
 
-
+@SpringBootTest
 class CInstalacionDeportivaServiceTest {
 	
 	@Autowired
 	CInstalacionDeportivaService data;
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	void agregar() {
@@ -43,25 +38,27 @@ class CInstalacionDeportivaServiceTest {
 		
 	}
 
-	
 	@Test
-	void listar(Pageable pageable) {
-		InstalacionDeportiva ins = new InstalacionDeportiva();
-		ins.setNombre("Test_2");
-		ins.setDireccion("Direccion2");
-		ins.setCostoArriendo(3400);
-		ins.setEstado(0);
-		ins.setTipo(TipoInstalacion.QUINCHO);
-		
-		data.guardar(ins);
-		
-		//data.save(insPrueba);
-		
-		Page<InstalacionDeportiva> lista = data.listar(pageable);
-		
-		assertThat(lista).isNotNull();
-		assertThat(lista.getSize()).isEqualTo(1);
+	void ListarOperativa() {
+		List<InstalacionDeportiva> lista = data.listarOperativas();
+		Assertions.assertEquals(5, lista.size());
 	}
-
+	@Test
+	void ListarTipo() {
+		List<InstalacionDeportiva> lista = data.listarTipo(0);
+		Assertions.assertEquals(2, lista.size());
+		
+		List<InstalacionDeportiva> lista2 = data.listarTipo(1);
+		Assertions.assertEquals(0, lista2.size());
+		
+		List<InstalacionDeportiva> lista3 = data.listarTipo(2);
+		Assertions.assertEquals(1, lista3.size());
+		
+		List<InstalacionDeportiva> lista4 = data.listarTipo(3);
+		Assertions.assertEquals(1, lista4.size());
+		
+		List<InstalacionDeportiva> lista5 = data.listarTipo(4);
+		Assertions.assertEquals(1, lista5.size());
+	}
 
 }

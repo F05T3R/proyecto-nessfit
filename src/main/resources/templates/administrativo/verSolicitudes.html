@@ -57,7 +57,7 @@
 	<div class="menuContenido">
 		<div class="barraSuperior">
 			<div>
-				
+				<p th:text="${rutUser}" class="botonSuperior"></p>
 			</div>
 		</div>
 		<div class="contenedor">
@@ -67,7 +67,7 @@
 				
 				<hr>
 				<div class="casilla">
-					
+					<div class=scroll>
 					<table th:if="!${lista.isEmpty()}" class="table">
 						<thead>
 							<tr>
@@ -87,7 +87,7 @@
 								<td th:text="${solicitud.instalacion.nombre}"></td>
 								<td th:text="${solicitud.totalPagar}"></td>
 								<td th:text="${solicitud.usuario.rut}"></td>
-								<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
+								<td th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}" ></td>
 								<td th:text="${solicitud.estado} == 0?  'Pendiente' : 'Error'"></td>
 								<td>
 								<a id = "${solicitud.id} "  th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
@@ -98,7 +98,7 @@
 						</tbody>
 
 					</table>
-					
+					</div>
 				</div>
 			</div>
 		</div>

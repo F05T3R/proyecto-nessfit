@@ -64,7 +64,7 @@
 	<div class="menuContenido">
 		<div class="barraSuperior">
 			<div>
-				
+				<p th:text="${rutUser}" class="botonSuperior"></p>
 			</div>
 		</div>
 		<div class="contenedor">
@@ -78,6 +78,7 @@
 				</a>
 				
 				<div class="casilla">
+				<div class=scroll>
 					<table th:if="!${lista.isEmpty()}" class="table">
 						<thead>
 							<tr>
@@ -112,7 +113,7 @@
 						</tbody>
 
 					</table>
-					
+					</div>
 				</div>
 			</div>
 		</div>

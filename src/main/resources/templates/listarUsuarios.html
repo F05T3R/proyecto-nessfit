@@ -56,7 +56,9 @@
 
 	<div class="menuContenido">
 		<div class="barraSuperior">
-			<div></div>
+			<div>
+				<p th:text="${rutUser}" class="botonSuperior"></p>
+			</div>
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2">
@@ -72,6 +74,7 @@
 
 				<hr>
 				<div class="casilla">
+					<div class="scroll">
 					<table class="table">
 						<thead>
 							<tr>
@@ -120,6 +123,7 @@
 						</tbody>
 
 					</table>
+					</div>
 					
 							<script th:src="@{/js/ConfirmacionListaUsuarios.js}"></script>
 				</div>
