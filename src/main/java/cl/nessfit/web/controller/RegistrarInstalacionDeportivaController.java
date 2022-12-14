@@ -28,6 +28,9 @@ import cl.nessfit.web.service.CUsuarioService;
 public class RegistrarInstalacionDeportivaController {
 	
 	@Autowired
+    CUsuarioService usuarioService;
+	
+	@Autowired
 	CInstalacionDeportivaService InstalacionDeportivaService;
 	
 	@Autowired
@@ -69,6 +72,12 @@ public class RegistrarInstalacionDeportivaController {
 		
 		return "redirect:RegistarInstalacionDeportiva";
 	}    
+	@ModelAttribute("rutUser")
+    public String auth() {
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
+    }
+    
     @ModelAttribute("rolUser")
     public String rol() {
     return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
