@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,9 @@ import cl.nessfit.web.service.CUsuarioService;
 @Controller
 @RequestMapping(value="/administrativo/estadisticas")
 public class DesplegarEstadisticas {
+	
+	@Autowired
+    CUsuarioService usuarioService;
 	
 	@Autowired
 	CUsuarioService data;
@@ -128,7 +132,16 @@ public class DesplegarEstadisticas {
 	
 	*/
 	
-	
+	@ModelAttribute("rolUser")
+    public String rol() {
+    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().get()
+        .getAuthority();
+    }
+	@ModelAttribute("rutUser")
+    public String auth() {
+    	Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
+    	return usuario.getNombre();
+    }
 	
 	
 	
