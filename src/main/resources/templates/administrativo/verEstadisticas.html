@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/VisualizarEstadistica-estilos.css">
 
-<!-- Styles -->
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
+	rel="stylesheet">
+<title>Inicio sesión - Nessfit</title>
 </head>
 <style>
 #chartdiv {
@@ -10,190 +17,145 @@
 	height: 500px;
 }
 </style>
-<body class="nav-md">
-
-	<div class="container body">
-		<div class="main_container">
-			<div class="col-md-3 left_col menu_fixed">
-				<div class="left_col scroll-view">
-					<div class="navbar nav_title" style="border: 0;">
-						<a th:href="@{/}" class="site_title"><i class="fa fa-futbol-o"></i>
-							<span>Nessfit</span></a>
-					</div>
-
-
-					<div class="clearfix"></div>
-
-					<!-- menu profile quick info -->
-					
-					<!-- /menu profile quick info -->
-
-					<br />
-
-					<!-- sidebar menu -->
-					
-					<!-- /sidebar menu -->
-
-
-				</div>
+<body>
+	<div class="barraLateral">
+		<img src="/images/NESSFIT_LOGO.png">
+		<hr>
+		<a href="/MenuPrincipal" class="boton"> <span class="fs-4">Inicio</span>
+		</a> <a
+			th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'ADMINISTRADOR'}"
+			href="/listarUsuarios" class="boton"> <span class="fs-4">Administrar
+				Usuarios</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistrarCliente" class="boton"> <span
+			class="fs-4">Registrar cliente</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/verSolicitudes" class="boton"> <span
+			class="fs-4">Administrar Solicitudes</span>
+		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/verSolicitudes"
+			class="boton"> <span class="fs-4">Visualizar Solicitudes</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/estadisticas" class="boton"> <span
+			class="fs-4">Ver estadisticas</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRADOR'}"
+			href="/administrador/RegistrarAdministrativo" class="boton"> <span
+			class="fs-4">Registrar administrativo</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+			<span class="fs-4">Registrar Instalacion</span>
+		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro"
+			class="boton"> <span class="fs-4">Arrendar Centro</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/editarPrueba" class="boton"> <span
+			class="fs-4">Editar Datos de Instalaciones</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
+			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
+				datos</span>
+		</a> <a href="/CambiarContraseña" class="boton"> <span class="fs-4">Cambiar
+				contraseña</span>
+		</a> <a href="/logout" class="boton"> <span class="fs-4">Cerrar
+				Sesión</span>
+		</a>
+	</div>
+	<div class="menuContenido">
+		<div class="barraSuperior">
+			<div>
+				<p th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
+					th:text="${rutUser}" class="botonSuperior"></p>
 			</div>
 
-			<!-- top navigation -->
-			
-			<!-- /top navigation -->
-
-			<!-- page content -->
-			<div class="right_col" role="main">
-				<div class="">
-					<div class="page-title">
-						<div class="title_left">
-							<h3>Estadisticas del sistema</h3>
-						</div>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>Filtrar por fecha</h2>
-
-									<div class="clearfix"></div>
+		</div>
+		<div class="contenedor">
+			<div class="contenedor2">
+				<h1>Estadisticas del sistema</h1>
+				<hr>
+				<div class="scroll">
+					<div class="casilla">
+						<form method="get" th:action="@{/administrativo/estadisticas}">
+							<div class="row invoice-info">
+								<div class="col-sm-5 invoice-col">
+									<label class="form-label">Fecha Inicio:</label> <input
+										class="form-control" type="date" name="inicio">
 								</div>
-								<div class="x_content">
-
-									<section class="content invoice">
-										<!-- title row -->
-
-										<!-- info row -->
-										<form method="get" th:action="@{/administrativo/estadisticas}">
-											<div class="row invoice-info">
-												<div class="col-sm-5 invoice-col">
-													<label class="form-label">Fecha Inicio:</label> <input
-														class="form-control" type="date" name="inicio">
-												</div>
-												<!-- /.col -->
-												<div class="col-sm-5 invoice-col">
-													<label class="form-label">Fecha Término:</label> <input
-														class="form-control" type="date" name="fin"> 
-												</div>
-												<!-- /.col -->
-												<div class="col-sm-2 invoice-col">
-												<label class="form-label"></label>
-													<input type="submit" value="enviar" class="form-control btn btn-success">
-												</div>
-											</div>
-										</form>
-										<!-- /.row -->
-										<hr>
-										<div class="clearfix"></div>
-
-										<!-- info row -->
-										<div class="row invoice-info">
-											<div id="chartdiv"></div>
-
-										</div>
-										<!-- /.row -->
-										<hr>
-										<div class="clearfix"></div>
-
-										<!-- Table row -->
-										<h4>Días solicitados</h4>
-										<div class="row">
-											<div class="  table">
-												<table class="table">
-													<thead>
-														<tr>
-															
-															<th>Id</th>
-															<th>Fecha</th>
-															<th>Centro Deportivo</th>
-															<th>Costo total</th>
-															<th>Rut Cliente</th>
-															<th>Nombre Cliente</th>
-															<th>Estado</th>
-															<th>Acciones</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr th:if="${solicitudes.isEmpty()}">
-															<th colspan="5" class="text-center">Sin solicitudes
-																pendientes</th>
-														</tr>
-														<tr th:unless="${solicitudes.isEmpty()}"
-															th:each="solicitud : ${solicitudes}">
-															
-															<td th:text="${solicitud.id}"></td>
-															<td th:text="${solicitud.fechaCompra}"></td>
-															<td th:text="${solicitud.instalacion.nombre}"></td>
-															<td th:text="${solicitud.totalPagar}"></td>
-															<td th:text="${solicitud.usuario.rut}"></td>
-															<td th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}" ></td>
-															<td th:if="${solicitud.estado == 0}"    th:text="PENDIENTE"></td>
-															<td th:if="${solicitud.estado == 1}"    th:text="APROBADA"></td>
-															<td th:if="${solicitud.estado == -1}"    th:text="CANCELADA"></td>
-									
-															<td>
-															<a id = "${solicitud.id} "  th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
-																class="botonEditar" 
-															    > Ver detalle </a></td>
-														</tr>
-													</tbody>
-												</table>
-
-											</div>
-											<!-- /.col -->
-										</div>
-										<!-- /.row -->
-
-
-
-										<!-- this row will not appear when printing -->
-										<div class="row no-print">
-											<div class=" ">
-												<button class="btn btn-default" onclick="window.print();">
-													<i class="fa fa-print"></i> Print
-												</button>
-												<button class="btn btn-primary pull-right"
-													style="margin-right: 5px;">
-													<i class="fa fa-download"></i> Generate PDF
-												</button>
-											</div>
-										</div>
-									</section>
+								<!-- /.col -->
+								<div class="col-sm-5 invoice-col">
+									<label class="form-label">Fecha Término:</label> <input
+										class="form-control" type="date" name="fin">
+								</div>
+								<!-- /.col -->
+								<div class="col-sm-2 invoice-col">
+									<label class="form-label"></label> <input type="submit"
+										value="enviar" class="form-control btn btn-success">
 								</div>
 							</div>
-						</div>
+						</form>
+						<hr>
+						<section class="content invoice">
+							<div class="clearfix"></div>
+
+							<!-- info row -->
+							<div class="row invoice-info">
+								<div id="chartdiv"></div>
+
+							</div>
+							<!-- /.row -->
+							<hr>
+							<div class="clearfix"></div>
+
+							<!-- Table row -->
+							<h4>Días solicitados</h4>
+							<div class="row">
+								<div class="  table">
+									<table class="table">
+										<thead>
+											<tr>
+
+												<th>Id</th>
+												<th>Fecha</th>
+												<th>Centro Deportivo</th>
+												<th>Costo total</th>
+												<th>Rut Cliente</th>
+												<th>Nombre Cliente</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:if="${solicitudes.isEmpty()}">
+												<th colspan="5" class="text-center">Sin solicitudes
+													pendientes</th>
+											</tr>
+											<tr th:unless="${solicitudes.isEmpty()}"
+												th:each="solicitud : ${solicitudes}">
+
+												<td th:text="${solicitud.id}"></td>
+												<td th:text="${solicitud.fechaCompra}"></td>
+												<td th:text="${solicitud.instalacion.nombre}"></td>
+												<td th:text="${solicitud.totalPagar}"></td>
+												<td th:text="${solicitud.usuario.rut}"></td>
+												<td
+													th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}"></td>
+												<td th:if="${solicitud.estado == 0}" th:text="PENDIENTE"></td>
+												<td th:if="${solicitud.estado == 1}" th:text="APROBADA"></td>
+												<td th:if="${solicitud.estado == -1}" th:text="CANCELADA"></td>
+
+												<td><a id="${solicitud.id} "
+													th:href="@{/administrativo/verSolicitud/{id} (id = ${solicitud.id})}"
+													class="botonEditar"> Ver detalle </a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</section>
+
 					</div>
 				</div>
 			</div>
-			<!-- /page content -->
-
-			<!-- footer content -->
-			<footer>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
 		</div>
+		<p class=" copyright">Nessfit© 2022.</p>
 	</div>
-
-	<!-- jQuery -->
-	<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
-	<!-- Bootstrap -->
-	<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-	<!-- FastClick -->
-	<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
-	<!-- NProgress -->
-	<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
-	<!-- jQuery custom content scroller -->
-	<script
-		th:src="@{/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js}"></script>
-
-	<!-- Custom Theme Scripts -->
-	<script th:src="@{/build/js/custom.min.js}"></script>
-
-	<!-- Resources -->
+	<!-- Grafico -->
 	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
