@@ -96,7 +96,7 @@
 								<td th:text="${usuario.nombre} + ' ' +  ${usuario.apellido}"></td>
 								<td th:text="${usuario.telefono}"></td>
 								<td
-									th:text="${usuario.rol.id} == 2?  'Administrador' : 'Cliente '"></td>
+									th:text="${usuario.rol.id} == 2?  'Administrativo' : 'Cliente '"></td>
 								<td
 									th:text="${usuario.estado} == 1? 'Habilitado' : 'Deshabilitado'"></td>
 								<td><a th:if="${usuario.estado == 1}"

@@ -134,7 +134,7 @@
 												<td th:text="${solicitud.totalPagar}"></td>
 												<td th:text="${solicitud.usuario.rut}"></td>
 												<td
-													th:text="${solicitud.usuario.nombre} + '' + ${solicitud.usuario.apellido}"></td>
+													th:text="${solicitud.usuario.nombre} + ' ' + ${solicitud.usuario.apellido}"></td>
 												<td th:if="${solicitud.estado == 0}" th:text="PENDIENTE"></td>
 												<td th:if="${solicitud.estado == 1}" th:text="APROBADA"></td>
 												<td th:if="${solicitud.estado == -1}" th:text="CANCELADA"></td>

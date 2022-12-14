@@ -40,6 +40,10 @@ public class validacionUsuario implements Validator {
 	    if(usuario.getApellido().length() < 3) {
 	    	errors.rejectValue("apellido", null, "Los nombres o apellidos deben tener más de 2 caracteres");
 	    }
+	    if(usuario.getRut().isBlank()) {
+	    	errors.rejectValue("rut", null, "RUT inválido");
+            return;
+	    }
 	    String rutAux = usuario.getRut();
 	    //rutAux = rutAux.replace(".", "").replace("-", "").replace(" ", "").replace(",", ""); 
 	    String rut = rutAux.substring(0,rutAux.length()-1);
