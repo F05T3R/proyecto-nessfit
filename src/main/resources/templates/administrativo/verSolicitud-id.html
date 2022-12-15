@@ -63,6 +63,8 @@
 		<div class="contenedor">
 			<div class="contenedor2">
 				<h1>Listado de Fechas</h1>
+				<p class="id">Has seleccionado la solicitud de id:</p>
+				<p class="id" th:text ="${solicitud.id}"></p>
 				<hr>
 				<div class="casilla">
 					<input type="hidden" name="id" th:value="${solicitud.id}"></input>

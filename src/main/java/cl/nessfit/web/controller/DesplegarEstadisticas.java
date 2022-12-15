@@ -1,7 +1,7 @@
 package cl.nessfit.web.controller;
 
 import java.text.ParseException;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,11 +42,48 @@ public class DesplegarEstadisticas {
 		    @RequestParam(name = "fin", required = false, defaultValue = "2999-01-01") String fin)
 		    throws ParseException {
 		
+		Date fechaInicial = new SimpleDateFormat("yyyy-MM-dd").parse(inicio);
+		Date fechaFinal = new SimpleDateFormat("yyyy-MM-dd").parse(fin);
+		
+	if(fechaInicial.compareTo(fechaFinal) >0) {
+		model.addAttribute("contador", 0);
+	}
 	int contadorCancha = 0;
 	int contadorGimnasio = 0;
 	int contadorPiscina = 0;
 	int contadorQuincho = 0;
 	int contadorEstadio = 0;
+	if(!inicio.equals("1000-01-01") && fin.equals("2999-01-01")){
+		model.addAttribute("validar", 0);
+		
+		List<Solicitud> solicitudes = solicitudService.listarPorFechas(fin, inicio);
+		model.addAttribute("solicitudes", solicitudes);
+		model.addAttribute("cuentaCancha", contadorCancha);
+		model.addAttribute("cuentaGimnasio", contadorGimnasio);
+		model.addAttribute("cuentaPiscina", contadorPiscina);
+		model.addAttribute("cuentaQuincho", contadorQuincho);
+		model.addAttribute("cuentaEstadio", contadorEstadio);
+
+		model.addAttribute("inicio", inicio);
+		model.addAttribute("fin", fin);
+		
+		return "administrativo/verEstadisticas";
+	}else if(inicio.equals("1000-01-01") && !fin.equals("2999-01-01")) {
+		model.addAttribute("validar", 0);
+		
+		List<Solicitud> solicitudes = solicitudService.listarPorFechas(fin, inicio);
+		model.addAttribute("solicitudes", solicitudes);
+		model.addAttribute("cuentaCancha", contadorCancha);
+		model.addAttribute("cuentaGimnasio", contadorGimnasio);
+		model.addAttribute("cuentaPiscina", contadorPiscina);
+		model.addAttribute("cuentaQuincho", contadorQuincho);
+		model.addAttribute("cuentaEstadio", contadorEstadio);
+
+		model.addAttribute("inicio", inicio);
+		model.addAttribute("fin", fin);
+		
+		return "administrativo/verEstadisticas";
+	}
 	List<Solicitud> solicitudes = solicitudService.listarPorFechas(inicio, fin);
 
 	for (Solicitud solicitud : solicitudes) {

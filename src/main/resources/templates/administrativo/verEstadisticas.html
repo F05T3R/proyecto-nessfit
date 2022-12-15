@@ -72,20 +72,16 @@
 				<div class="scroll">
 					<div class="casilla">
 						<form method="get" th:action="@{/administrativo/estadisticas}">
-							<div class="row invoice-info">
-								<div class="col-sm-5 invoice-col">
+							<div class="filtro">
+								<div class="filtro">
 									<label class="form-label">Fecha Inicio:</label> <input
-										class="form-control" type="date" name="inicio">
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-5 invoice-col">
-									<label class="form-label">Fecha Término:</label> <input
-										class="form-control" type="date" name="fin">
-								</div>
-								<!-- /.col -->
-								<div class="col-sm-2 invoice-col">
+										 type="date" name="inicio">
+									<label class="fecha">Fecha Término:</label> <input
+										 type="date" name="fin">
 									<label class="form-label"></label> <input type="submit"
-										value="enviar" class="form-control btn btn-success">
+										value="enviar" class="botonEnviar"><br>
+									<label class="error"th:if="${contador == 0}">La fecha final de consulta no puede ser menor a la fecha inicial de consulta.</label>
+									<label class="error"th:if="${validar == 0}">Escriba ambas fechas</label>
 								</div>
 							</div>
 						</form>
@@ -122,8 +118,7 @@
 										</thead>
 										<tbody>
 											<tr th:if="${solicitudes.isEmpty()}">
-												<th colspan="5" class="text-center">Sin solicitudes
-													pendientes</th>
+												<th colspan="5" class="text-center">Sin solicitudes en el rango de fechas.</th>
 											</tr>
 											<tr th:unless="${solicitudes.isEmpty()}"
 												th:each="solicitud : ${solicitudes}">

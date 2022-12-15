@@ -15,7 +15,7 @@ public interface SolicitudRepository extends JpaRepository<Solicitud,String> {
 	@Query(value = "select s.id, s.fechaCompra, s.estado, s.nombreCentro, s.rutUsuario, s.totalPagar, u.nombre from solicitudes s inner join usuarios u on s.rutUsuario=u.rut where s.estado = 0 order by s.fechaCompra asc", nativeQuery = true)
 	public List<Solicitud> listarPendientes();
 	public Solicitud findById(int id);
-	@Query(value="select * from solicitudes s where s.fechaCompra BETWEEN :fechaInicio and :fechaTermino ", nativeQuery = true)
+	@Query(value="select * from solicitudes s where (s.fechaCompra BETWEEN :fechaInicio and :fechaTermino) and s.estado != -1 ", nativeQuery = true)
 	public List<Solicitud> listarDespliegue(String fechaInicio, String fechaTermino);
 	
 }

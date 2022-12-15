@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -58,7 +59,6 @@ public class EditarDatosInstalacionDeportiva {
 	
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.GET)
 	public String mostrarFormularioEditar(@PathVariable(value = "nombre") String nombre, Model model) {
-		System.out.println("1");
 		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 		model.addAttribute("instalacionDeportiva", ins);
@@ -69,14 +69,17 @@ public class EditarDatosInstalacionDeportiva {
 	
 	
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
-	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
-		
-		System.out.println("2");
+	public String formEditar(@Valid InstalacionDeportiva instalacion,@RequestParam String aux, BindingResult result, RedirectAttributes attr, Model model) {
 
-		if (instalacion.getDireccion() == "") {
-			result.rejectValue("direccion", null, "Complete este campo ");
+		String[] lista=instalacion.getNombre().split(",");
+		aux = lista[0];
+		if(!aux.equals(instalacion.getNombre())) {
+			result.rejectValue("nombre", null, "No cambie el HTML.");
+			
 		}
-		
+		if(instalacion.getDireccion().isBlank()) {
+			result.rejectValue("direccion", null, "Complete este campo.");
+		}
 		if(instalacion.getCostoArriendo() < 1000) {
 			
 			result.rejectValue("costoArriendo", null, "El costo mínimo de arriendo debe ser $1.000 ");

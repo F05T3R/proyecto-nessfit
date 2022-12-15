@@ -50,7 +50,7 @@
 						<form th:action="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})}"
 							method="post" id="demo-form2" data-parsley-validate
 							class="form-horizontal form-label-left" th:object="${instalacionDeportiva}">
-							
+							<input type="hidden" name="aux" th:value="${instalacionDeportiva.nombre}">
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre:     
