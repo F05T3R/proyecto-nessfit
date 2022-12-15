@@ -178,6 +178,29 @@ modal2:active{
 	border-color: #3f8880;
 	background-color: #fff;
 }
+.filtro{
+	display:inline;
+}
+.error{
+	color:red;
+	font-size:14px;
+}
+.botonEnviar{
+	background-color: #20c67a;
+	border-radius:4px;
+	border: none;
+	color: #000;
+	padding: 4px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	margin: 4px 10px;
+	cursor: pointer;
+}
+.fecha{
+	margin: 0 0 0 10px;
+}
 .nav-link{
 	background-color: #20c67a;
 	border-radius:4px;

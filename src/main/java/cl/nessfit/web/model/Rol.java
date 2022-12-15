@@ -18,9 +18,6 @@ public class Rol implements Serializable{
 	@Id
 	private int id;
 	private String nombre;
-	
-	//@OneToOne(mappedBy = "rol")
-	private Usuario usuario;
 
 	public int getId() {
 		return id;
@@ -36,14 +33,6 @@ public class Rol implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public static long getSerialversionuid() {

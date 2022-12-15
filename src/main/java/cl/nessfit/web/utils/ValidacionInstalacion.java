@@ -25,18 +25,20 @@ public class ValidacionInstalacion implements Validator{
 		InstalacionDeportiva instalacion = (InstalacionDeportiva) target;
 		
 		if(instalacion.getEstado() == null) {
-			System.out.println("ENTRE AQUI");
-			errors.rejectValue("estado", null, "error");
+			errors.rejectValue("estado", null, "No cambie el HTML.");
 		}
+		
 		else {
 			if(instalacion.getEstado() != 1  && instalacion.getEstado() !=  0 ) {
 				errors.rejectValue("estado", null, "Estado no válido");
 			}
 		}
-		
+		if(instalacion.getTipo() == null) {
+			errors.rejectValue("tipo", null, "No cambie el HTML.");
+		}
 		InstalacionDeportiva existe = InstalacionDeportivaService.buscarPorNombre(instalacion.getNombre());
 		if (existe != null) {
-	    	errors.rejectValue("nombre", null, "La Instalacion ya existe en el sistema. ");
+	    	errors.rejectValue("nombre", null, "La Instalación ya existe en el sistema. ");
 	    }
 		
 		if (instalacion.getNombre().isBlank()) {  
