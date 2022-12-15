@@ -84,7 +84,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre: <input th:field="*{nombre}"
-								name="nombre" type="text" required="required"
+								name="nombre" type="text" required="required" pattern="[a-z,A-Z]*"
 								class="casillaNombre">
 							</label>
 							<div class="cajaError">
@@ -94,7 +94,7 @@
 						</div>
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="apellido">Apellido: <input th:field="*{apellido}"
+								for="apellido">Apellido: <input pattern="[a-z,A-Z]*" th:field="*{apellido}"
 								name="apellido" type="text" required="required"
 								class="casillaApellido">
 							</label>
