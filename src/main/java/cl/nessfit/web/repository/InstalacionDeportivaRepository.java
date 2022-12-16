@@ -1,0 +1,22 @@
+package cl.nessfit.web.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import cl.nessfit.web.model.InstalacionDeportiva;
+
+
+public interface InstalacionDeportivaRepository extends JpaRepository<InstalacionDeportiva, String>{
+	
+	public InstalacionDeportiva findByNombre(String nombre);
+	public List<InstalacionDeportiva> findAll();
+	//@Query (value="SELECT * FROM instalacionesdeportivas n where n.estado = 1", nativeQuery=true)
+	public List<InstalacionDeportiva> findByEstadoIs(int num);
+	@Query(value="select * from instalacionesdeportivas i where i.estado=1", nativeQuery=true)
+	public List<InstalacionDeportiva> findOperatives();
+	@Query(value="select * from instalacionesdeportivas i where i.estado=1 and i.tipo=:tipo", nativeQuery=true)
+	public List<InstalacionDeportiva> findByTipo(int tipo);
+}

@@ -2,6 +2,7 @@ package cl.nessfit.web.service;
 
 import java.util.List;
 
+import cl.nessfit.web.model.Solicitud;
 import cl.nessfit.web.model.Usuario;
 
 public interface UsuarioService {
@@ -14,7 +15,14 @@ public interface UsuarioService {
 	
 	public List<Usuario> mostrarAdministrativos();
 	
+	public List<Usuario> mostrarClientes();
+	
 	public Usuario buscarPorRut(String rut);
 	
 	public Usuario buscarPorEmail(String email);
+	
+	public List<Usuario> mostrarTodos();
+	public List<Usuario> listarAdministrativo(String rut);
+	public List<Usuario> listarAdministrador(String rut);
+	
 }

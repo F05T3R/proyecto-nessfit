@@ -56,6 +56,9 @@ hr{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+modal:active{
+	display:block;
+}
 
 
 .modal-content {
@@ -134,10 +137,6 @@ hr{
   	display: inline-block;
   	font-size: 18px;
   	margin: 4px 2px;
-  	cursor: pointer;
-}
-.botonSuperior:hover{
-	background-color: #fef6cd;
 }
 
 .menuContenido{
@@ -214,4 +213,9 @@ input{
 	font-size: 23px;
 	margin: 4px 10px;
 	cursor: pointer;
+}
+.copyright{
+	text-align:center;
+	margin-top:2rem;
+	
 }

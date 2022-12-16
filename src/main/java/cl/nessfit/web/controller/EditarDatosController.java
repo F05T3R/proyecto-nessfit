@@ -21,6 +21,7 @@ import cl.nessfit.web.utils.validacionUsuario;
 
 @Controller
 public class EditarDatosController {
+	
 
 	@Autowired
     CUsuarioService usuarioService;
@@ -51,13 +52,12 @@ public class EditarDatosController {
     	result.rejectValue("telefono", null, "El teléfono móvil ingresado no es válido");
     }
     
-    if(usuario.getNombre().length() < 3 ) {
+    if(usuario.getNombre().length() < 3 || usuario.getNombre().isBlank() ) {
     	result.rejectValue("nombre", null, "Los nombres o apellidos deben tener más de 2 caracteres");
     }
-    if(usuario.getApellido().length() < 3) {
+    if(usuario.getApellido().length() < 3 || usuario.getApellido().isBlank()) {
     	result.rejectValue("apellido", null, "Los nombres o apellidos deben tener más de 2 caracteres");
     }
-	
 	if (result.hasErrors()) {
 	    return "/EditarDatos";
 	}

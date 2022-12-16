@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/ArrendarCentro-estilo.css}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Sarabun:wght@500&display=swap"
+	rel="stylesheet">
+<title>Inicio sesión - Nessfit</title>
+</head>
+
+<body>
+	<div class="barraLateral">
+         	<img src="/images/NESSFIT_LOGO.png">
+         	<hr>
+         	<a href="/MenuPrincipal" class="boton">
+      			<span class="fs-4">Inicio</span>
+    		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'ADMINISTRADOR'}" href="/listarUsuarios" class="boton">
+      			<span class="fs-4">Administrar Usuarios</span>
+    		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistrarCliente" class="boton"> <span
+			class="fs-4">Registrar cliente</span>
+			</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/verSolicitudes" class="boton">
+      			<span class="fs-4">Administrar Solicitudes</span>
+    		</a>
+    		<a th:if="${rolUser == 'CLIENTE'}" href="/cliente/verSolicitudes" class="boton">
+      			<span class="fs-4">Visualizar Solicitudes</span>
+    		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/estadisticas" class="boton">
+      			<span class="fs-4">Ver estadisticas</span>
+    		</a>
+    		
+    		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
+      			<span class="fs-4">Registrar administrativo</span>
+    		</a>
+    		
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+      			<span class="fs-4">Registrar Instalacion</span>
+    		</a>
+    		<a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro" class="boton">
+      			<span class="fs-4">Arrendar Centro</span>
+    		</a>
+    		
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/editarPrueba" class="boton">
+      			<span class="fs-4">Editar Datos de Instalaciones</span>
+    		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
+      			<span class="fs-4">Editar datos</span>
+    		</a>
+    		<a href="/CambiarContraseña" class="boton">
+      			<span class="fs-4">Cambiar contraseña</span>
+    		</a>
+    		<a href="/logout" class="boton">
+      			<span class="fs-4">Cerrar Sesión</span>
+    		</a>
+         </div>
+	<div class="menuContenido">
+		<div class="barraSuperior">
+			<div>
+				<p th:text="${rutUser}" class="botonSuperior"></p>
+			</div>
+		</div>
+		<div class="contenedor">
+			<div class="contenedor2 ">
+				<h1>Arrendar centro</h1>
+				<hr>
+			<form th:action="@{ArrendarCentrosPrueba}" id="demo-form2" data-parsley-validate
+							class="form-horizontal form-label-left">
+				<div class="casilla">
+					<h2>Seleccione un centro deportivo.</h2>
+					
+					<select name="nombre" class="instalacion">
+						<option th:if="${AllInstalaciones.isEmpty()}">No hay centros deportivos que mostrar</option>
+							<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Piscinas">
+								<option th:each="piscina : ${piscinas}"
+										th:value="${piscina.nombre}" th:text="${piscina.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Canchas">
+									<option th:each="cancha : ${canchas}"
+										th:value="${cancha.nombre}" th:text="${cancha.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Gimnasios">
+									<option th:each="gimnasio : ${gimnasios}"
+										th:value="${gimnasio.nombre}" th:text="${gimnasio.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Quinchos">
+									<option th:each="quincho : ${quinchos}"
+										th:value="${quincho.nombre}" th:text="${quincho.nombre}">
+								</optgroup>
+								<optgroup th:if="!${AllInstalaciones.isEmpty()}" label="Estadio">
+									<option th:each="estadio : ${estadios}"
+										th:value="${estadio.nombre}" th:text="${estadio.nombre}">
+								</optgroup>
+						</select>
+
+					</div>
+				<div class="botonSolicitud">
+					<div>
+						<button class="aceptar" type="submit" th:if="${AllInstalaciones.isEmpty()==False }">Solicitar</button>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		<p class=" copyright">Nessfit© 2022.</p>
+	</div>
+</body>
+</html>

@@ -28,19 +28,36 @@ public class validacionUsuario implements Validator {
 	    	errors.rejectValue("email", null, "El RUT y/o correo electrónico ya existen en el sistema. Intente iniciar sesión");
 	    }
 	    
+		if (usuario.getEmail() == "") {
+			errors.rejectValue("email", null, "Complete este campo ");
+		}
+	    
 	    // lógica para validar
 	    
 	    if(String.valueOf(usuario.getTelefono()).length() < 11 || String.valueOf(usuario.getTelefono()).length() > 16) {
-	    	errors.rejectValue("telefono", null, "El teléfono móvil ingresado no es válido");
+	    	errors.rejectValue("telefono", null, "El teléfono móvil ingresado no es válido.");
 	    }
-	    
-	    if(usuario.getNombre().length() < 3 ) {
+	    if(usuario.getNombre().length() < 3 || usuario.getNombre().isBlank() ) {
 	    	errors.rejectValue("nombre", null, "Los nombres o apellidos deben tener más de 2 caracteres");
 	    }
-	    if(usuario.getApellido().length() < 3) {
+	    if(usuario.getApellido().length() < 3 || usuario.getApellido().isBlank()) {
 	    	errors.rejectValue("apellido", null, "Los nombres o apellidos deben tener más de 2 caracteres");
 	    }
+	    if(usuario.getRut().isBlank()) {
+	    	errors.rejectValue("rut", null, "Complete este campo.");
+            return;
+	    }
+	    if(usuario.getEmail().isBlank()) {
+	    	errors.rejectValue("email", null, "Complete este campo.");
+            return;
+	    }
 	    String rutAux = usuario.getRut();
+	    
+	    if (rutAux.isEmpty()){
+	    	errors.rejectValue("rut", null, "Complete este campo");
+	    	return;
+	    }
+	    
 	    //rutAux = rutAux.replace(".", "").replace("-", "").replace(" ", "").replace(",", ""); 
 	    String rut = rutAux.substring(0,rutAux.length()-1);
 	    

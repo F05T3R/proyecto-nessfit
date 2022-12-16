@@ -1,0 +1,86 @@
+package cl.nessfit.web.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "solicitudes")
+public class Solicitud implements Serializable {
+
+	private static final long serialVersionUID = 4507764205332784955L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+	private int id;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "rutUsuario", referencedColumnName = "rut")
+	private Usuario usuario;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "nombreCentro", referencedColumnName = "nombre")
+	private InstalacionDeportiva instalacion;
+	
+	
+	private int totalPagar;
+	
+	private String fechaCompra;
+	
+	public String getFechaCompra() {
+		return fechaCompra;
+	}
+
+	public void setFechaCompra(String fechaCompra) {
+		this.fechaCompra = fechaCompra;
+	}
+
+	private int estado;
+	
+	public int getId() {
+		return id;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public InstalacionDeportiva getInstalacion() {
+		return instalacion;
+	}
+	
+	public int getTotalPagar() {
+		return totalPagar;
+	}
+	
+	public int getEstado() {
+		return estado;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
+	}
+	
+	public void setInstalacion(InstalacionDeportiva instalacion) {
+		this.instalacion=instalacion;
+	}
+	public void setTotalPagar(int totalPagar) {
+		this.totalPagar=totalPagar;
+	}
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+}

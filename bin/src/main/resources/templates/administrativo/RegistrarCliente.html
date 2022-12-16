@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/RegistrarAdministrativo-estilo.css">
+<link rel="stylesheet" th:href="@{/css/RegistrarAdministrativo-estilo.css}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,15 @@
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
       			<span class="fs-4">Registrar cliente</span>
     		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+      			<span class="fs-4">Registrar Instalacion</span>
+    		</a>
+    		
     		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
       			<span class="fs-4">Registrar administrativo</span>
+    		</a>
+    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
+      			<span class="fs-4">Editar datos</span>
     		</a>
     		<a href="/CambiarContraseña" class="boton">
       			<span class="fs-4">Cambiar contraseña</span>
@@ -34,7 +41,7 @@
          <div class="menuContenido">
          	<div class="barraSuperior">
          		<div>
-         			<a  th:text="${rutUser}" class="botonSuperior"></a>
+         			<p  th:text="${rutUser}" class="botonSuperior"></p>
          		</div>
         	 </div>
          	<div class="contenedor">
@@ -49,7 +56,7 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">RUT:     
-								<input th:field="*{rut}" type="text" required="required" class="casillaRut">
+								<input placeholder= "112223334" th:field="*{rut}" type="text" required="required" class="casillaRut">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('rut')}"
@@ -90,7 +97,7 @@
                     		<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="correo">Correo electrónico:
-								<input th:field="*{email}" name="correo" type="text" required="required" class="casillaCorreo">
+								<input th:field="*{email}" placeholder="ejemplo@ejemplo.com" name="correo" type="text" required="required" class="casillaCorreo">
 								</label>
 								<div class = "cajaError">
 										<div th:if="${#fields.hasErrors('email')}"
@@ -100,8 +107,7 @@
 							</div>
                     		<div class="casillaBotones">
 								<div class="botonActualizar">
-									<button type="submit" class="aceptar">Aceptar</button>
-									<a type="submit" id="openModal" class="actualizar">Actualizar</a>
+									<a type="submit" id="openModal" class="actualizar">Registrar</a>
 								</div>
 								<div id="myModal" class="modal">
       								<div class="modal-content">
@@ -113,12 +119,14 @@
         								</div>	
       								</div>	
     							</div>
-    							<script src="js/Consulta.js"></script>
+    							<script th:src="@{/js/Consulta.js}"></script>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</div>
+			<p class=" copyright">Nessfit© 2022.</p>
 		</div>
 </body>
 </html>
