@@ -39,12 +39,12 @@
 			class="fs-4">Registrar administrativo</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
 			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
-			<span class="fs-4">Registrar Instalacion</span>
+			<span class="fs-4">Registrar Instalación</span>
 		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro"
 			class="boton"> <span class="fs-4">Arrendar Centro</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
 			href="/administrativo/editarPrueba" class="boton"> <span
-			class="fs-4">Editar Datos de Instalaciones</span>
+			class="fs-4">Administrar Instalaciones</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
 			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
 				datos</span>
@@ -84,7 +84,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre: <input th:field="*{nombre}"
-								name="nombre" type="text" required="required" pattern="[a-z,A-Z]*"
+								name="nombre" type="text" required="required"
 								class="casillaNombre">
 							</label>
 							<div class="cajaError">
@@ -94,7 +94,7 @@
 						</div>
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="apellido">Apellido: <input pattern="[a-z,A-Z]*" th:field="*{apellido}"
+								for="apellido">Apellido: <input th:field="*{apellido}"
 								name="apellido" type="text" required="required"
 								class="casillaApellido">
 							</label>

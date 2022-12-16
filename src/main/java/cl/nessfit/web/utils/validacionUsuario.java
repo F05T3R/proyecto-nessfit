@@ -52,6 +52,12 @@ public class validacionUsuario implements Validator {
             return;
 	    }
 	    String rutAux = usuario.getRut();
+	    
+	    if (rutAux.isEmpty()){
+	    	errors.rejectValue("rut", null, "Complete este campo");
+	    	return;
+	    }
+	    
 	    //rutAux = rutAux.replace(".", "").replace("-", "").replace(" ", "").replace(",", ""); 
 	    String rut = rutAux.substring(0,rutAux.length()-1);
 	    
