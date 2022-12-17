@@ -111,7 +111,6 @@ public class ArrendarCentrosController {
 		
 		String dia = null;
 		
-		
 		if (request.getParameterValues("fechasEscogidas") != null) {
 			for (String diaAux : request.getParameterValues("fechasEscogidas")) {
 				dia = diaAux;
@@ -122,8 +121,21 @@ public class ArrendarCentrosController {
 			return "redirect:/cliente/EscogerCentro";
 		}
 		String[] listaFechas = dia.split(",");
+			for(int i = 0; i<listaFechas.length;i++) {
+				String[] fecha= listaFechas[i].split("-");
+				System.out.println(fecha.length);
+				if(fecha.length !=3) {
+					return "redirect:/cliente/EscogerCentro";
+				}else {
+					if(!fecha[0].matches("[0-9]+") || !fecha[1].matches("[0-9]+")||!fecha[2].matches("[0-9]+")) {
+						return "redirect:/cliente/EscogerCentro";
+					}
+				}
+			}
+			
 		
 		Calendar fechaHoy = Calendar.getInstance();
+		Date fechaSolicitud = new Date();
 		int añoHoy = fechaHoy.get(Calendar.YEAR);
         int mesHoy = fechaHoy.get(Calendar.MONTH);
         int diaHoy = fechaHoy.get(Calendar.DAY_OF_MONTH);

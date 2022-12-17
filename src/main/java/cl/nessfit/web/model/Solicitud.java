@@ -31,6 +31,7 @@ public class Solicitud implements Serializable {
 	@JoinColumn(name = "nombreCentro", referencedColumnName = "nombre")
 	private InstalacionDeportiva instalacion;
 	
+	
 	private int totalPagar;
 	
 	private String fechaCompra;
