@@ -38,12 +38,12 @@
 			class="fs-4">Registrar administrativo</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
 			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
-			<span class="fs-4">Registrar Instalacion</span>
+			<span class="fs-4">Registrar Instalación</span>
 		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro"
 			class="boton"> <span class="fs-4">Arrendar Centro</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
 			href="/administrativo/editarPrueba" class="boton"> <span
-			class="fs-4">Editar Datos de Instalaciones</span>
+			class="fs-4">Administrar Instalaciones</span>
 		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
 			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
 				datos</span>
@@ -77,7 +77,7 @@
 							<tr>
 								<th>RUT</th>
 								<th>NOMBRE</th>
-								<th>TELEFONO</th>
+								<th>TELÉFONO</th>
 								<th>USUARIO</th>
 								<th>ESTADO</th>
 							</tr>

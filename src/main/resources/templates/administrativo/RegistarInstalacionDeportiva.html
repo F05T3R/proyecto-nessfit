@@ -42,14 +42,14 @@
     		</a>
     		
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistarInstalacionDeportiva" class="boton">
-      			<span class="fs-4">Registrar Instalacion</span>
+      			<span class="fs-4">Registrar Instalación</span>
     		</a>
     		<a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro" class="boton">
       			<span class="fs-4">Arrendar Centro</span>
     		</a>
     		
     		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/editarPrueba" class="boton">
-      			<span class="fs-4">Editar Datos de Instalaciones</span>
+      			<span class="fs-4">Administrar Instalaciones</span>
     		</a>
     		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
       			<span class="fs-4">Editar datos</span>
@@ -69,7 +69,7 @@
 		</div>
 		<div class="contenedor">
 			<div class="contenedor2 ">
-				<h1>Registro Instalacion Deportiva</h1>
+				<h1>Registro Instalación Deportiva</h1>
 				<hr>
 				<div class="casilla">
 					<form th:action="@{/administrativo/RegistarInstalacionDeportiva}"
@@ -91,7 +91,7 @@
 						</div>
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
-								for="nombre">Direccion: <input th:field="*{direccion}"
+								for="nombre">Dirección: <input th:field="*{direccion}"
 								name="direccion" type="text" required="required"
 								class="casillaDireccion">
 							</label>

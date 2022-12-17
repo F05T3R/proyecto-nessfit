@@ -101,30 +101,39 @@ public class ArrendarCentrosController {
 	}
 	@RequestMapping(value="cliente/ArrendarCentros")
 	public String formArrendarCentro(@RequestParam String nombre, RedirectAttributes attr, Model model ,HttpServletRequest request) {
-		System.out.println("1");
+		
 		InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
-		System.out.println(ins.getNombre());
-		int contador = 0; 
-		System.out.println(contador);
 		//InstalacionDeportiva ins = InstalacionDeportivaService.buscarPorNombre(nombre);
 
 		Solicitud solicitud = new Solicitud();
 		Usuario usuario = usuarioService.buscarPorRut(SecurityContextHolder.getContext().getAuthentication().getName());
-
-		if (request.getParameterValues("dia") != null) {
-			for (String dia : request.getParameterValues("dia")) {
-				System.out.println(dia);  
-				contador++;
+		
+		
+		String dia = null;
+		
+		if (request.getParameterValues("fechasEscogidas") != null) {
+			for (String diaAux : request.getParameterValues("fechasEscogidas")) {
+				dia = diaAux;
+				System.out.println(dia);
 			}
 		}
-		
-		System.out.println(contador);
-		if(contador == 0) {
-			System.out.println("5");
+		if(dia.isBlank()) {
 			return "redirect:/cliente/EscogerCentro";
 		}
+		String[] listaFechas = dia.split(",");
+			for(int i = 0; i<listaFechas.length;i++) {
+				String[] fecha= listaFechas[i].split("-");
+				System.out.println(fecha.length);
+				if(fecha.length !=3) {
+					return "redirect:/cliente/EscogerCentro";
+				}else {
+					if(!fecha[0].matches("[0-9]+") || !fecha[1].matches("[0-9]+")||!fecha[2].matches("[0-9]+")) {
+						return "redirect:/cliente/EscogerCentro";
+					}
+				}
+			}
+			
 		
-		System.out.println("6");
 		Calendar fechaHoy = Calendar.getInstance();
 		Date fechaSolicitud = new Date();
 		int añoHoy = fechaHoy.get(Calendar.YEAR);
@@ -137,25 +146,22 @@ public class ArrendarCentrosController {
         else {
         	fechaCompra = añoHoy + "-" + (mesHoy+1) + "-" + diaHoy;
         }
-        //System.out.println(fechaHoy);
-		//System.out.println(añoHoy + "-" + (mesHoy+1) + "-" + diaHoy);
-		//System.out.println(fechaCompra);
-		solicitud.setInstalacion(ins);
+        
+        solicitud.setInstalacion(ins);
 		solicitud.setEstado(0);
-		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * contador));
+		solicitud.setTotalPagar((int)(ins.getCostoArriendo() * listaFechas.length));
 		solicitud.setUsuario(usuario);
 		solicitud.setFechaCompra(fechaCompra);	  
 		
 		solicitudService.guardar(solicitud);
 		Solicitud solicitud2 = solicitud;
 		
-		if (request.getParameterValues("dia") != null) {
-			for (String dia : request.getParameterValues("dia")) {
-				FechasSolicitud fecha = new FechasSolicitud();
-				fecha.setIdSolicitud(solicitud2.getId());
-				fecha.setFecha(dia);
-				fechasSolicitudService.guardar(fecha);
-			}
+		
+		for(int i = 0; i<listaFechas.length;i++) {
+			FechasSolicitud fecha = new FechasSolicitud();
+			fecha.setIdSolicitud(solicitud2.getId());
+			fecha.setFecha(listaFechas[i]);
+			fechasSolicitudService.guardar(fecha);
 		}
 		return "redirect:/MenuPrincipal";
 	}
