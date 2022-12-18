@@ -13,7 +13,11 @@ btn.addEventListener("click", function(evento){
 	
 	document.getElementById("fechasEscogidas").value=fechasEscogidas;
 });
-
+var aceptar = document.getElementById("aceptar");
+aceptar.addEventListener("click", function(evento){
+	
+	document.getElementById("fechasEscogidas").value=fechasEscogidas;
+});
 let fechaActual = new Date();
 let diaActual = fechaActual.getDate();
 let numeroMes = fechaActual.getMonth();
