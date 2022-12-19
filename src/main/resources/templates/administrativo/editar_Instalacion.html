@@ -13,29 +13,44 @@
 <body>
          
          <div class="barraLateral">
-         	<img src="/images/NESSFIT_LOGO.png">
-         	<hr>
-         	<a href="/MenuPrincipal" class="boton">
-      			<span class="fs-4">Inicio</span>
-    		</a>
-    		<a th:if="${rolUser == 'ADMINISTRATIVO'}" href="/administrativo/RegistrarCliente" class="boton">
-      			<span class="fs-4">Registrar cliente</span>
-    		</a>
-    		<a th:if="${rolUser == 'ADMINISTRADOR'}" href="/administrador/RegistrarAdministrativo" class="boton">
-      			<span class="fs-4">Registrar administrativo</span>
-      		
-      		
-    		</a>
-    		<a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}" href="/EditarDatos" class="boton">
-      			<span class="fs-4">Editar datos</span>
-    		</a>
-    		<a href="/CambiarContraseña" class="boton">
-      			<span class="fs-4">Cambiar contraseña</span>
-    		</a>
-    		<a href="/logout" class="boton">
-      			<span class="fs-4">Cerrar Sesión</span>
-    		</a>
-         </div>
+		<img src="/images/NESSFIT_LOGO.png">
+		<hr>
+		<a href="/MenuPrincipal" class="boton"> <span class="fs-4">Inicio</span>
+		</a> <a
+			th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'ADMINISTRADOR'}"
+			href="/listarUsuarios" class="boton"> <span class="fs-4">Administrar
+				Usuarios</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistrarCliente" class="boton"> <span
+			class="fs-4">Registrar cliente</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/verSolicitudes" class="boton"> <span
+			class="fs-4">Administrar Solicitudes</span>
+		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/verSolicitudes"
+			class="boton"> <span class="fs-4">Visualizar Solicitudes</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/estadisticas" class="boton"> <span
+			class="fs-4">Ver estadisticas</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRADOR'}"
+			href="/administrador/RegistrarAdministrativo" class="boton"> <span
+			class="fs-4">Registrar administrativo</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/RegistarInstalacionDeportiva" class="boton">
+			<span class="fs-4">Registrar Instalación</span>
+		</a> <a th:if="${rolUser == 'CLIENTE'}" href="/cliente/EscogerCentro"
+			class="boton"> <span class="fs-4">Arrendar Centro</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO'}"
+			href="/administrativo/editarPrueba" class="boton"> <span
+			class="fs-4">Administrar Instalaciones</span>
+		</a> <a th:if="${rolUser == 'ADMINISTRATIVO' || rolUser == 'CLIENTE'}"
+			href="/EditarDatos" class="boton"> <span class="fs-4">Editar
+				datos</span>
+		</a> <a href="/CambiarContraseña" class="boton"> <span class="fs-4">Cambiar
+				contraseña</span>
+		</a> <a href="/logout" class="boton"> <span class="fs-4">Cerrar
+				Sesión</span>
+		</a>
+	</div>
          <div class="menuContenido">
          	<div class="barraSuperior">
          		<div>
@@ -44,7 +59,7 @@
         	 </div>
          	<div class="contenedor">
 				<div class="contenedor2 ">
-					<h1> Editar Instalacion Deportiva</h1>
+					<h1> Editar Instalación Deportiva</h1>
 					<hr>
 					<div class="casilla">
 						<form th:action="@{/administrativo/editar/{nombre} (nombre = ${instalacionDeportiva.nombre})}"
@@ -54,8 +69,8 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">Nombre:     
-								<input th:field="*{nombre}" name="nombre" type="text" required="required" hidden class="casillaNombre" readonly = "readonly">
-								<input th:field="*{nombre}" type="text" disabled="disabled" class="casillaNombre">
+								<input th:field="*{nombre}" id="instalacion"name="nombre" type="text" required="required" hidden class="casillaNombre" readonly = "readonly">
+								<input th:field="*{nombre}" id="nombre"type="text" disabled="disabled" class="casillaNombre" value="${instalacionDeportiva.nombre}">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('nombre')}"
@@ -143,9 +158,9 @@
     							<script th:src="@{/js/Consulta.js}"></script>
 							</div>
 						</form>
-						
 					</div>
 				</div>
+			</div>
 			</div>
 </body>
 </html>
