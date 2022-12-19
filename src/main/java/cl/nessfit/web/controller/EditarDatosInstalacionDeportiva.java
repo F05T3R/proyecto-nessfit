@@ -69,11 +69,12 @@ public class EditarDatosInstalacionDeportiva {
 	
 	
 	@RequestMapping(value = {"/editar/{nombre}"}, method = RequestMethod.POST)
-	public String formEditar(@Valid InstalacionDeportiva instalacion,@RequestParam String aux, BindingResult result, RedirectAttributes attr, Model model) {
-
+	public String formEditar(@Valid InstalacionDeportiva instalacion, BindingResult result, RedirectAttributes attr, Model model) {
+		
 		String[] lista=instalacion.getNombre().split(",");
-		aux = lista[0];
+		String aux = lista[0];
 		if(!aux.equals(instalacion.getNombre())) {
+			instalacion.setNombre(aux);
 			result.rejectValue("nombre", null, "No cambie el HTML.");
 			
 		}

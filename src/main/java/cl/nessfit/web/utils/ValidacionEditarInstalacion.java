@@ -22,7 +22,10 @@ public class ValidacionEditarInstalacion implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		InstalacionDeportiva instalacion = (InstalacionDeportiva) target;
-		
+		String costoArriendoTxt=Long.toString(instalacion.getCostoArriendo());
+		if(costoArriendoTxt.isBlank()) {
+			errors.rejectValue("costoArriendo", null, "Complete este campo ");
+		}
 		if (instalacion.getDireccion() == "") {
 			errors.rejectValue("direccion", null, "Complete este campo ");
 		}
