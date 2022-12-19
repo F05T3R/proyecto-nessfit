@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -29,6 +30,7 @@ public class Usuario implements Serializable{
 	
 	private long telefono;
 	@Email(message = "Su correo electrónico no es válido")
+	@NotNull(message = "Complete este campo ")
 	private String email;
 	private int estado;
 	private String contrasena;

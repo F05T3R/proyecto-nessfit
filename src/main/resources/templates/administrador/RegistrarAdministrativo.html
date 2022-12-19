@@ -73,7 +73,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="rut">RUT: </label> <input placeholder="112223334"
-								th:field="*{rut}" type="text" required="required"
+								th:field="*{rut}" type="text" 
 								class="casillaRut">
 							<div class="cajaError">
 								<div th:if="${#fields.hasErrors('rut')}"
@@ -87,7 +87,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Nombre: <input th:field="*{nombre}"
-								name="nombre" type="text" required="required"
+								name="nombre" type="text"
 								class="casillaNombre">
 								<div class=cajaError>
 									<div th:if="${#fields.hasErrors('nombre')}"
@@ -102,7 +102,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="apellido">Apellido: <input th:field="*{apellido}"
-								name="apellido" type="text" required="required"
+								name="apellido" type="text" 
 								class="casillaApellido">
 								<div class=cajaError>
 									<div th:if="${#fields.hasErrors('apellido')}"
@@ -117,7 +117,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="telefono">Teléfono: <input th:field="*{telefono}"
-								name="telefono" type="text" required="required"
+								name="telefono" type="text" 
 								class="casillaTelefono">
 								<div class=cajaError>
 									<div class="error" th:if="${#fields.hasErrors('telefono')}"
@@ -130,7 +130,7 @@
 								for="correo">Correo electrónico: <input
 								th:field="*{email}" name="correo"
 								placeholder="ejemplo@ejemplo.com" type="text"
-								required="required" class="casillaCorreo">
+								 class="casillaCorreo">
 								<div class=cajaError>
 									<div th:if="${#fields.hasErrors('email')}"
 										th:errorclass="text-danger" th:errors="*{email}"></div>

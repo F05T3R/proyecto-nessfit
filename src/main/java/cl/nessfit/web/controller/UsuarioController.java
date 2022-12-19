@@ -40,7 +40,7 @@ public class UsuarioController {
 		
 		usuarioService.guardar(usuario);
 		*/
-		
+		/*
 		InstalacionDeportiva ins = new InstalacionDeportiva();
 		ins.setNombre("Inst1");
 		ins.setDireccion("Dir1");
@@ -51,7 +51,7 @@ public class UsuarioController {
 		ins.setTipo(tp);
 		
 		InstalacionService.guardar(ins);
-		
+		*/
 		
 		
 		return "guardar";

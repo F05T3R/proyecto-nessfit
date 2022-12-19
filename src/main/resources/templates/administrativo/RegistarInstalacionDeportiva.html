@@ -92,7 +92,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Dirección: <input th:field="*{direccion}"
-								name="direccion" type="text" required="required"
+								name="direccion" type="text"
 								class="casillaDireccion">
 							</label>
 							<div class="cajaError">
@@ -103,7 +103,7 @@
 						<div>
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="tipo">Tipo: <select th:field="*{tipo}"
-								required="required" class="casillaTipo">
+								class="casillaTipo">
 									
 									<option th:each="tipos : ${tiposInstalaciones}"
 										th:text="${tipos.getTipo}" th:value="${tipos}"></option>
@@ -123,7 +123,7 @@
 							<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="costoArriendo">Costo: <input
 								th:field="*{costoArriendo}"  name="costoArriendo" type="number" value="0"
-								required="required" class="casillaCostoArriendo" placeHolder="Costo por dia de arriendo"> 
+								class="casillaCostoArriendo" placeHolder="Costo por dia de arriendo"> 
 							</label>
 							<div class="cajaError">
 								<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"
