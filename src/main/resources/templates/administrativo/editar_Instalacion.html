@@ -81,7 +81,7 @@
 							<div>
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="nombre">Dirección:
-								<input th:field="*{direccion}" name="direccion" type="text" required="required" class="casillaDireccion">
+								<input th:field="*{direccion}" name="direccion" type="text" class="casillaDireccion">
 								</label>
 								<div class= "cajaError">
 									<div th:if="${#fields.hasErrors('direccion')}"
@@ -113,7 +113,7 @@
                     		
 								<label class="col-form-label col-md-3 col-sm-3 label-align"
 								for="costoArriendo">Costo:
-								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" required="required" class="casillaCostoArriendo">
+								<input th:field="*{costoArriendo}" name="costoArriendo" type="text" class="casillaCostoArriendo">
 								</label>
 								<div class= "cajaError">
 									<div class="error" th:if="${#fields.hasErrors('costoArriendo')}"

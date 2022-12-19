@@ -58,6 +58,9 @@ public class EditarDatosController {
     if(usuario.getApellido().length() < 3 || usuario.getApellido().isBlank()) {
     	result.rejectValue("apellido", null, "Los nombres o apellidos deben tener más de 2 caracteres");
     }
+    if (usuario.getEmail() == "") {
+		result.rejectValue("email", null, "Complete este campo ");
+	}
 	if (result.hasErrors()) {
 	    return "/EditarDatos";
 	}
